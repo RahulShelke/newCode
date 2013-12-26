@@ -9,7 +9,8 @@ var express = require('express')
     , path = require('path')
     , mongoose = require('mongoose')
     , TwitterStrategy = require('passport-twitter').Strategy
-    , LinkedInStrategy = require('passport-linkedin').Strategy;
+    , LinkedInStrategy = require('passport-linkedin').Strategy
+    ,nodemailer = require("nodemailer");
 
 var mongo = require('mongodb');
 var BSON = mongo.BSONPure;
@@ -287,5 +288,34 @@ app.get('/settings', ensureAuthenticated,  function(req, res){
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) { return next(); }
     res.redirect('/login')
-}
+};
+
+app.get('/sendmail/images/:image', function(req, res){
+    var transport = nodemailer.createTransport("SMTP", {
+        service: "Gmail",
+        auth: {
+            user: "chinna.wip@gmail.com",
+            pass: "mom@12345"
+        }
+    });
+    var mailOptions = {
+        from: "chinna.wip@gmail.com",
+        to: "chinna_wip@yahoo.com",
+        subject: "Pictures...",
+        text: req.params.image,
+        attachments: [{
+            filePath: path.join(__dirname,'/public/images/'+req.params.image)
+        }]
+    };
+    transport.sendMail(mailOptions, function(error, response){
+        if(error){
+            console.log(error);
+            return;
+        }else {
+            transport.close();
+        //   console.log('Mail sent...');
+        }
+        res.redirect('/search');
+});
+});
 

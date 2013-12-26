@@ -167,7 +167,7 @@ html
                         li.lastchild
                             aside#mainAside.propertiesListContainer
                                 if routePath === "home"
-                                    div#MapDiv.propertiesListContainer
+                                    div#MapDiv
                                         script.
                                             var propertyList = JSON.parse( !{JSON.stringify(products)} );
                                         script(type='text/javascript',src='/javascripts/mapIndex.js')
@@ -368,7 +368,7 @@ html
                                                                 $("#result").html(propertyList.length+" results");
                                                                 for(var i=0; i < propertyList.length ; i++){
                                                                 console.log(propertyList[i].bathrooms);
-                                                                document.getElementById("list1").innerHTML += "<br/><div class=propertiesList style=background:url("+propertyList[i].picture.linkFront+")no-repeat;background-size:100% 175px>"
+                                                                document.getElementById("list1").innerHTML += "<br/><div class=propertiesList style=background:url("+propertyList[i].picture.linkFront+")no-repeat;background-size:300px 175px>"
                                                                                                                 +"<div id=propertyName>"+propertyList[i].productName+"<a style=float:right;margin-top:-2px;margin-right:20px><input type=checkbox name=property value="+i+"></a></div>"
                                                                                                                 +"<div id=propertyPrice class="+i+">$"+propertyList[i].price+"<br /><a> Bed:"+propertyList[i].bedrooms+" Bath:"+propertyList[i].bathrooms+" Sqft:"+propertyList[i].area+"</a><a style=float:right;margin-top:-2px;margin-right:20px><img src=/images/green_arrow.png></div>"
                                                                                                                 //+"<div id=arrowKey></div>"
@@ -526,7 +526,7 @@ html
                                                                         +"<img src="+propertyList[0].picture.linkLeft+" width=580 height=270/>"
                                                                         +"<img src="+propertyList[0].picture.linkRight+" width=580 height=270/>"
                                                                         +"</div></div>");
-                                                    div#description(style="width:102.5%")
+                                                    div#description(style="width:100%")
                                                         div#tabs
                                                             ul
                                                                 li#LocationClick(style="cursor:pointer",class="0")
@@ -565,10 +565,6 @@ html
                                                         div#description_prop
                                                             h4 Descriptions
                                                             p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.
-                                        div#MapDiv.propertiesListContainer
-                                        script.
-                                            var propertyList = JSON.parse( !{JSON.stringify(products)} );
-                                        script(type='text/javascript',src='/javascripts/mapIndex.js')
                                     div#compare_body(style="display:none")
                                         div#compare_header
                                             div#back

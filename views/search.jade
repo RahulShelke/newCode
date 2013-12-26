@@ -209,8 +209,8 @@ html
                                             for(var i=0; i < propertyList.length ; i++){
                                             console.log(propertyList[0].bathrooms);
                                             document.getElementById("list1").innerHTML += "<br/><div class=propertiesList style=background:url("+propertyList[i].picture.linkFront+")no-repeat;background-size:300px 175px>"
-                                                                                            +"<div id=propertyName>"+propertyList[i].productName+"<a style=float:right;margin-top:-2px;margin-right:20px><input type=checkbox name=property value="+i+"></a></div>"
-                                                                                            +"<div id=propertyPrice class="+i+">$"+propertyList[i].price+"<br /><a> Bed:"+propertyList[i].bedrooms+" Bath:"+propertyList[i].bathrooms+" Sqft:"+propertyList[i].area+"</a><a style=float:right;margin-top:-2px;margin-right:20px><img src=/images/green_arrow.png></div>"
+                                                                                            +"<div id=propertyNameSearch>"+propertyList[i].productName+"<a style=float:right;margin-top:-2px;margin-right:20px><input type=checkbox name=property value="+i+"></a></div>"
+                                                                                            +"<div id=propertyPriceSearch class="+i+">$"+propertyList[i].price+"<br /><a> Bed:"+propertyList[i].bedrooms+" Bath:"+propertyList[i].bathrooms+" Sqft:"+propertyList[i].area+"</a><a style=float:right;margin-top:-2px;margin-right:20px><img src=/images/green_arrow.png></div>"
                                                                                             //+"<div id=arrowKey></div>"
                                                                                             +"</div></a>" }}
 
@@ -244,8 +244,8 @@ html
                                             for(var i=0; i < propertyList.length ; i++){
                                                 console.log(propertyList[i]);
                                                 document.write("<br/> <div class=propertiesList style=background:url("+propertyList[i].picture.linkFront+")no-repeat;background-size:300px 175px>"
-                                                                                        +"<div id=propertyName>"+propertyList[i].productName+"<a style=float:right;margin-top:-2px;margin-right:20px><input type=checkbox name=property value="+i+"></a></div>"
-                                                                                        +"<div id=propertyPrice class="+i+">$"+propertyList[i].price+"<br /><a> Bed:"+propertyList[i].bedrooms+" Bath:"+propertyList[i].bathrooms+" Sqft:"+propertyList[i].area+"</a><a style=float:right;margin-top:-2px;margin-right:20px><img src=/images/green_arrow.png></div>"
+                                                                                        +"<div id=propertyNameSearch>"+propertyList[i].productName+"<a style=float:right;margin-top:-2px;margin-right:20px><input type=checkbox name=property value="+i+"></a></div>"
+                                                                                        +"<div id=propertyPriceSearch class="+i+">$"+propertyList[i].price+"<br /><a> Bed:"+propertyList[i].bedrooms+" Bath:"+propertyList[i].bathrooms+" Sqft:"+propertyList[i].area+"</a><a style=float:right;margin-top:-2px;margin-right:20px><img src=/images/green_arrow.png></div>"
                                                                                         //+"<div id=arrowKey></div>"
                                                                                         +"</div></a>"
                                                                 );
@@ -346,7 +346,7 @@ html
                                                     });
                                                 });
                                             });
-                        li.hidelist(style="width: 46%;box-shadow: none")
+                        li.hidelist(style="width: 55%;box-shadow: none")
                             aside#mainAside
                                 if routePath === "search"
                                     div#MapDiv2
@@ -393,7 +393,7 @@ html
                                                         var i = $(this).attr('class');
                                                         console.log(i);
                                                         $('#mapidHide').show();
-                                                        $('#mapidHide').animate({right: "0px"}, 1500);
+                                                        $('#mapidHide').animate({right: "0",top:"30px"}, 1500);
                                                         $("#price p").html("Price: $"+propertyList[i].price);
                                                         $("#beds").html("Beds: "+propertyList[i].bedrooms);
                                                         $("#baths").html("Baths: "+propertyList[i].bathrooms);
@@ -401,10 +401,10 @@ html
                                                         $("#type").html("Type: "+propertyList[i].productType);
                                                         $('.slidermap').empty();
                                                         $('.slidermap').append(
-                                                        "<div class=\"bxslidermap\"> <img src="+propertyList[i].picture.linkFront+" width=100% height=270/>"
-                                                        +"<img src="+propertyList[i].picture.linkBack+" width=100% height=270/>"
-                                                        +"<img src="+propertyList[i].picture.linkLeft+" width=100% height=270/>"
-                                                        +"<img src="+propertyList[i].picture.linkRight+" width=100% height=270/> </div>"
+                                                        "<div class=\"bxslidermap\"> <img src="+propertyList[i].picture.linkFront+" width=102.5% height=270/>"
+                                                        +"<img src="+propertyList[i].picture.linkBack+" width=102.5% height=270/>"
+                                                        +"<img src="+propertyList[i].picture.linkLeft+" width=102.5% height=270/>"
+                                                        +"<img src="+propertyList[i].picture.linkRight+" width=102.5% height=270/> </div>"
                                                         );
                                                         $('.bxslidermap').bxSlider({
                                                         mode: 'horizontal',
@@ -554,3 +554,54 @@ html
                                             }
 
                                             window.onload = loadScript;
+            div#mapidHide(style="display:none")
+                div#moreMap
+                    p Close Pane X
+                div#propertyZoomedDetails
+                    br
+                    script.
+                        document.write("<div class=\"slidermap\"> <div class=\"bxslidermap\">"
+                                        +"<img src="+propertyList[0].picture.linkFront+" width=700 height=270/>"
+                                        +"<img src="+propertyList[0].picture.linkBack+" width=700 height=270/>"
+                                        +"<img src="+propertyList[0].picture.linkLeft+" width=700 height=270/>"
+                                        +"<img src="+propertyList[0].picture.linkRight+" width=700 height=270/>"
+                                        +"</div></div>");
+                    div#description
+                        div#tabs
+                            ul
+                                li
+                                    img(src="/images/maps_button.png")
+                                li
+                                    img(src="/images/messgae.png")
+                                li
+                                    img(src="/images/save_button.png")
+                                li
+                                    img(src="/images/some_button.png")
+                                li
+                                    img(src="/images/print.png")
+                        div#price
+                            p Price:
+                                script.
+                                    document.write(" $"+propertyList[0].price)
+                        div#property
+                            div#property_details
+                                h4 Property Details
+                            div#property_types
+                                ul
+                                    li#beds Beds:
+                                        script.
+                                            document.write(" "+propertyList[0].bedrooms)
+                                    li#area Sqft:
+                                        script.
+                                            document.write(" "+propertyList[0].area)
+                                    li Built: 2005
+                                    li#baths Bath:
+                                        script.
+                                            document.write(" "+propertyList[0].bathrooms)
+                                    li#type Type:
+                                        script.
+                                            document.write(" "+propertyList[0].productType)
+                                    li MLS ID
+                        div#description_prop
+                            h4 Descriptions
+                            p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit.

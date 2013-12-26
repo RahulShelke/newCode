@@ -1,3 +1,6 @@
+var min_distance = 0.5; //0.5km 
+var max_distance = 5; //5km 
+var markers = [];
 function init() {
     var mapDiv = document.getElementById('MapDiv');
 
@@ -6,6 +9,7 @@ function init() {
             var map = new google.maps.Map(mapDiv, {
                 center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
                 zoom: 14,
+                zoomControl: true,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             });
 
@@ -22,7 +26,7 @@ function init() {
                 displayInfo(distanceWidget);
             });
 
-            var markers = [];
+            // var markers = [];
             var infoWindows = [];
 
             for (var i = 0; i < propertyList.length; i++) {
@@ -208,10 +212,10 @@ function init() {
             });
 
             function moveMarker(placeName, latlng){
-                //marker.setIcon(image);
-                //marker.setPosition(latlng);
-                //infowindow.setContent(placeName);
-                //infowindow.open(map, marker);
+   //             marker.setIcon(image);
+   //             marker.setPosition(latlng);
+    //            infowindow.setContent(placeName);
+    //            infowindow.open(map, marker);
             }
 /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
 
@@ -251,7 +255,7 @@ function init() {
         marker.bindTo('position', this);
 
         // Create a new radius widget
-        var radiusWidget = new RadiusWidget();
+        var radiusWidget = new RadiusWidget(map);
 
         // Bind the radiusWidget map to the DistanceWidget map
         radiusWidget.bindTo('map', this);
@@ -265,7 +269,6 @@ function init() {
         // Bind to the radiusWidgets' bounds property
         this.bindTo('bounds', radiusWidget);
 
-
     }
     DistanceWidget.prototype = new google.maps.MVCObject();
 
@@ -274,7 +277,7 @@ function init() {
      *
      * @constructor
      */
-    function RadiusWidget() {
+    function RadiusWidget(map) {
         var circle = new google.maps.Circle({
             strokeWeight: 2,
             strokeColor:'#00aeef',
@@ -283,6 +286,8 @@ function init() {
 
         // Set the distance property value, default to 50km.
         this.set('distance', 2);
+
+        this.set('map', map);
 
         // Bind the RadiusWidget bounds property to the circle bounds property.
         this.bindTo('bounds', circle);
@@ -295,30 +300,48 @@ function init() {
 
         // Bind the circle radius property to the RadiusWidget radius property
         circle.bindTo('radius', this);
-
+       
         /**
          * Update the center of the circle and position the sizer back on the line.
          *
          * Position is bound to the DistanceWidget so this is expected to change when
          * the position of the distance widget is changed.
          */
-        RadiusWidget.prototype.center_changed = function() {
-            var bounds = this.get('bounds');
+        // RadiusWidget.prototype.center_changed = function() {
+        //     var bounds = this.get('bounds');
 
-            // Bounds might not always be set so check that it exists first.
-            if (bounds) {
-                var lng = bounds.getNorthEast().lng();
+        //     // Bounds might not always be set so check that it exists first.
+        //     if (bounds) {
+        //         var lng = bounds.getNorthEast().lng();
 
-                // Put the sizer at center, right on the circle.
-                var position = new google.maps.LatLng(this.get('center').lat(), lng);
-                this.set('sizer_position', position);
-            }
-        };
-
+        //         // Put the sizer at center, right on the circle.
+        //         var position = new google.maps.LatLng(this.get('center').lat(), lng);
+        //         this.set('sizer_position', position);
+        //     }
+        // };
+       // this.center_changed();
         this.addSizer_();
     }
     RadiusWidget.prototype = new google.maps.MVCObject();
 
+
+    /**
+         * Update the center of the circle and position the sizer back on the line.
+         *
+         * Position is bound to the DistanceWidget so this is expected to change when
+         * the position of the distance widget is changed.
+         */
+    RadiusWidget.prototype.center_changed = function() {
+        var bounds = this.get('bounds');
+
+        // Bounds might not always be set so check that it exists first.
+        if (bounds) {
+            var lng = bounds.getNorthEast().lng();
+            // Put the sizer at center, right on the circle.
+            var position = new google.maps.LatLng(this.get('center').lat(), lng);
+            this.set('sizer_position', position);
+        }
+    };
 
     /**
      * Update the radius when the distance has changed.
@@ -339,15 +362,54 @@ function init() {
             icon:'/images/dragger.png',
             raiseOnDrag: false
         });
-
         var me = this;
+        
+        sizer.bindTo('map', this);
+        sizer.bindTo('position', this, 'sizer_position');
         google.maps.event.addListener(sizer, 'drag', function() {
             // Set the circle distance (radius)
             me.setDistance();
+            me.center_changed();
         });
+        
+        var olddist = me.get('distance');
+            
+        var map = me.get('map');
+        google.maps.event.addListener(sizer, 'dragend', function() {
+            var dist = me.get('distance');
+            var currentZoomLevel = map.getZoom();
 
-        sizer.bindTo('map', this);
-        sizer.bindTo('position', this, 'sizer_position');
+            if(dist > olddist &&  currentZoomLevel != 0){
+                map.setZoom(currentZoomLevel - 1);
+                olddist = dist;
+            }
+            if(dist < olddist && currentZoomLevel !=21){
+                map.setZoom(currentZoomLevel + 1);
+                olddist = dist;
+            }  
+
+            if(dist > max_distance){
+                this.set('distance', max_distance);
+            }
+            if(dist < min_distance){
+                this.set('distance', min_distance);
+            }  
+            me.center_changed();
+            showHideMarker();
+        });
+        showHideMarker();
+
+        function showHideMarker(){
+            var circleCenter = me.get('center');
+            for (var i = 0; i < markers.length; i++) {
+                var propDistance = me.distanceBetweenPoints_(circleCenter, markers[i].position);
+                if (me.radius > (propDistance *1000)){
+                 markers[i].setVisible(true);
+                }else{
+                    markers[i].setVisible(false);
+                }
+            };
+        };
     };
 
     /**
@@ -386,15 +448,15 @@ function init() {
         var pos = this.get('sizer_position');
         var center = this.get('center');
         var distance = this.distanceBetweenPoints_(center, pos);
-
         // Set the distance property for any objects that are bound to it
         this.set('distance', distance);
+          
     };
 
     function displayInfo(widget) {
         //var info = document.getElementById('info');
-        console.log( 'Position: ' + widget.get('position') + ', distance: ' +
-            widget.get('distance'));
+        //console.log( 'Position: ' + widget.get('position') + ', distance: ' +
+//            widget.get('distance')+ ' Radius :'+widget.get('radius'));
         document.getElementById('areaOfSearch').value= widget.get('distance');
     }
 
