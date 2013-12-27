@@ -262,7 +262,8 @@ html
                                                         console.log(checkValues[2]);
                                                         if(checkValues[3] != null){
                                                             console.log(checkValues[1]);
-                                                            $("#MapDiv").hide();
+                                                            $(".ListOfProperty").hide();
+                                                            $(".hidelist").hide();
                                                             $("#compare_body").show();
                                                             console.log(checkValues);
                                                             $(".comslider").html('<img src='+checkValues[0]['picture']['linkFront']+' width=247 height=110/>');
@@ -302,7 +303,8 @@ html
                                                             $("#CompareSqft3").html(checkValues[3]['area']);
                                                             $("#CompareType3").html(checkValues[3]['productType']);
                                                         }else if(checkValues[2] != null){
-                                                            $("#MapDiv").hide();
+                                                            $(".ListOfProperty").hide();
+                                                            $(".hidelist").hide();
                                                             $("#compare_body").show();
                                                             $("#class1").hide();
                                                             $(".comslider").html('<img src='+checkValues[0]['picture']['linkFront']+' width=247 height=110/>');
@@ -324,7 +326,8 @@ html
                                                             $("#CompareSqft2").html(checkValues[2]['area']);
                                                             $("#CompareType2").html(checkValues[2]['productType']);
                                                         }else if(checkValues[1] != null){
-                                                            $("#MapDiv").hide();
+                                                            $(".ListOfProperty").hide();
+                                                            $(".hidelist").hide();
                                                             $("#compare_body").show();
                                                             $("#class").hide();
                                                             $("#class1").hide();
@@ -346,7 +349,7 @@ html
                                                     });
                                                 });
                                             });
-                        li.hidelist(style="width: 55%;box-shadow: none")
+                        li.hidelist(style="width: 54%;box-shadow: none")
                             aside#mainAside
                                 if routePath === "search"
                                     div#MapDiv2
@@ -554,6 +557,212 @@ html
                                             }
 
                                             window.onload = loadScript;
+                        div#compare_body(style="display:none; width: 79%; float: right")
+                            div#compare_header
+                                div#back
+                                    a(href="/search") Back
+                                h4 Comparing Properties
+                                div#close
+                                    a(href="/search") Close
+                            div#comparison
+                                div#name
+                                    div#compare_details
+                                        p#property_name Property Name
+                                        p#compare_price Price
+                                        p#compare_beds Beds
+                                        p#compare_baths Baths
+                                        p#compare_sqft Sqft
+                                        p#compare_type Type
+                                        p#compare_built Built
+                                        p#compare_mls MLS ID
+                                        p#compare_features Features
+                                script.
+                                    var checkValues = JSON.parse( '!{JSON.stringify(products)}' );
+                                ul.comMainSlider
+                                    li
+                                        script.
+                                            $(document).ready(function(){
+                                                $('.comslider').bxSlider({
+                                                slideWidth: 247,
+                                                minSlides: 1,
+                                                auto: true,
+                                                autoControls: false,
+                                                slideMargin: 2,
+                                                pager: false,
+                                                pause:3000,
+                                                speed: 2000
+                                                });
+                                            });
+                                        div#details
+                                            div#black
+                                                a.comproductName
+                                                    script.
+                                                        document.write(checkValues[0]['productName']);
+                                                br
+                                                p.comAddress
+                                                    script.
+                                                        document.write(checkValues[0]['address']['line1']+',');
+
+                                                p.comAddress
+                                                    script.
+                                                        document.write(checkValues[0]['address']['city']+', '+checkValues[0]['address']['country']);
+                                            div.comslider
+                                            p#comparePrice
+                                                script.
+                                                    document.write(checkValues[0]['price']);
+                                            p#CompareBeds
+                                                script.
+                                                    document.write(checkValues[0]['bedrooms']);
+                                            p#CompareBaths
+                                                script.
+                                                    document.write(checkValues[0]['bathrooms']);
+                                            p#CompareSqft
+                                                script.
+                                                    document.write(checkValues[0]['area']);
+                                            p#CompareType
+                                                script.
+                                                    document.write(checkValues[0]['productType']);
+                                            p#CompareBuilt 2012
+                                            p#CompareMls 0091948
+                                            p#CompareFeatures Alarm Balcony
+                                    li
+                                        script.
+                                            $(document).ready(function(){
+                                                $('.comslider1').bxSlider({
+                                                slideWidth: 247,
+                                                minSlides: 1,
+                                                auto: true,
+                                                autoControls: false,
+                                                slideMargin: 2,
+                                                pager: false,
+                                                pause:3000,
+                                                speed: 2000
+                                                });
+                                            });
+                                        div#details
+                                            div#black
+                                                a.comproductName
+                                                    script.
+                                                        document.write(checkValues[1]['productName']);
+                                                br
+                                                p.comAddress
+                                                    script.
+                                                        document.write(checkValues[1]['address']['line1']+',');
+
+                                                p.comAddress
+                                                    script.
+                                                        document.write(checkValues[1]['address']['city']+', '+checkValues[0]['address']['country']);
+                                            div.comslider1
+                                            p#comparePrice1
+                                                script.
+                                                    document.write(checkValues[1]['price']);
+                                            p#CompareBeds1
+                                                script.
+                                                    document.write(checkValues[1]['bedrooms']);
+                                            p#CompareBaths1
+                                                script.
+                                                    document.write(checkValues[1]['bathrooms']);
+                                            p#CompareSqft1
+                                                script.
+                                                    document.write(checkValues[1]['area']);
+                                            p#CompareType1
+                                                script.
+                                                    document.write(checkValues[1]['productType']);
+                                            p#CompareBuilt1 2012
+                                            p#CompareMls1 0091948
+                                            p#CompareFeatures1 Alarm Balcony
+                                    li#class
+                                        script.
+                                            $(document).ready(function(){
+                                                $('.comslider2').bxSlider({
+                                                slideWidth: 247,
+                                                minSlides: 1,
+                                                auto: true,
+                                                autoControls: false,
+                                                slideMargin: 2,
+                                                pager: false,
+                                                pause:3000,
+                                                speed: 2000
+                                                });
+                                            });
+                                        div#details
+                                            div#black
+                                                a.comproductName
+                                                    script.
+                                                        document.write(checkValues[2]['productName']);
+                                                br
+                                                p.comAddress
+                                                    script.
+                                                        document.write(checkValues[2]['address']['line1']+',');
+
+                                                p.comAddress
+                                                    script.
+                                                        document.write(checkValues[2]['address']['city']+', '+checkValues[0]['address']['country']);
+                                            div.comslider2
+                                            p#comparePrice2
+                                                script.
+                                                    document.write(checkValues[2]['price']);
+                                            p#CompareBeds2
+                                                script.
+                                                    document.write(checkValues[2]['bedrooms']);
+                                            p#CompareBaths2
+                                                script.
+                                                    document.write(checkValues[2]['bathrooms']);
+                                            p#CompareSqft2
+                                                script.
+                                                    document.write(checkValues[2]['area']);
+                                            p#CompareType2
+                                                script.
+                                                    document.write(checkValues[2]['productType']);
+                                            p#CompareBuilt2 2012
+                                            p#CompareMls2 0091948
+                                            p#CompareFeatures2 Alarm Balcony
+                                    li#class1
+                                        script.
+                                            $(document).ready(function(){
+                                                $('.comslider3').bxSlider({
+                                                slideWidth: 247,
+                                                minSlides: 1,
+                                                auto: true,
+                                                autoControls: false,
+                                                slideMargin: 2,
+                                                pager: false,
+                                                pause:3000,
+                                                speed: 2000
+                                                });
+                                            });
+                                        div#details
+                                            div#black
+                                                a.comproductName
+                                                    script.
+                                                        document.write(checkValues[3]['productName']);
+                                                br
+                                                p.comAddress
+                                                    script.
+                                                        document.write(checkValues[3]['address']['line1']+',');
+
+                                                p.comAddress
+                                                    script.
+                                                        document.write(checkValues[3]['address']['city']+', '+checkValues[0]['address']['country']);
+                                            div.comslider3
+                                            p#comparePrice3
+                                                script.
+                                                    document.write(checkValues[3]['price']);
+                                            p#CompareBeds3
+                                                script.
+                                                    document.write(checkValues[3]['bedrooms']);
+                                            p#CompareBaths3
+                                                script.
+                                                    document.write(checkValues[3]['bathrooms']);
+                                            p#CompareSqft3
+                                                script.
+                                                    document.write(checkValues[3]['area']);
+                                            p#CompareType3
+                                                script.
+                                                    document.write(checkValues[3]['productType']);
+                                            p#CompareBuilt3 2012
+                                            p#CompareMls3 0091948
+                                            p#CompareFeatures3 Alarm Balcony
             div#mapidHide(style="display:none")
                 div#moreMap
                     p Close Pane X
