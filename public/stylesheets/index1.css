@@ -1735,6 +1735,7 @@ select {
     top: -16px;
     right: -174px;
     /*left: 469px;*/
+    pointer-events: none;
  }
 
 /*target Internet Explorer 9 and Internet Explorer 10:*/
