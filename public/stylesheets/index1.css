@@ -665,11 +665,16 @@ a, button, input[type="submit"] {
     display: inline-block;
     height: 20px;
     vertical-align: top;
-    width: 48%;
+    width: 50%;
     font: 11px Tahoma;
     text-align: left;
     font-size: 12px;
     padding-bottom: 5px;
+}
+
+#property_types ul li:nth-child(3){
+    width: 48%;
+    float: left;
 }
 
 #property_types ul li:first-child{

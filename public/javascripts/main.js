@@ -1,6 +1,6 @@
 var size1= function(){
     $('#bigWarpper,.propertiesListContainer,#mainAside,#MapDiv').height(
-        $(window).height()-43
+        $(window).height()-53
     );
 };
 
