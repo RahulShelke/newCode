@@ -41,7 +41,14 @@ var propertyModel = mongoose.model('Property', propertySchema);
 exports.index = function (req, res) {
     propertyModel.find({}, function (err, docs) {
         if (err) return res.render('Error occurred');
-        res.render('index', {products: docs, routePath: "prod", title: 'Product List - By Sandeep Pagi'});
+        res.render('index', {products: docs, routePath: "prod", title: 'Product List - By Sandeep Pagi',mapIndex: 0});
+    });
+};
+
+exports.locationMap = function(req, res){
+    propertyModel.find({},function(err, docs){
+        if(err)return res.render('Error Occured');
+        res.render('index',{products: JSON.stringify(docs),routePath:'home', title: 'Product List - By Sandeep Pagi', mapIndex:req.params.propid});
     });
 };
 
@@ -193,7 +200,7 @@ exports.remove = function (req, res) {
 exports.home = function (req, res) {
     propertyModel.find({}, function (err, docs) {
         if (err) return res.render('Error occurred');
-        res.render('index', {products: JSON.stringify(docs), routePath: "home", title: 'Product List - By Sandeep Pagi'});
+        res.render('index', {products: JSON.stringify(docs), routePath: "home", title: 'Product List - By Sandeep Pagi', mapIndex: 0});
     });
 };
 
@@ -239,7 +246,7 @@ exports.search = function (req, res) {
             console.log(req.body);
         if(docs.length > 0){
             console.log("Not Failed"+docs.length);
-            res.render('search', {products: JSON.stringify(docs), routePath: "search"});
+            res.render('search', {products: JSON.stringify(docs), routePath: "search", mapIndex: 0});
         }else{
             console.log("Failed"+docs.length);
             res.render('index', {products:req.body.location , routePath: "searchFailed"});
@@ -249,10 +256,14 @@ exports.search = function (req, res) {
 
 exports.searchList =function(req,res){
     console.log("results in searchLink"+results);
-    res.render('search', {products:JSON.stringify(results), routePath: "searchList"});
+    res.render('search', {products:JSON.stringify(results), routePath: "searchList", mapIndex: 0});
 };
 
 exports.getsearch =function(req,res){
     console.log("results in getsearch"+results);
-    res.render('search', {products:JSON.stringify(results), routePath: "search"});
+    res.render('search', {products:JSON.stringify(results), routePath: "search", mapIndex: 0});
+};
+
+exports.searchProp =function(req,res){
+    res.render('search', {products:JSON.stringify(results), routePath: "search", mapIndex: req.params.propid});
 };

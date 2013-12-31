@@ -1,20 +1,21 @@
 var min_distance = 0.5; //0.5km 
 var max_distance = 5; //5km 
 var markers = [];
+var map;
 function init() {
     var mapDiv = document.getElementById('MapDiv');
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
-            var map = new google.maps.Map(mapDiv, {
+            map = new google.maps.Map(mapDiv, {
                 center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
                 zoom: 14,
                 zoomControl: true,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             });
 
-            var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
+           // var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            var pos = new google.maps.LatLng(propertyList[mapIndex].LatLng.latitude,propertyList[mapIndex].LatLng.longitude);
             var distanceWidget = new DistanceWidget(map);
 
 
@@ -46,7 +47,7 @@ function init() {
                     var i = $(this).attr('class');
                     console.log(i);
                     $('#mapidHide').show();
-                    $('#mapidHide').animate({right: "-500px"},1);
+                    $('#mapidHide').animate({right: "0",top:"30px"},1500);
                     $("#price p").html("Price: $"+propertyList[i].price);
                     $("#beds").html("Beds: "+propertyList[i].bedrooms);
                     $("#baths").html("Baths: "+propertyList[i].bathrooms);
@@ -243,6 +244,7 @@ function init() {
 
         var marker = new google.maps.Marker({
             title: 'Move me!',
+            draggable: true,
             icon:'/images/mapCenter.png',
             raiseOnDrag: false
         });

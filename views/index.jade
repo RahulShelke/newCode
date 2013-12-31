@@ -170,6 +170,7 @@ html
                                     div#MapDiv
                                         script.
                                             var propertyList = JSON.parse( !{JSON.stringify(products)} );
+                                            var mapIndex = #{mapIndex};
                                         script(type='text/javascript',src='/javascripts/mapIndex.js')
                                 else if routePath === "search"
                                     div#MapDiv2
@@ -528,17 +529,20 @@ html
                                                                         +"</div></div>");
                                                     div#description(style="width:100%")
                                                         div#tabs
-                                                            ul
-                                                                li#LocationClick(style="cursor:pointer",class="0")
-                                                                    img(src="/images/maps_button.png")
-                                                                li
-                                                                    img(src="/images/messgae.png")
-                                                                li
-                                                                    img(src="/images/save_button.png")
-                                                                li
-                                                                    img(src="/images/some_button.png")
-                                                                li
-                                                                    img(src="/images/print.png")
+                                                                    br
+                                                                    img(src="/images/maps_button.png")#LocationClick(style="cursor:pointer",class="0", title='Go To Location In Map')
+                                                                    &nbsp;&nbsp;
+                                                                    img(src="/images/messgae.png")#SendMailClick(style="cursor:pointer",class="0", title='Email Selected Image')
+                                                                    &nbsp;&nbsp;
+                                                                    img(src="/images/save_button.png")#SaveClick(style="cursor:pointer",class="0", title='Save Selected Image') // chinna
+                                                                    &nbsp;&nbsp;
+                                                                    img(src="/images/print.png")#PrintClick(style="cursor:pointer",class="0", title='Print Selected Image')
+                                                                    &nbsp;&nbsp;
+                                                                    img(src="/images/facebook-variation.png")#FacebookShareClick(style="cursor:pointer",class="0", title='Share on FaceBook')
+                                                                    &nbsp;&nbsp;
+                                                                    img(src="/images/twitter-variation.png")#TwitterShareClick(style="cursor:pointer",class="0", title='Share on Twitter')
+                                                                    &nbsp;&nbsp;
+                                                                    img(src="/images/linkedin-variation.png")#LinkedinShareClick(style="cursor:pointer",class="0", title='Share on LinkedIn')   
                                                         div#price
                                                             p(style="padding-left:0") Price:
                                                                 script.
@@ -551,7 +555,7 @@ html
                                                                     li#beds Beds:
                                                                         script.
                                                                             document.write(" "+propertyList[0].bedrooms)
-                                                                    li#area Sqft:
+                                                                    li#area Area:
                                                                         script.
                                                                             document.write(" "+propertyList[0].area)
                                                                     li Built: 2005
@@ -921,8 +925,9 @@ html
                                                                 slideMargin: 2,
                                                                 pager: false,
                                                                 pause:3000,
-                                                                speed: 2000,
+                                                                speed: 2000                                                                
                                                                 });
+                                                               
                                                             });
                                                         div#details
                                                             div#black
@@ -1045,7 +1050,7 @@ html
                                     li#beds Beds:
                                         script.
                                             document.write(" "+propertyList[0].bedrooms)
-                                    li#area Sqft:
+                                    li#area Area:
                                         script.
                                             document.write(" "+propertyList[0].area)
                                     li Built: 2005
@@ -1093,15 +1098,19 @@ html
 
                             script.
                                 $("#propertyPrice").live('click',function() {
-                                //alert("Yayy");
                                 var i = $(this).attr('class');
-                                console.log(i);
                                 $("#LocationClick").removeClass().addClass(i);
+                                $("#SendMailClick").removeClass().addClass(i);
+                                $("#SaveClick").removeClass().addClass(i);
+                                $("#FacebookShareClick").removeClass().addClass(i);
+                                $("#TwitterShareClick").removeClass().addClass(i);
+                                $("#LinkedinShareClick").removeClass().addClass(i);
+                                $("#PrintClick").removeClass().addClass(i);
                                 $("#price p").html("Price: $"+propertyList[i].price);
                                 $("#beds").html("Beds: "+propertyList[i].bedrooms);
                                 $("#baths").html("Baths: "+propertyList[i].bathrooms);
                                 $("#area").html("Area: "+propertyList[i].area);
-                                $("#type").html("Area: "+propertyList[i].productType);
+                                $("#type").html("Type: "+propertyList[i].productType);
                                     $('.slider').empty();
                                     $('.slider').append(
                                          "<div class=\"bxslider\"> <img src="+propertyList[i].picture.linkFront+" width=102.5% height=270/>"
@@ -1125,6 +1134,22 @@ html
                                                 return '<img src='+propertyList[i].picture.linkLeft+' width=100 height=50>';
                                             case 3:
                                                 return '<img src='+propertyList[i].picture.linkRight+' width=100 height=50>';
+                                        }
+                                        },
+                                        onSlideAfter: function($slideElement, oldIndex, newIndex){
+                                        switch(newIndex){
+                                            case 0:
+                                                selectedImage = propertyList[i].picture.linkFront;
+                                                break;
+                                            case 1:
+                                                selectedImage = propertyList[i].picture.linkBack;
+                                                break;
+                                            case 2:
+                                                selectedImage = propertyList[i].picture.linkLeft;
+                                                break;
+                                            case 3:
+                                                selectedImage = propertyList[i].picture.linkRight;
+                                                break;
                                         }
                                         }
                                     });
@@ -1150,15 +1175,85 @@ html
                                             case 3:
                                                 return '<img src='+propertyList[0].picture.linkRight+' width=100 height=50>';
                                         }
+                                        },
+                                        onSlideAfter: function($slideElement, oldIndex, newIndex){
+                                        switch(newIndex){
+                                            case 0:
+                                                selectedImage = propertyList[0].picture.linkFront;
+                                                break;
+                                            case 1:
+                                                selectedImage = propertyList[0].picture.linkBack;
+                                                break;
+                                            case 2:
+                                                selectedImage = propertyList[0].picture.linkLeft;
+                                                break;
+                                            case 3:
+                                                selectedImage = propertyList[0].picture.linkRight;
+                                                break;
+                                        }
                                         }
                                     });
                                 });
                             script.
+                                var url = $(location).attr('href');
+                                url = url.substring(0, url.lastIndexOf('/'));
                                 $("#LocationClick").live('click',function() {
-                                    alert("Yayy");
-                                    var j = $(this).attr('class');
-                                    console.log(j);
-                                    $("#MapDiv").show();
+                                    var propid = $(this).attr('class');
+                                    var a = $('<a>').attr('href', url+'/locationmap/'+propid).appendTo('body');
+                                    a[0].click();
+                                    a.remove();
+                                });
+                                $("#SendMailClick").live('click',function() {
+                                    var index = $(this).attr('class')
+                                        , price = propertyList[index].price
+                                        , beds = propertyList[index].bedrooms
+                                        , area = propertyList[index].area
+                                        , built = 2005 //TODO: propertyList[index].price
+                                        , bath = propertyList[index].bathrooms
+                                        , type = propertyList[index].productType;
+                                   var a = $("<a>").attr("href", url+'/sendmail'+selectedImage+'/'+price+'/'+beds+'/'+area+'/'+built+'/'+bath+'/'+type).appendTo("body");
+                                    a[0].click();
+                                    a.remove();
+                                });
+
+                                $("#SaveClick").live('click',function() {
+                                    var a = $("<a>").attr("href", url+selectedImage).attr("download", selectedImage).appendTo("body");
+                                    a[0].click();
+                                    a.remove();
+                                });
+                                $("#FacebookShareClick").live('click',function() {
+                                   selectedImage = selectedImage.substring(selectedImage.lastIndexOf('/'));
+                                   var a = $('<a>').attr('href', url+'/sharefacebook'+selectedImage).attr('target', '_blank').appendTo('body');
+                                   a[0].click();
+                                   a.remove();
+                                });
+                                $('#TwitterShareClick').click(function(){
+                                   selectedImage = selectedImage.substring(selectedImage.lastIndexOf('/'));
+                                   url = url.replace('localhost','www.mysite.com');
+                                   var a = $('<a>').attr('href', url+'/sharetwitter'+selectedImage).attr('target', '_blank').appendTo('body');
+                                   a[0].click();
+                                   a.remove();
+                                 });
+
+                                 $('#LinkedinShareClick').click(function(){
+                                   selectedImage = selectedImage.substring(selectedImage.lastIndexOf('/'));
+                                   url = url.replace('localhost','www.mysite.com');
+                                   var a = $('<a>').attr('href', url+'/sharetwitter'+selectedImage).attr('target', '_blank').appendTo('body');
+                                   a[0].click();
+                                   a.remove();
+                                });
+                                $("#PrintClick").live('click',function() {
+                                    var propDtlHtml =  document.getElementById('mainAside').innerHTML.substring(document.getElementById('mainAside').innerHTML.indexOf('<div id="price">'));
+                                    var html = '<html><head><meta name="viewport" content="width=device-width"><title>'
+                                                +selectedImage+' (1200×800)</title></head><body style="margin: 0px;">'
+                                                +'<img style="-webkit-user-select: none; cursor: -webkit-zoom-in;" src="'
+                                                +url+selectedImage+'" width="705" height="469">'
+                                                //         +'<div id=MapDiv><ul id="searchList"><li><div><div>'
+                                                +propDtlHtml+'</body></html>';
+                                                //var printMe = window.open(url+selectedImage, 'Print'); 
+                                    var printMe = window.open('', 'Print'); 
+                                    printMe.document.write(html);
+                                    printMe.print();                                    
                                 });
 
                             script.

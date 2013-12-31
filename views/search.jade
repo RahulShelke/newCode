@@ -356,7 +356,6 @@ html
                                         script.
                                             var map;
                                             var propertyList = JSON.parse( !{JSON.stringify(products)} );
-                                            console.log(propertyList);
                                             function initialize() {
                                             // Initial Map Options.
                                             var mapOptions = {
@@ -371,10 +370,7 @@ html
                                             // Loading location as per Geolocation
                                             if (navigator.geolocation) {
                                             navigator.geolocation.getCurrentPosition(function (position) {
-                                                console.log(propertyList[0].LatLng.latitude+"::"+propertyList[0].LatLng.longitude)
-                                                console.log
                                                 var pos = new google.maps.LatLng(propertyList[0].LatLng.latitude, propertyList[0].LatLng.longitude);
-                                            console.log("----loading---");
                                             // Function for Clustering
                                             // Loading properties in Map using marker array from DB
                                                 var markers = [];
@@ -394,7 +390,6 @@ html
                                                         +'</div></a><br/>';
                                                     $("#propertyPriceMap").live('click',function() {
                                                         var i = $(this).attr('class');
-                                                        console.log(i);
                                                         $('#mapidHide').show();
                                                         $('#mapidHide').animate({right: "0",top:"30px"}, 1500);
                                                         $("#price p").html("Price: $"+propertyList[i].price);
@@ -544,6 +539,11 @@ html
                                             var infowindow = new google.maps.InfoWindow(options);
                                             map.setCenter(options.position);
                                             }
+                                            $("#propertyPriceSearch").live('click',function() {
+                                                var i = $(this).attr('class');
+                                                var pos = new google.maps.LatLng(propertyList[i].LatLng.latitude, propertyList[i].LatLng.longitude);
+                                                map.setCenter(pos);
+                                            });
 
                                             // Loading main Javascript for Map
 
