@@ -1238,7 +1238,7 @@ html
                                  $('#LinkedinShareClick').click(function(){
                                    selectedImage = selectedImage.substring(selectedImage.lastIndexOf('/'));
                                    url = url.replace('localhost','www.mysite.com');
-                                   var a = $('<a>').attr('href', url+'/sharetwitter'+selectedImage).attr('target', '_blank').appendTo('body');
+                                   var a = $('<a>').attr('href', url+'/sharelinkedin'+selectedImage).attr('target', '_blank').appendTo('body');
                                    a[0].click();
                                    a.remove();
                                 });
