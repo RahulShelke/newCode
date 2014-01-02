@@ -1312,6 +1312,8 @@ input[type="range"]{
     vertical-align: bottom;
     box-shadow: none;
     margin-right: 5px;
+    float:left;
+    margin-left: 2.5%;
 }
 
 #comparison ul li:first-child{

@@ -74,11 +74,6 @@ passport.use(new FacebookStrategy({
                         message: "Property Details...", //TODO: Please put the right information before go to production.
                         picture: config.development.fb.url+'/images/'+selectedImage
                     };
-                    graph.post('me' + "/staging_resources?access_token="+accessToken, wallPost, function(err, res) {
-                        if(err) throw err;
-                         // returns the post id
-                             console.log(res); // { id: xxxxx}
-                         });
                      graph.post('me' + "/feed?access_token="+accessToken, wallPost, function(err, res) {
                          if(err) throw err;
                          // returns the post id
