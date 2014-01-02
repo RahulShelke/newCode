@@ -814,3 +814,39 @@ html
                         div#description_prop
                             h4 Descriptions
                             p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit.
+        div(style="display:none; width: 50%; height:auto")
+            div#box1
+                div#container
+                    div#id_login
+                        div#normal_login
+                            div#hr_login
+                                p  LSR login
+                            form#form
+                                div#form-div
+                                    input#email(type="email", name="email")
+                                    input#password(type="password", name="password")
+                            input(type="checkbox",id="checkbox")
+                            p#remember Remember me
+                            p#forgot Forgot password?
+                                a  Reset it
+                            div#button
+                                input#submit(type="submit", value="Login", id="login", onsubmit="validateForm()")
+                        div#border
+                            a OR
+                        div#social_network
+                            | Connect with
+                            div#social_link
+                                a#login(href="/fbauth", class="iframe")
+                                    div#facebook_text Facebook
+                                a#twitter(href="/auth/twitter")
+                                    div#twitter_text Twitter
+                                a#linkedin(href="/auth/linkedin")
+                                    div#linkedin_text LinkedIn
+                        div#signup
+                            p Don't have an account?
+                                a(href="/signup")  Create one here
+                script.
+                    $(document).ready(function(){
+                        //Examples of how to assign the Colorbox event to elements
+                        $(".group1").colorbox({rel:'group1', inline:true, transition:"none"});
+                    });
