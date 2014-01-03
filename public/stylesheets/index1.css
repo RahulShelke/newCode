@@ -319,7 +319,7 @@ a, button, input[type="submit"] {
 #list1{
     width: 100%;
     overflow: auto;
-    height: 106%;
+    height: 100%;
     padding-right: 35px;
 }
 #MapDiv ul li:last-child{
@@ -1238,11 +1238,12 @@ input[type="range"]{
 }
 
 #compare_header{
-    display: inline-flex;
+    display: inline-block;
 }
 
 #compare_header h4{
     width: 200px;
+    display: inline-block;
     margin: 0 auto;
 }
 
@@ -1250,6 +1251,8 @@ input[type="range"]{
     height: 30px;
     width: 58px;
     background: #ffffff;
+    float: left;
+    display: inline-block;
     border: 2px solid #dadada;
     border-radius: 5px;
 }
@@ -1263,6 +1266,8 @@ input[type="range"]{
     height: 30px;
     width: 58px;
     background: #ffffff;
+    float: right;
+    display: inline-block;
     border: 2px solid #dadada;
     border-radius: 5px;
 }
@@ -1288,14 +1293,16 @@ input[type="range"]{
     width: 800px;
     height: 480px;
     margin-top: 10px;
-    display: inline-flex;
+    display: inline-block;
+    /*display: inline-flex;
+    display:-webkit-inline-flex;
     /*overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;*/
 }
 
 #comparison ul li{
-    width: 247px;
+    width: 24%;
     height: 100%;
     border: 1px solid #dadada;
     border-radius: 5px;
@@ -1318,7 +1325,7 @@ input[type="range"]{
 }
 
 #comparison ul li:first-child{
-    width: 247px;
+    width: 24%;
     height: 100%;
     border: 1px solid #dadada;
     border-radius: 5px;
@@ -1327,7 +1334,7 @@ input[type="range"]{
 }
 
 #comparison ul li:last-child{
-    width: 247px;
+    width: 24%;
     height: 100%;
     border: 1px solid #dadada;
     display: inline-block;
