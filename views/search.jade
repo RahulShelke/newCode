@@ -370,7 +370,7 @@ html
                                             // Loading location as per Geolocation
                                             if (navigator.geolocation) {
                                             navigator.geolocation.getCurrentPosition(function (position) {
-                                                var pos = new google.maps.LatLng(propertyList[0].LatLng.latitude, propertyList[0].LatLng.longitude);
+                                                var pos = new google.maps.LatLng(propertyList[#{mapIndex}].LatLng.latitude, propertyList[#{mapIndex}].LatLng.longitude);
                                             // Function for Clustering
                                             // Loading properties in Map using marker array from DB
                                                 var markers = [];

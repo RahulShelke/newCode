@@ -326,8 +326,8 @@ app.get('/sendmail/images/:image/:price/:beds/:area/:built/:baths/:type', functi
     var transport = nodemailer.createTransport("SMTP", {
         service: "Gmail",
         auth: {
-            user: "chinna.wip@gmail.com",
-            pass: "mom@12345"
+            user: "tagtest123456@gmail.com",
+            pass: "tag123456"
         }
     });
     var mailOptions = {
