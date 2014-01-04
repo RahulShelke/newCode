@@ -43,7 +43,7 @@ function init() {
                 });
 
                 var propDistance = RadiusWidget.prototype.distanceBetweenPoints_(map.center, marker.position);
-                if(initailRadius > (propDistance*1000)){
+                if(initialRadius > (propDistance*1000)){
                     marker.setVisible(true);
                 }else{
                     marker.setVisible(false);
