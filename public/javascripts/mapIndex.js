@@ -17,6 +17,7 @@ function init() {
 
            // var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
             var pos = new google.maps.LatLng(propertyList[mapIndex].LatLng.latitude,propertyList[mapIndex].LatLng.longitude);
+			map.setCenter(pos);
             var distanceWidget = new DistanceWidget(map);
 
 
