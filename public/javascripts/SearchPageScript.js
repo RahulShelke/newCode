@@ -179,9 +179,41 @@ function showListView(){
           });
 
         $('#saveimg').click( function() {
-            var a = $("<a>").attr("href", url+selectedImage).attr("download", selectedImage).appendTo("body");
+            /*var a = $("<a>").attr("href", url+selectedImage).attr("download", selectedImage).appendTo("body");
             a[0].click();
-            a.remove();
+            a.remove();*/
+                        var propDtlHtml =  document.getElementById('mainAside').innerHTML.substring(document.getElementById('mainAside').innerHTML.indexOf('<div id="price">'));
+             var html = '<html><head><meta name="viewport" content="width=device-width"><title>'
+                        +selectedImage+' (1200×800)</title></head><body style="margin: 0px;">'
+                        +'<img style="-webkit-user-select: none; cursor: -webkit-zoom-in;" src="'
+                        +url+selectedImage+'" width="705" height="469">'
+                        +propDtlHtml+'</body></html>';
+            var textFileAsBlob = new Blob([html], {type:'text/html'});
+            var fileNameToSaveAs = 'propertdetails.html';
+
+            var downloadLink = document.createElement("a");
+            downloadLink.download = fileNameToSaveAs;
+            downloadLink.innerHTML = "Download File";
+            downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+
+            if (window.webkitURL != null)
+            {
+                // Chrome allows the link to be clicked
+                // without actually adding it to the DOM.
+                downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+            }
+            else
+            {
+                // Firefox requires the link to be added to the DOM
+                // before it can be clicked.
+                downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+                downloadLink.onclick = destroyClickedElement;
+                downloadLink.style.display = "none";
+                document.body.appendChild(downloadLink);
+            }
+
+            downloadLink.click();
+
         });
 
         function setSelectedProp(i) {
