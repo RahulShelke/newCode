@@ -160,7 +160,11 @@ html
                                     br
                                     input#location(type="text", name="areaOfSearch", id="areaOfSearch")
                                 div#reset
-                                    a Reset
+                                    script.
+                                        function resetFunction(){
+                                            document.getElementById("searchForm").reset();
+                                        }
+                                    a(onclick="resetFunction()")  Reset
                                     div#hide_search
                                         input(type='submit', value='Search',id='searchButton',onsubmit="validateForm()" )
 
