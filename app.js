@@ -382,24 +382,9 @@ app.get('/sendmail/images/:image/:price/:beds/:area/:built/:baths/:type', functi
 });
 
 app.get('/sharefacebook/:image',function(req,res){
+    shareOnFbClicked = 'true';
     selectedImage = req.params.image;
-    if(fbAccessToken){
-        graph.setAccessToken(fbAccessToken);
-        var wallPost = {
-          message: "Property details...", //TODO: Please put the right information before go to production.
-          picture: config.development.fb.url+'/images/'+selectedImage
-        };
-        graph.post('me' + "/feed?access_token="+fbAccessToken, wallPost, function(err, res) {
-             if(err) {
-                console.log(err);
-            }
-            console.log(res); // { id: xxxxx}
-         });
-        res.redirect('http://www.facebook.com');
-    } else {
-        console.log(req.sessionStore.sessions);
-        res.redirect('/fbauth');
-    }
+    res.redirect('/fbauth');
 });
 
 app.get('/sharetwitter/:image', function(req, res){
