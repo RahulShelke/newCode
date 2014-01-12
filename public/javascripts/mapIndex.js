@@ -4,7 +4,8 @@ var min_distance = 0.5
     ,map
     ,initialDistance = 2;
 function init() {
-    var mapDiv = document.getElementById('MapDiv');
+    var mapDiv = document.getElementById('MapDiv'),
+    	pos;
     
 
     if (navigator.geolocation) {
