@@ -35,7 +35,8 @@ var TWITTER_ACCESS_TOKEN_SECRET = "Zn8hPlyaTGZE0DTdgJbcHEuUItOTT30v2sL6KyxLd9PQD
 
 var LINKEDIN_API_KEY = "77970wh9b8os92";
 var LINKEDIN_SECRET_KEY = "XTj0TNj0eTbnU5cS";
-var selectedImage;
+var selectedImage,
+    shareOnFbClicked = '';
 
 var tuwm = new twitter_update_with_media({
     consumer_key: TWITTER_CONSUMER_KEY,
@@ -282,11 +283,28 @@ app.get('/index1',function(req,res){
 app.get('/', routes.index);
 app.get('/fbauth', passport.authenticate('facebook', {/*display:'popup',*/ scope: ['email', 'user_birthday', 'user_hometown', 'user_friends','read_stream','publish_stream'] }));
 app.get('/loggedin', ensureLoggedIn('/'), routes.index);
-app.get('/fbauthed', passport.authenticate('facebook',{
-    failureRedirect: '/',
-    successRedirect: '/'
-}));
 
+//app.get('/fbauthed', passport.authenticate('facebook',{
+//    failureRedirect: '/',
+//    successRedirect: '/'
+//}));
+
+app.get('/fbauthed', function(req, res, next) {
+  passport.authenticate('facebook', function(err, user, info) {
+    if (err) { return next(err); }
+    if (!user) { return res.redirect('/login'); }
+    req.logIn(user, function(err) {
+      if (err) { return next(err); }
+      console.log('custome callback...'+ user.username);
+      if(shareOnFbClicked){
+        shareOnFbClicked = '';
+        return res.redirect('http://facebook.com');
+      } else {
+        return res.redirect('/');
+      }
+    });
+  })(req, res, next);
+});
 
 //twitter login
 app.get('/auth/twitter',
