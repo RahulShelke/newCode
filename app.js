@@ -43,6 +43,7 @@ var tuwm = new twitter_update_with_media({
     token: TWITTER_ACCESS_TOKEN,
     token_secret: TWITTER_ACCESS_TOKEN_SECRET
 });
+var fbAccessToken = '';
 
 //set up the passport
 
@@ -69,13 +70,17 @@ passport.use(new FacebookStrategy({
             query.exec(function(err, oldUser){
                 if (oldUser){
                     console.log('Existing User:' + oldUser.name + ' found and logged in!');
+                    fbAccessToken = accessToken;
                     graph.setAccessToken(accessToken);
                     var wallPost = {
                         message: "Property Details...", //TODO: Please put the right information before go to production.
                         picture: config.development.fb.url+'/images/'+selectedImage
                     };
                      graph.post('me' + "/feed?access_token="+accessToken, wallPost, function(err, res) {
-                         if(err) throw err;
+                         if(err) {
+                            console.log('FaceBook Posting Error:' + err);
+                            //throw err;
+                        }
                          // returns the post id
                              console.log(res); // { id: xxxxx}
                          });
@@ -360,7 +365,23 @@ app.get('/sendmail/images/:image/:price/:beds/:area/:built/:baths/:type', functi
 
 app.get('/sharefacebook/:image',function(req,res){
     selectedImage = req.params.image;
-    res.redirect('/fbauth');
+    if(fbAccessToken){
+        graph.setAccessToken(fbAccessToken);
+        var wallPost = {
+          message: "Property details...", //TODO: Please put the right information before go to production.
+          picture: config.development.fb.url+'/images/'+selectedImage
+        };
+        graph.post('me' + "/feed?access_token="+fbAccessToken, wallPost, function(err, res) {
+             if(err) {
+                console.log(err);
+            }
+            console.log(res); // { id: xxxxx}
+         });
+        res.redirect('http://www.facebook.com');
+    } else {
+        console.log(req.sessionStore.sessions);
+        res.redirect('/fbauth');
+    }
 });
 
 app.get('/sharetwitter/:image', function(req, res){
