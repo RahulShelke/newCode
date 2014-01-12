@@ -36,7 +36,8 @@ var TWITTER_ACCESS_TOKEN_SECRET = "Zn8hPlyaTGZE0DTdgJbcHEuUItOTT30v2sL6KyxLd9PQD
 var LINKEDIN_API_KEY = "77970wh9b8os92";
 var LINKEDIN_SECRET_KEY = "XTj0TNj0eTbnU5cS";
 var selectedImage,
-    shareOnFbClicked = '';
+    shareOnFbClicked = '',
+    propPrice = '', propBeds = '', propArea = '', propBuilt = '', propBaths = '', propType = '';
 
 var tuwm = new twitter_update_with_media({
     consumer_key: TWITTER_CONSUMER_KEY,
@@ -75,7 +76,8 @@ passport.use(new FacebookStrategy({
                     graph.setAccessToken(accessToken);
                     var wallPost = {
                         message: "Property Details...", //TODO: Please put the right information before go to production.
-                        picture: config.development.fb.url+'/images/'+selectedImage
+                        picture: config.development.fb.url+'/images/'+selectedImage,
+                        description: 'Price: '+propPrice + ' , Beds: '+ propBeds + ' , Area: '+ propArea+ ' , Built: '+ propBuilt + ' , Baths: '+ propBaths + ' , Type: '+ propType
                     };
                      graph.post('me' + "/feed?access_token="+accessToken, wallPost, function(err, res) {
                          if(err) {
@@ -381,9 +383,15 @@ app.get('/sendmail/images/:image/:price/:beds/:area/:built/:baths/:type', functi
 });
 });
 
-app.get('/sharefacebook/:image',function(req,res){
+app.get('/sharefacebook/:image/:price/:beds/:area/:built/:baths/:type', function(req, res){
     shareOnFbClicked = 'true';
     selectedImage = req.params.image;
+    propPrice =req.params.price;
+    propBeds = req.params.beds;
+    propArea = req.params.area;
+    propBuilt =req.params.built;
+    propBaths = req.params.baths;
+    propType = req.params.type;
     res.redirect('/fbauth');
 });
 
