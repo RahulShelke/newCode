@@ -386,12 +386,12 @@ app.get('/sendmail/images/:image/:price/:beds/:area/:built/:baths/:type', functi
 app.get('/sharefacebook/:image/:price/:beds/:area/:built/:baths/:type', function(req, res){
     shareOnFbClicked = 'true';
     selectedImage = req.params.image;
-    propPrice =req.params.price;
-    propBeds = req.params.beds;
-    propArea = req.params.area;
-    propBuilt =req.params.built;
-    propBaths = req.params.baths;
-    propType = req.params.type;
+    propPrice = (req.params.price)? req.params.price : '0';
+    propBeds = (req.params.beds)? req.params.beds : '0';
+    propArea = (req.params.area)? req.params.area : '0';
+    propBuilt = (req.params.built)? req.params.built : '0';
+    propBaths = (req.params.baths)? req.params.baths : '0';
+    propType = (req.params.type) ? req.params.type : '0';
     res.redirect('/fbauth');
 });
 
