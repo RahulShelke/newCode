@@ -6,8 +6,6 @@ var min_distance = 0.5
 function init() {
     var mapDiv = document.getElementById('MapDiv'),
     	pos;
-    
-
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
             map = new google.maps.Map(mapDiv, {
