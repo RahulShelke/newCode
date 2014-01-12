@@ -15,8 +15,6 @@ function init() {
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             });
 			
-
-           // var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
             if(window.location.pathname.indexOf('locationmap') != -1) {
                 pos = new google.maps.LatLng(propertyList[mapIndex].LatLng.latitude, propertyList[mapIndex].LatLng.longitude);
             } else {
