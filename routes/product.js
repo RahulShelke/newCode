@@ -162,6 +162,7 @@ exports.update = function (req, res) {
     propertyModel.update(
         { productName: req.params.name},
         { productName: b.name,
+            productType: b.productType,
             type: b.type,
             price: b.price,
             bedrooms: b.bedrooms,
