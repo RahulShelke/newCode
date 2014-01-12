@@ -37,7 +37,7 @@ var LINKEDIN_API_KEY = "77970wh9b8os92";
 var LINKEDIN_SECRET_KEY = "XTj0TNj0eTbnU5cS";
 var selectedImage,
     shareOnFbClicked = '',
-    propPrice = '', propBeds = '', propArea = '', propBuilt = '', propBaths = '', propType = '';
+    propPrice = '0', propBeds = '0', propArea = '0', propBuilt = '0', propBaths = '0', propType = '0';
 
 var tuwm = new twitter_update_with_media({
     consumer_key: TWITTER_CONSUMER_KEY,
