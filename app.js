@@ -391,7 +391,7 @@ app.get('/sharefacebook/:image/:price/:beds/:area/:built/:baths/:type', function
     propArea = (req.params.area)? req.params.area : '0';
     propBuilt = (req.params.built)? req.params.built : '0';
     propBaths = (req.params.baths)? req.params.baths : '0';
-    propType = (req.params.type) ? req.params.type : '0';
+    propType = (req.params.type)? req.params.type : '0';
     res.redirect('/fbauth');
 });
 
