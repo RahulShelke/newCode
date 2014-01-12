@@ -113,28 +113,45 @@ function showListView(){
         var url = $(location).attr('href');
         url = url.substring(0, url.indexOf('/search'));
 
-        $('#facebooking').click(function(){
+        $('#facebookimg').click(function(){
+            var index = $(this).attr('class')
+                       , price = propertyList[index].price
+                       , beds = propertyList[index].bedrooms
+                       , area = propertyList[index].area
+                       , built = 2005 //TODO: propertyList[index].price
+                       , bath = propertyList[index].bathrooms
+                       , type = propertyList[index].productType;
             selectedImage = selectedImage.substring(selectedImage.lastIndexOf('/'));
-            var a = $('<a>').attr('href', url+'/sharefacebook'+selectedImage).attr('target', '_blank').appendTo('body');
+            var a = $('<a>').attr('href', url+'/sharefacebook'+selectedImage+'/'+price+'/'+beds+'/'+area+'/'+built+'/'+bath+'/'+type).attr('target', '_blank').appendTo('body');
                        a[0].click();
                        a.remove();
-                     });
+        });
 
-                $('#twitterimg').click(function(){
-                       selectedImage = selectedImage.substring(selectedImage.lastIndexOf('/'));
-                       url = url.replace('localhost','www.mysite.com');
-                       var a = $('<a>').attr('href', url+'/sharetwitter'+selectedImage).attr('target', '_blank').appendTo('body');
-                       a[0].click();
-                       a.remove();
-                });
-
-                 $('#linkedinimg').click(function(){
-                       selectedImage = selectedImage.substring(selectedImage.lastIndexOf('/'));
-                       url = url.replace('localhost','www.mysite.com');
-                       //var a = $('<a>').attr('href', url+'/sharelinkedin'+selectedImage).attr('target', '_blank').appendTo('body');
-                           var a = $('<a>').attr('href', url+'/message').attr('target', '_blank').appendTo('body');
+        $('#twitterimg').click(function(){
+            selectedImage = selectedImage.substring(selectedImage.lastIndexOf('/'));
+            url = url.replace('localhost','www.mysite.com');
+            var a = $('<a>').attr('href', url+'/sharetwitter'+selectedImage).attr('target', '_blank').appendTo('body');
             a[0].click();
             a.remove();
+        });
+
+         $('#linkedinimg').click(function(){
+            var index = $(this).attr('class')
+                       , price = propertyList[index].price
+                       , beds = propertyList[index].bedrooms
+                       , area = propertyList[index].area
+                       , built = 2005 //TODO: propertyList[index].price
+                       , bath = propertyList[index].bathrooms
+                       , type = propertyList[index].productType;
+            var a = $("<a>").attr("href", url+'/sharelinkedin'+selectedImage+'/'+price+'/'+beds+'/'+area+'/'+built+'/'+bath+'/'+type).appendTo("body");
+            a[0].click();
+            a.remove();
+            // selectedImage = selectedImage.substring(selectedImage.lastIndexOf('/'));
+            // url = url.replace('localhost','www.mysite.com');
+            // //var a = $('<a>').attr('href', url+'/sharelinkedin'+selectedImage).attr('target', '_blank').appendTo('body');
+            // var a = $('<a>').attr('href', url+'/message').attr('target', '_blank').appendTo('body');
+            // a[0].click();
+            // a.remove();
         });
         
         $('#mapimg').click(function(){
