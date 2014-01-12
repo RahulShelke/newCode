@@ -5,6 +5,7 @@ var min_distance = 0.5
     ,initialDistance = 2;
 function init() {
     var mapDiv = document.getElementById('MapDiv');
+    
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
@@ -17,9 +18,15 @@ function init() {
 			
 
            // var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-            var pos = new google.maps.LatLng(propertyList[mapIndex].LatLng.latitude,propertyList[mapIndex].LatLng.longitude);
-			map.setCenter(pos);
-            var distanceWidget = new DistanceWidget(map);
+            if(window.location.pathname.indexOf('locationmap') != -1) {
+                pos = new google.maps.LatLng(propertyList[mapIndex].LatLng.latitude, propertyList[mapIndex].LatLng.longitude);
+            } else {
+                pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            }
+            
+		map.setCenter(pos);
+            var distanceWidget = new DistanceWidget(map),
+            	pos;
 
 
             google.maps.event.addListener(distanceWidget, 'distance_changed', function() {
