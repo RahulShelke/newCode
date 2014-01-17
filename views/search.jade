@@ -265,13 +265,18 @@ html
                                                         console.log(checkValues[1]);
                                                         console.log(checkValues[2]);
                                                         $('#comTitle').html('Comparing '+checkValues.length + ' Properties');
+                                                        $('#selectedPropCount').val(checkValues.length);
                                                         if(checkValues[3] != null){
                                                             console.log(checkValues[1]);
+                                                            $('#line0PicIndx').val(0);
+                                                            $('#line1PicIndx').val(1);
+                                                            $('#classPicIndx').val(2);
+                                                            $('#class1PicIndx').val(3);
                                                             $(".ListOfProperty").hide();
                                                             $(".hidelist").hide();
                                                             $("#compare_body").show();
                                                             console.log(checkValues);
-                                                            $(".comslider").html('<img src='+checkValues[0]['picture']['linkFront']+' width=194 height=110/>');
+                                                            $(".comslider").html('<img src='+checkValues[0]['picture']['linkFront']+' width=247 height=110/>');
                                                             /*$(".comslider").html('<img src='+checkValues[0]['picture']['linkBack']+' width=247 height=110/>');
                                                             $(".comslider").html('<img src='+checkValues[0]['picture']['linkLeft']+' width=247 height=110/>');
                                                             $(".comslider").html('<img src='+checkValues[0]['picture']['linkRight']+' width=247 height=110/>');*/
@@ -280,7 +285,7 @@ html
                                                             $("#CompareBaths").html(checkValues[0]['bathrooms']);
                                                             $("#CompareSqft").html(checkValues[0]['area']);
                                                             $("#CompareType").html(checkValues[0]['productType']);
-                                                            $(".comslider1").html('<img src='+checkValues[1]['picture']['linkFront']+' width=194 height=110/>');
+                                                            $(".comslider1").html('<img src='+checkValues[1]['picture']['linkFront']+' width=247 height=110/>');
                                                             /*$(".comslider1").html('<img src='+checkValues[1]['picture']['linkBack']+' width=247 height=110/>');
                                                             $(".comslider1").html('<img src='+checkValues[1]['picture']['linkLeft']+' width=247 height=110/>');
                                                             $(".comslider1").html('<img src='+checkValues[1]['picture']['linkRight']+' width=247 height=110/>');*/
@@ -289,7 +294,7 @@ html
                                                             $("#CompareBaths1").html(checkValues[1]['bathrooms']);
                                                             $("#CompareSqft1").html(checkValues[1]['area']);
                                                             $("#CompareType1").html(checkValues[1]['productType']);
-                                                            $(".comslider2").html('<img src='+checkValues[2]['picture']['linkFront']+' width=194 height=110/>');
+                                                            $(".comslider2").html('<img src='+checkValues[2]['picture']['linkFront']+' width=247 height=110/>');
                                                             /*$(".comslider2").html('<img src='+checkValues[2]['picture']['linkBack']+' width=247 height=110/>');
                                                             $(".comslider2").html('<img src='+checkValues[2]['picture']['linkLeft']+' width=247 height=110/>');
                                                             $(".comslider2").html('<img src='+checkValues[2]['picture']['linkRight']+' width=247 height=110/>');*/
@@ -298,7 +303,7 @@ html
                                                             $("#CompareBaths2").html(checkValues[2]['bathrooms']);
                                                             $("#CompareSqft2").html(checkValues[2]['area']);
                                                             $("#CompareType2").html(checkValues[2]['productType']);
-                                                            $(".comslider3").html('<img src='+checkValues[3]['picture']['linkFront']+' width=194 height=110/>');
+                                                            $(".comslider3").html('<img src='+checkValues[3]['picture']['linkFront']+' width=247 height=110/>');
                                                             /*$(".comslider3").html('<img src='+checkValues[3]['picture']['linkBack']+' width=247 height=110/>');
                                                             $(".comslider3").html('<img src='+checkValues[3]['picture']['linkLeft']+' width=247 height=110/>');
                                                             $(".comslider3").html('<img src='+checkValues[3]['picture']['linkRight']+' width=247 height=110/>');*/
@@ -308,6 +313,9 @@ html
                                                             $("#CompareSqft3").html(checkValues[3]['area']);
                                                             $("#CompareType3").html(checkValues[3]['productType']);
                                                         }else if(checkValues[2] != null){
+                                                            $('#line0PicIndx').val(0);
+                                                            $('#line1PicIndx').val(1);
+                                                            $('#classPicIndx').val(2);
                                                             $(".ListOfProperty").hide();
                                                             $(".hidelist").hide();
                                                             $("#compare_body").show();
@@ -331,6 +339,8 @@ html
                                                             $("#CompareSqft2").html(checkValues[2]['area']);
                                                             $("#CompareType2").html(checkValues[2]['productType']);
                                                         }else if(checkValues[1] != null){
+                                                            $('#line0PicIndx').val(0);
+                                                            $('#line1PicIndx').val(1);
                                                             $(".ListOfProperty").hide();
                                                             $(".hidelist").hide();
                                                             $("#compare_body").show();
@@ -561,6 +571,11 @@ html
                                             }
 
                                             window.onload = loadScript;
+                        input#selectedPropCount(type='hidden', value='')
+                        input#line0PicIndx(type='hidden', value='')
+                        input#line1PicIndx(type='hidden', value='')
+                        input#classPicIndx(type='hidden', value='')
+                        input#class1PicIndx(type='hidden', value='')
                         div#compare_body(style="display:none; width: 79%; float: right")
                             div#compare_header
                                 div#back
@@ -587,9 +602,80 @@ html
                                         br
                                         script.
                                             document.write('<div class=\"bx-wrapper\"><div class=\"bx-controls bx-has-controls-direction\"><div class=\"bx-controls-direction\"> <a class=\"bx-prev\">Prev</a></div></div></div>');
+                                            propertyIndexCurrent = 0,
+                                            selectedPropCount = 0,
+                                            propIndex0 = 0,
+                                            propIndex1 = 1,
+                                            propIndex2 = 2,
+                                            propIndex3 = 3;
+                                            var firstTimeClickedPrev = '';
                                             $('#preNav').on('click', function() {
-                                                alert('Previous');
+                                                selectedPropCount = ($('#selectedPropCount').val() - 1);
+                                                propIndex3 = propIndex2;
+                                                propIndex2 = propIndex1;
+                                                propIndex1 = propIndex0;
+                                                propIndex0--;
+                                                if(propIndex0 < 0){
+                                                    propIndex0 = selectedPropCount;
+                                                }
+
+                                                $('#line0PicIndx').val(propIndex0);
+                                                $('#line1PicIndx').val(propIndex1);
+                                                $('#classPicIndx').val(propIndex2);
+                                                $('#class1PicIndx').val(propIndex3);
+
+                                                $(".comslider").html('<img src='+checkValues[propIndex0]['picture']['linkFront']+' width=247 height=110/>');
+                                                $("#comparePrice").html(checkValues[propIndex0]['price']);
+                                                $("#CompareBeds").html(checkValues[propIndex0]['bedrooms']);
+                                                $("#CompareBaths").html(checkValues[propIndex0]['bathrooms']);
+                                                $("#CompareSqft").html(checkValues[propIndex0]['area']);
+                                                $("#CompareType").html(checkValues[propIndex0]['productType']);
+                                                $('.comproductName0').html(checkValues[propIndex0]['productName']);
+                                                $('.comAddress0').html(checkValues[propIndex0]['address']['line1']+',');
+                                                $('.comAddress01').html(checkValues[propIndex0]['address']['city']+', '+checkValues[propIndex0]['address']['country']);
+
+                                                $(".comslider1").html('<img src='+checkValues[propIndex1]['picture']['linkFront']+' width=247 height=110/>');
+                                                $("#comparePrice1").html(checkValues[propIndex1]['price']);
+                                                $("#CompareBeds1").html(checkValues[propIndex1]['bedrooms']);
+                                                $("#CompareBaths1").html(checkValues[propIndex1]['bathrooms']);
+                                                $("#CompareSqft1").html(checkValues[propIndex1]['area']);
+                                                $("#CompareType1").html(checkValues[propIndex1]['productType']);
+                                                $('.comproductName1').html(checkValues[propIndex1]['productName']);
+                                                $('.comAddress1').html(checkValues[propIndex1]['address']['line1']+',');
+                                                $('.comAddress11').html(checkValues[propIndex1]['address']['city']+', '+checkValues[propIndex1]['address']['country']);
+                                                if (selectedPropCount >= 2){
+                                                    $(".comslider2").html('<img src='+checkValues[propIndex2]['picture']['linkFront']+' width=247 height=110/>');
+                                                    $("#comparePrice2").html(checkValues[propIndex2]['price']);
+                                                    $("#CompareBeds2").html(checkValues[propIndex2]['bedrooms']);
+                                                    $("#CompareBaths2").html(checkValues[propIndex2]['bathrooms']);
+                                                    $("#CompareSqft2").html(checkValues[propIndex2]['area']);
+                                                    $("#CompareType2").html(checkValues[propIndex2]['productType']);
+                                                    $('.comproductName2').html(checkValues[propIndex2]['productName']);
+                                                    $('.comAddress2').html(checkValues[propIndex2]['address']['line1']+',');
+                                                    $('.comAddress21').html(checkValues[propIndex2]['address']['city']+', '+checkValues[propIndex2]['address']['country']);
+                                                    if (selectedPropCount >= 3){
+                                                        $(".comslider3").html('<img src='+checkValues[propIndex3]['picture']['linkFront']+' width=247 height=110/>');
+                                                        $("#comparePrice3").html(checkValues[propIndex3]['price']);
+                                                        $("#CompareBeds3").html(checkValues[propIndex3]['bedrooms']);
+                                                        $("#CompareBaths3").html(checkValues[propIndex3]['bathrooms']);
+                                                        $("#CompareSqft3").html(checkValues[propIndex3]['area']);
+                                                        $("#CompareType3").html(checkValues[propIndex3]['productType']);
+                                                        $('.comproductName3').html(checkValues[propIndex3]['productName']);
+                                                        $('.comAddress3').html(checkValues[propIndex3]['address']['line1']+',');
+                                                        $('.comAddress31').html(checkValues[propIndex3]['address']['city']+', '+checkValues[propIndex3]['address']['country']);
+                                                    };
+                                                };
+
+
                                             });
+                                            function getPropPictures(picIndx){
+                                                  var propPicture =
+                                                        ['<img src='+checkValues[picIndx]['picture']['linkFront']+' width=247 height=110/>',
+                                                         '<img src='+checkValues[picIndx]['picture']['linkBack']+' width=247 height=110/>',
+                                                         '<img src='+checkValues[picIndx]['picture']['linkLeft']+' width=247 height=110/>',
+                                                         '<img src='+checkValues[picIndx]['picture']['linkRight']+' width=247 height=110/>'];
+                                                  return propPicture;
+                                            }
                                 div#name
                                     div#compare_details
                                         p#property_name Property Name
@@ -618,18 +704,17 @@ html
                                                 pause:3000,
                                                 speed: 2000
                                                 });
-                                                var line0picture = ['<img src='+checkValues[0]['picture']['linkFront']+' width=247 height=110/>',
-                                                            '<img src='+checkValues[0]['picture']['linkBack']+' width=247 height=110/>',
-                                                            '<img src='+checkValues[0]['picture']['linkLeft']+' width=247 height=110/>',
-                                                            '<img src='+checkValues[0]['picture']['linkRight']+' width=247 height=110/>'],
-                                                            line0pictureCurrent = 0;
+                                                        
+                                                        var line0pictureCurrent = 0;
                                                     $('#line0 > #details > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(1)').on('click', function() {
                                                       line0pictureCurrent--;
+                                                          var line0picture = getPropPictures($('#line0PicIndx').val());
                                                       line0pictureCurrent = (line0pictureCurrent < 0) ? (line0picture.length - 1) : line0pictureCurrent;
                                                       $(".comslider").html(line0picture[line0pictureCurrent]);
                                                     });
                                                     $('#line0 > #details > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(2)').on('click', function() {
-                                                      line0pictureCurrent++
+                                                          line0pictureCurrent++;
+                                                          var line0picture = getPropPictures($('#line0PicIndx').val());
                                                       line0pictureCurrent = (line0pictureCurrent > (line0picture.length -1)) ? 0 : line0pictureCurrent;
                                                       $(".comslider").html(line0picture[line0pictureCurrent]);
                                                     });
@@ -643,15 +728,15 @@ html
                                                                     $('#line0').hide();
                                                                     $('#comparison').show();
                                                                 });
-                                                a.comproductName
+                                                a.comproductName0
                                                     script.
                                                         document.write(checkValues[0]['productName']);
                                                 br
-                                                p.comAddress
+                                                p.comAddress0
                                                     script.
                                                         document.write(checkValues[0]['address']['line1']+',');
 
-                                                p.comAddress
+                                                p.comAddress01
                                                     script.
                                                         document.write(checkValues[0]['address']['city']+', '+checkValues[0]['address']['country']);
                                             div.comslider
@@ -686,21 +771,21 @@ html
                                                 pause:3000,
                                                 speed: 2000
                                                 });
-                                                var line0picture = ['<img src='+checkValues[1]['picture']['linkFront']+' width=247 height=110/>',
-                                                            '<img src='+checkValues[1]['picture']['linkBack']+' width=247 height=110/>',
-                                                            '<img src='+checkValues[1]['picture']['linkLeft']+' width=247 height=110/>',
-                                                            '<img src='+checkValues[1]['picture']['linkRight']+' width=247 height=110/>'],
-                                                            line0pictureCurrent = 0;
+                                                          var  line1pictureCurrent = 0;
                                                     $('#line1 > #details > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(1)').on('click', function() {
-                                                      line0pictureCurrent--;
-                                                      line0pictureCurrent = (line0pictureCurrent < 0) ? (line0picture.length - 1) : line0pictureCurrent;
-                                                      $(".comslider1").html(line0picture[line0pictureCurrent]);
+                                                          line1pictureCurrent--;
+                                                          var line1picture = getPropPictures($('#line1PicIndx').val());
+                                                          line1pictureCurrent = (line1pictureCurrent < 0) ? (line1picture.length - 1) : line1pictureCurrent;
+                                                          $(".comslider1").html(line1picture[line1pictureCurrent]);
                                                     });
                                                     $('#line1 > #details > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(2)').on('click', function() {
-                                                      line0pictureCurrent++
-                                                      line0pictureCurrent = (line0pictureCurrent > (line0picture.length -1)) ? 0 : line0pictureCurrent;
-                                                      $(".comslider1").html(line0picture[line0pictureCurrent]);
-                                                    });
+                                                          line1pictureCurrent++
+                                                          var line1picture = getPropPictures($('#line1PicIndx').val());
+                                                          line1pictureCurrent = (line1pictureCurrent > (line1picture.length -1)) ? 0 : line1pictureCurrent;
+                                                          $(".comslider1").html(line1picture[line1pictureCurrent]);
+                                                        });
+
+
                                             });
                                         div#details
                                             div#black
@@ -711,17 +796,17 @@ html
                                                                     $('#line1').hide();
                                                                     $('#comparison').show();
                                                                 });
-                                                a.comproductName
+                                                a.comproductName1
                                                     script.
                                                         document.write(checkValues[1]['productName']);
                                                 br
-                                                p.comAddress
+                                                p.comAddress1
                                                     script.
                                                         document.write(checkValues[1]['address']['line1']+',');
 
-                                                p.comAddress
+                                                p.comAddress11
                                                     script.
-                                                        document.write(checkValues[1]['address']['city']+', '+checkValues[0]['address']['country']);
+                                                                    document.write(checkValues[1]['address']['city']+', '+checkValues[1]['address']['country']);
                                             div.comslider1
                                             p#comparePrice1
                                                 script.
@@ -754,20 +839,19 @@ html
                                                 pause:3000,
                                                 speed: 2000
                                                 });
-                                                var line0picture = ['<img src='+checkValues[2]['picture']['linkFront']+' width=247 height=110/>',
-                                                            '<img src='+checkValues[2]['picture']['linkBack']+' width=247 height=110/>',
-                                                            '<img src='+checkValues[2]['picture']['linkLeft']+' width=247 height=110/>',
-                                                            '<img src='+checkValues[2]['picture']['linkRight']+' width=247 height=110/>'],
-                                                            line0pictureCurrent = 0;
+                                                            
+                                                            var classPictureCurrent = 0;
                                                     $('#class > #details > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(1)').on('click', function() {
-                                                      line0pictureCurrent--;
-                                                      line0pictureCurrent = (line0pictureCurrent < 0) ? (line0picture.length - 1) : line0pictureCurrent;
-                                                      $(".comslider2").html(line0picture[line0pictureCurrent]);
+                                                              classPictureCurrent--;
+                                                              var classPicture = getPropPictures($('#classPicIndx').val());
+                                                              classPictureCurrent = (classPictureCurrent < 0) ? (classPicture.length - 1) : classPictureCurrent;
+                                                              $(".comslider2").html(classPicture[classPictureCurrent]);
                                                     });
                                                     $('#class > #details > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(2)').on('click', function() {
-                                                      line0pictureCurrent++
-                                                      line0pictureCurrent = (line0pictureCurrent > (line0picture.length -1)) ? 0 : line0pictureCurrent;
-                                                      $(".comslider2").html(line0picture[line0pictureCurrent]);
+                                                              classPictureCurrent++;
+                                                              var classPicture = getPropPictures($('#classPicIndx').val());
+                                                              classPictureCurrent = (classPictureCurrent > (classPicture.length -1)) ? 0 : classPictureCurrent;
+                                                              $(".comslider2").html(classPicture[classPictureCurrent]);
                                                     });
                                             });
                                         div#details
@@ -779,17 +863,17 @@ html
                                                                     $('#class').hide();
                                                                     $('#comparison').show();
                                                                 });
-                                                a.comproductName
+                                                a.comproductName2
                                                     script.
                                                         document.write(checkValues[2]['productName']);
                                                 br
-                                                p.comAddress
+                                                p.comAddress2
                                                     script.
                                                         document.write(checkValues[2]['address']['line1']+',');
 
-                                                p.comAddress
+                                                p.comAddress21
                                                     script.
-                                                        document.write(checkValues[2]['address']['city']+', '+checkValues[0]['address']['country']);
+                                                                    document.write(checkValues[2]['address']['city']+', '+checkValues[2]['address']['country']);
                                             div.comslider2
                                             p#comparePrice2
                                                 script.
@@ -822,20 +906,19 @@ html
                                                 pause:3000,
                                                 speed: 2000
                                                 });
-                                                var line0picture = ['<img src='+checkValues[3]['picture']['linkFront']+' width=247 height=110/>',
-                                                            '<img src='+checkValues[3]['picture']['linkBack']+' width=247 height=110/>',
-                                                            '<img src='+checkValues[3]['picture']['linkLeft']+' width=247 height=110/>',
-                                                            '<img src='+checkValues[3]['picture']['linkRight']+' width=247 height=110/>'],
-                                                            line0pictureCurrent = 0;
+                                                            
+                                                            var class1PictureCurrent = 0;
                                                     $('#class1 > #details > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(1)').on('click', function() {
-                                                      line0pictureCurrent--;
-                                                      line0pictureCurrent = (line0pictureCurrent < 0) ? (line0picture.length - 1) : line0pictureCurrent;
-                                                      $(".comslider3").html(line0picture[line0pictureCurrent]);
+                                                              class1PictureCurrent--;
+                                                              var classPicture = getPropPictures($('#class1PicIndx').val());
+                                                              class1PictureCurrent = (class1PictureCurrent < 0) ? (classPicture.length - 1) : class1PictureCurrent;
+                                                              $(".comslider3").html(classPicture[class1PictureCurrent]);
                                                     });
                                                     $('#class1 > #details > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(2)').on('click', function() {
-                                                      line0pictureCurrent++
-                                                      line0pictureCurrent = (line0pictureCurrent > (line0picture.length -1)) ? 0 : line0pictureCurrent;
-                                                      $(".comslider3").html(line0picture[line0pictureCurrent]);
+                                                              class1PictureCurrent++;
+                                                              var classPicture = getPropPictures($('#class1PicIndx').val());
+                                                              class1PictureCurrent = (class1PictureCurrent > (classPicture.length -1)) ? 0 : class1PictureCurrent;
+                                                              $(".comslider3").html(classPicture[class1PictureCurrent]);
                                                     });
                                             });
                                         div#details
@@ -847,17 +930,17 @@ html
                                                                     $('#class1').hide();
                                                                     $('#comparison').show();
                                                                 });
-                                                a.comproductName
+                                                a.comproductName3
                                                     script.
                                                         document.write(checkValues[3]['productName']);
                                                 br
-                                                p.comAddress
+                                                p.comAddress3
                                                     script.
                                                         document.write(checkValues[3]['address']['line1']+',');
 
-                                                p.comAddress
+                                                p.comAddress31
                                                     script.
-                                                        document.write(checkValues[3]['address']['city']+', '+checkValues[0]['address']['country']);
+                                                                    document.write(checkValues[3]['address']['city']+', '+checkValues[3]['address']['country']);
                                             div.comslider3
                                             p#comparePrice3
                                                 script.
@@ -895,13 +978,81 @@ html
                                         br
                                         script.
                                             document.write('<div class=\"bx-wrapper\"><div class=\"bx-controls bx-has-controls-direction\"><div class=\"bx-controls-direction\"> <a class=\"bx-next\"></a></div></div></div>');
-                                            //$('#preNav > div.bx-controls:nth-child(1) > div:nth-child(1) > a:nth-child(1)').on('click', function() {
-                                            //    $('#preNav').html('<div class=\"bx-wrapper\"><div class=\"bx-controls bx-has-controls-direction\"><div //class=\"bx-controls-direction\"> <a class=\"bx-prev\">Prev</a></div></div></div>');
-                                            //    alert('Previous11111');
-                                            //});
+
                                             $('#nextNav').on('click', function() {
-                                                //$('#preNav').html('<div class=\"bx-wrapper\"><div class=\"bx-controls bx-has-controls-direction\"><div //class=\"bx-controls-direction\"> <a class=\"bx-next\">Next</a></div></div></div>');
-                                                alert('Next');
+                                                selectedPropCount = ($('#selectedPropCount').val() - 1);
+                                                if(selectedPropCount === 1 ){
+                                                    var propIndex0Temp  = propIndex0;
+                                                        propIndex0 = propIndex1;
+                                                        propIndex1 = propIndex0Temp;
+                                                } else if(selectedPropCount === 2){
+                                                    var propIndex0Temp  = propIndex0;
+                                                        propIndex0 = propIndex1;
+                                                        propIndex1 = propIndex2;
+                                                        propIndex2 = propIndex0Temp;
+                                                } else if(selectedPropCount === 3){
+                                                    var propIndex0Temp  = propIndex0;
+                                                        propIndex0 = propIndex1;
+                                                        propIndex1 = propIndex2;
+                                                        propIndex2 = propIndex3;
+                                                        propIndex3 = propIndex0Temp;
+                                                } else {
+                                                    propIndex0 = propIndex1;
+                                                    propIndex1 = propIndex2;
+                                                    propIndex2 = propIndex3;
+                                                    propIndex3++;
+                                                    if(propIndex3 > selectedPropCount){
+                                                        propIndex3 = 0;
+                                                    };
+                                                }
+
+                                                $('#line0PicIndx').val(propIndex0);
+                                                $('#line1PicIndx').val(propIndex1);
+                                                $('#classPicIndx').val(propIndex2);
+                                                $('#class1PicIndx').val(propIndex3);
+
+                                                $(".comslider").html('<img src='+checkValues[propIndex0]['picture']['linkFront']+' width=247 height=110/>');
+                                                $("#comparePrice").html(checkValues[propIndex0]['price']);
+                                                $("#CompareBeds").html(checkValues[propIndex0]['bedrooms']);
+                                                $("#CompareBaths").html(checkValues[propIndex0]['bathrooms']);
+                                                $("#CompareSqft").html(checkValues[propIndex0]['area']);
+                                                $("#CompareType").html(checkValues[propIndex0]['productType']);
+                                                $('.comproductName0').html(checkValues[propIndex0]['productName']);
+                                                $('.comAddress0').html(checkValues[propIndex0]['address']['line1']+',');
+                                                $('.comAddress01').html(checkValues[propIndex0]['address']['city']+', '+checkValues[propIndex0]['address']['country']);
+
+                                                $(".comslider1").html('<img src='+checkValues[propIndex1]['picture']['linkFront']+' width=247 height=110/>');
+                                                $("#comparePrice1").html(checkValues[propIndex1]['price']);
+                                                $("#CompareBeds1").html(checkValues[propIndex1]['bedrooms']);
+                                                $("#CompareBaths1").html(checkValues[propIndex1]['bathrooms']);
+                                                $("#CompareSqft1").html(checkValues[propIndex1]['area']);
+                                                $("#CompareType1").html(checkValues[propIndex1]['productType']);
+                                                $('.comproductName1').html(checkValues[propIndex1]['productName']);
+                                                $('.comAddress1').html(checkValues[propIndex1]['address']['line1']+',');
+                                                $('.comAddress11').html(checkValues[propIndex1]['address']['city']+', '+checkValues[propIndex1]['address']['country']);
+                                                if (selectedPropCount >= 2){
+                                                    $(".comslider2").html('<img src='+checkValues[propIndex2]['picture']['linkFront']+' width=247 height=110/>');
+                                                    $("#comparePrice2").html(checkValues[propIndex2]['price']);
+                                                    $("#CompareBeds2").html(checkValues[propIndex2]['bedrooms']);
+                                                    $("#CompareBaths2").html(checkValues[propIndex2]['bathrooms']);
+                                                    $("#CompareSqft2").html(checkValues[propIndex2]['area']);
+                                                    $("#CompareType2").html(checkValues[propIndex2]['productType']);
+                                                    $('.comproductName2').html(checkValues[propIndex2]['productName']);
+                                                    $('.comAddress2').html(checkValues[propIndex2]['address']['line1']+',');
+                                                    $('.comAddress21').html(checkValues[propIndex2]['address']['city']+', '+checkValues[propIndex2]['address']['country']);
+                                                    if (selectedPropCount >= 3){
+                                                        $(".comslider3").html('<img src='+checkValues[propIndex3]['picture']['linkFront']+' width=247 height=110/>');
+                                                        $("#comparePrice3").html(checkValues[propIndex3]['price']);
+                                                        $("#CompareBeds3").html(checkValues[propIndex3]['bedrooms']);
+                                                        $("#CompareBaths3").html(checkValues[propIndex3]['bathrooms']);
+                                                        $("#CompareSqft3").html(checkValues[propIndex3]['area']);
+                                                        $("#CompareType3").html(checkValues[propIndex3]['productType']);
+                                                        $('.comproductName3').html(checkValues[propIndex3]['productName']);
+                                                        $('.comAddress3').html(checkValues[propIndex3]['address']['line1']+',');
+                                                        $('.comAddress31').html(checkValues[propIndex3]['address']['city']+', '+checkValues[propIndex3]['address']['country']);
+                                                    };
+                                                };
+
                                             });
             div#mapidHide(style="display:none")
                 div#moreMap
