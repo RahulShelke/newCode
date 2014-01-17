@@ -1,8 +1,8 @@
 var min_distance = 0.5
-    ,max_distance = 5
-    ,markers = []
-    ,map
-    ,initialDistance = 2;
+    , max_distance = 5
+    , markers = []
+    , map
+    , initialDistance = 2;
 function init() {
     var mapDiv = document.getElementById('MapDiv'),
     	pos;
@@ -22,9 +22,7 @@ function init() {
             }
             
 		map.setCenter(pos);
-            var distanceWidget = new DistanceWidget(map),
-            	pos;
-
+            var distanceWidget = new DistanceWidget(map);
 
             google.maps.event.addListener(distanceWidget, 'distance_changed', function() {
                 displayInfo(distanceWidget);
@@ -35,9 +33,9 @@ function init() {
             });
 
             // var markers = [];
-            var infoWindows = [];
-
-            var initialRadius = initialDistance * 1000;
+            var infoWindows = [],
+                initialRadius = initialDistance * 1000
+                radiusWidgetObj = distanceWidget.get('radiusWidgetObj');
             for (var i = 0; i < propertyList.length; i++) {
                 var latLng = new google.maps.LatLng(propertyList[i].LatLng.latitude, propertyList[i].LatLng.longitude);
                 var marker = new google.maps.Marker({
@@ -47,12 +45,13 @@ function init() {
                     map: map
                 });
 
-                var propDistance = RadiusWidget.prototype.distanceBetweenPoints_(map.center, marker.position);
-                if(initialRadius > (propDistance*1000)){
+                var propDistance = radiusWidgetObj.distanceBetweenPoints_(map.center, marker.position);
+                if (initialRadius > (propDistance *1000)){
                     marker.setVisible(true);
                 }else{
                     marker.setVisible(false);
                 }
+
                 var content ='<div class=propertiesListMap style=background:url('+propertyList[i].picture.linkFront+')no-repeat;background-size:300px 175px>'
                     +'<div id=propertyNameMap>'+propertyList[i].productName+'</div>'
                     +'<div id=propertyPriceMap class='+i+'>$'+propertyList[i].price+'<br /><a> Bed:'+propertyList[i].bedrooms+' Bath:'+propertyList[i].bathrooms+' Sqft:'+propertyList[i].area+'</a><a style=float:right;margin-top:-9px;margin-right:20px><img src=/images/green_arrow.png></div>'
@@ -146,7 +145,6 @@ function init() {
                 markers.push(marker);
             }
 
-
             // Reverse Geocoder function to get location city and state in Readable format
             // Also populate in area search box
 
@@ -204,6 +202,8 @@ function init() {
 
                 moveMarker(place.name, place.geometry.location);
             });
+
+
 
             $("location").focusin(function () {
                 $(document).keypress(function (e) {
@@ -273,6 +273,8 @@ function init() {
 
         // Create a new radius widget
         var radiusWidget = new RadiusWidget(map);
+
+        this.set('radiusWidgetObj', radiusWidget);
 
         // Bind the radiusWidget map to the DistanceWidget map
         radiusWidget.bindTo('map', this);
@@ -358,6 +360,7 @@ function init() {
             var position = new google.maps.LatLng(this.get('center').lat(), lng);
             this.set('sizer_position', position);
         }
+        
     };
 
     /**
@@ -415,7 +418,6 @@ function init() {
             showHideMarker();
         });
         showHideMarker();
-
         function showHideMarker(){
             var circleCenter = me.get('center');
             for (var i = 0; i < markers.length; i++) {
@@ -429,6 +431,7 @@ function init() {
         };
     };
 
+   
     /**
      * Calculates the distance between two latlng locations in km.
      * @see http://www.movable-type.co.uk/scripts/latlong.html

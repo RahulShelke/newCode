@@ -422,15 +422,21 @@ html
                                                                                 console.log($(this).val());
                                                                                 return propertyList[$(this).val()];
                                                                             }).get();
-                                                                            console.log(checkValues);
+                                                                            console.log('checkValues: ' +checkValues.length);
+                                                                            $('#comTitle').html('Comparing '+checkValues.length + ' Properties');
+                                                                            $('#selectedPropCount').val(checkValues.length);
+                                                                            $('#line0PicIndx').val(0);
+                                                                            $('#line1PicIndx').val(1);
+                                                                            $('#classPicIndx').val(2);
+                                                                            $('#class1PicIndx').val(3);
                                                                             //console.log(checkValues[1]);
                                                                             //console.log(checkValues[3]);
                                                                             if(checkValues[3] != null){
-                                                                                console.log(checkValues[1]);
+                                                                                console.log('checkValues[3] :'+checkValues[3]);
                                                                                 $("#MapDiv").hide();
                                                                                 $("#compare_body").show();
                                                                                 console.log(checkValues);
-                                                                                $(".comslider").html('<img src='+checkValues[0]['picture']['linkFront']+' width=194 height=110/>');
+                                                                                $(".comslider").html('<img src='+checkValues[0]['picture']['linkFront']+' width=247 height=110/>');
                                                                                 /*$(".comslider").html('<img src='+checkValues[0]['picture']['linkBack']+' width=247 height=110/>');
                                                                                 $(".comslider").html('<img src='+checkValues[0]['picture']['linkLeft']+' width=247 height=110/>');
                                                                                 $(".comslider").html('<img src='+checkValues[0]['picture']['linkRight']+' width=247 height=110/>');*/
@@ -439,7 +445,7 @@ html
                                                                                 $("#CompareBaths").html(checkValues[0]['bathrooms']);
                                                                                 $("#CompareSqft").html(checkValues[0]['area']);
                                                                                 $("#CompareType").html(checkValues[0]['productType']);
-                                                                                $(".comslider1").html('<img src='+checkValues[1]['picture']['linkFront']+' width=194 height=110/>');
+                                                                                $(".comslider1").html('<img src='+checkValues[1]['picture']['linkFront']+' width=247 height=110/>');
                                                                                 /*$(".comslider1").html('<img src='+checkValues[1]['picture']['linkBack']+' width=247 height=110/>');
                                                                                 $(".comslider1").html('<img src='+checkValues[1]['picture']['linkLeft']+' width=247 height=110/>');
                                                                                 $(".comslider1").html('<img src='+checkValues[1]['picture']['linkRight']+' width=247 height=110/>');*/
@@ -448,7 +454,7 @@ html
                                                                                 $("#CompareBaths1").html(checkValues[1]['bathrooms']);
                                                                                 $("#CompareSqft1").html(checkValues[1]['area']);
                                                                                 $("#CompareType1").html(checkValues[1]['productType']);
-                                                                                $(".comslider2").html('<img src='+checkValues[2]['picture']['linkFront']+' width=194 height=110/>');
+                                                                                $(".comslider2").html('<img src='+checkValues[2]['picture']['linkFront']+' width=247 height=110/>');
                                                                                 /*$(".comslider2").html('<img src='+checkValues[2]['picture']['linkBack']+' width=247 height=110/>');
                                                                                 $(".comslider2").html('<img src='+checkValues[2]['picture']['linkLeft']+' width=247 height=110/>');
                                                                                 $(".comslider2").html('<img src='+checkValues[2]['picture']['linkRight']+' width=247 height=110/>');*/
@@ -457,7 +463,7 @@ html
                                                                                 $("#CompareBaths2").html(checkValues[2]['bathrooms']);
                                                                                 $("#CompareSqft2").html(checkValues[2]['area']);
                                                                                 $("#CompareType2").html(checkValues[2]['productType']);
-                                                                                $(".comslider3").html('<img src='+checkValues[3]['picture']['linkFront']+' width=194 height=110/>');
+                                                                                $(".comslider3").html('<img src='+checkValues[3]['picture']['linkFront']+' width=247 height=110/>');
                                                                                 /*$(".comslider3").html('<img src='+checkValues[3]['picture']['linkBack']+' width=247 height=110/>');
                                                                                 $(".comslider3").html('<img src='+checkValues[3]['picture']['linkLeft']+' width=247 height=110/>');
                                                                                 $(".comslider3").html('<img src='+checkValues[3]['picture']['linkRight']+' width=247 height=110/>');*/
@@ -573,14 +579,120 @@ html
                                                         div#description_prop
                                                             h4 Descriptions
                                                             p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.
+                                    input#selectedPropCount(type='hidden', value='')
+                                    input#line0PicIndx(type='hidden', value='')
+                                    input#line1PicIndx(type='hidden', value='')
+                                    input#classPicIndx(type='hidden', value='')
+                                    input#class1PicIndx(type='hidden', value='')
                                     div#compare_body(style="display:none")
                                         div#compare_header
                                             div#back
                                                 a(href="/properties") Back
-                                            h4 Comparing Properties
+                                            h4#comTitle
                                             div#close
                                                 a(href="/properties") Close
                                         div#comparison
+                                            div#preNav
+                                                br
+                                                br
+                                                br
+                                                br
+                                                br
+                                                br
+                                                br
+                                                br
+                                                br
+                                                br
+                                                br
+                                                br
+                                                br
+                                                br
+                                                br
+                                                script.
+                                                    document.write('<div class=\"bx-wrapper\"><div class=\"bx-controls bx-has-controls-direction\"><div class=\"bx-controls-direction\"> <a class=\"bx-prev\">Prev</a></div></div></div>');
+
+                                                        propertyIndexCurrent = 0,
+                                                        selectedPropCount = 0,
+                                                        propIndex0 = 0,
+                                                        propIndex1 = 1,
+                                                        propIndex2 = 2,
+                                                        propIndex3 = 3;
+                                                        var firstTimeClickedPrev = '';
+                                                    $('#preNav').on('click', function() {
+                                                        //propertyIndexCurrent--;
+                                                        //console.log('checkValues.length  :'+checkValues.length);
+                                                        //console.log('Selected prop: '+($('#selectedPropCount').val() - 1));
+                                                        selectedPropCount = ($('#selectedPropCount').val() - 1);
+
+                                                        
+                                                        //propertyIndexCurrent = (propertyIndexCurrent < 0)? selectedPropCount : propertyIndexCurrent;
+                                                        
+                                                        //console.log('propertyIndexCurrent -PREV : '+propertyIndexCurrent);
+                                                        propIndex3 = propIndex2;
+                                                        propIndex2 = propIndex1;
+                                                        propIndex1 = propIndex0;
+                                                        propIndex0--;
+                                                        if(propIndex0 < 0){
+                                                            propIndex0 = selectedPropCount;
+                                                        }
+
+                                                        $('#line0PicIndx').val(propIndex0);
+                                                        $('#line1PicIndx').val(propIndex1);
+                                                        $('#classPicIndx').val(propIndex2);
+                                                        $('#class1PicIndx').val(propIndex3);
+
+                                                        $(".comslider").html('<img src='+checkValues[propIndex0]['picture']['linkFront']+' width=247 height=110/>');
+                                                        $("#comparePrice").html(checkValues[propIndex0]['price']);
+                                                        $("#CompareBeds").html(checkValues[propIndex0]['bedrooms']);
+                                                        $("#CompareBaths").html(checkValues[propIndex0]['bathrooms']);
+                                                        $("#CompareSqft").html(checkValues[propIndex0]['area']);
+                                                        $("#CompareType").html(checkValues[propIndex0]['productType']);
+                                                        $('.comproductName0').html(checkValues[propIndex0]['productName']);
+                                                        $('.comAddress0').html(checkValues[propIndex0]['address']['line1']+',');
+                                                        $('.comAddress01').html(checkValues[propIndex0]['address']['city']+', '+checkValues[propIndex0]['address']['country']);
+
+                                                        $(".comslider1").html('<img src='+checkValues[propIndex1]['picture']['linkFront']+' width=247 height=110/>');
+                                                        $("#comparePrice1").html(checkValues[propIndex1]['price']);
+                                                        $("#CompareBeds1").html(checkValues[propIndex1]['bedrooms']);
+                                                        $("#CompareBaths1").html(checkValues[propIndex1]['bathrooms']);
+                                                        $("#CompareSqft1").html(checkValues[propIndex1]['area']);
+                                                        $("#CompareType1").html(checkValues[propIndex1]['productType']);
+                                                        $('.comproductName1').html(checkValues[propIndex1]['productName']);
+                                                        $('.comAddress1').html(checkValues[propIndex1]['address']['line1']+',');
+                                                        $('.comAddress11').html(checkValues[propIndex1]['address']['city']+', '+checkValues[propIndex1]['address']['country']);
+                                                        if (selectedPropCount >= 2){
+                                                            $(".comslider2").html('<img src='+checkValues[propIndex2]['picture']['linkFront']+' width=247 height=110/>');
+                                                            $("#comparePrice2").html(checkValues[propIndex2]['price']);
+                                                            $("#CompareBeds2").html(checkValues[propIndex2]['bedrooms']);
+                                                            $("#CompareBaths2").html(checkValues[propIndex2]['bathrooms']);
+                                                            $("#CompareSqft2").html(checkValues[propIndex2]['area']);
+                                                            $("#CompareType2").html(checkValues[propIndex2]['productType']);
+                                                            $('.comproductName2').html(checkValues[propIndex2]['productName']);
+                                                            $('.comAddress2').html(checkValues[propIndex2]['address']['line1']+',');
+                                                            $('.comAddress21').html(checkValues[propIndex2]['address']['city']+', '+checkValues[propIndex2]['address']['country']);
+                                                            if (selectedPropCount >= 3){
+                                                                $(".comslider3").html('<img src='+checkValues[propIndex3]['picture']['linkFront']+' width=247 height=110/>');
+                                                                $("#comparePrice3").html(checkValues[propIndex3]['price']);
+                                                                $("#CompareBeds3").html(checkValues[propIndex3]['bedrooms']);
+                                                                $("#CompareBaths3").html(checkValues[propIndex3]['bathrooms']);
+                                                                $("#CompareSqft3").html(checkValues[propIndex3]['area']);
+                                                                $("#CompareType3").html(checkValues[propIndex3]['productType']);
+                                                                $('.comproductName3').html(checkValues[propIndex3]['productName']);
+                                                                $('.comAddress3').html(checkValues[propIndex3]['address']['line1']+',');
+                                                                $('.comAddress31').html(checkValues[propIndex3]['address']['city']+', '+checkValues[propIndex3]['address']['country']);
+                                                            };
+                                                        };
+
+
+                                                    });
+                                                     function getPropPictures(picIndx){
+                                                              var propPicture =
+                                                                    ['<img src='+checkValues[picIndx]['picture']['linkFront']+' width=247 height=110/>',
+                                                                     '<img src='+checkValues[picIndx]['picture']['linkBack']+' width=247 height=110/>',
+                                                                     '<img src='+checkValues[picIndx]['picture']['linkLeft']+' width=247 height=110/>',
+                                                                     '<img src='+checkValues[picIndx]['picture']['linkRight']+' width=247 height=110/>'];
+                                                              return propPicture;
+                                                    }
                                             div#name
                                                 div#compare_details
                                                     p#property_name Property Name
@@ -595,7 +707,7 @@ html
                                             script.
                                                 var checkValues = JSON.parse( '!{JSON.stringify(products)}' );
                                             ul.comMainSlider
-                                                li
+                                                li#line0
                                                     script.
                                                         $(document).ready(function(){
                                                             $('.comslider').bxSlider({
@@ -608,20 +720,43 @@ html
                                                             pause:3000,
                                                             speed: 2000
                                                             });
+                                                        
+                                                        var line0pictureCurrent = 0;
+                                                        $('#line0 > #details > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(1)').on('click', function() {
+                                                          line0pictureCurrent--;
+                                                          var line0picture = getPropPictures($('#line0PicIndx').val());
+                                                          line0pictureCurrent = (line0pictureCurrent < 0) ? (line0picture.length - 1) : line0pictureCurrent;
+                                                          $(".comslider").html(line0picture[line0pictureCurrent]);
+                                                        });
+                                                        $('#line0 > #details > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(2)').on('click', function() {
+                                                          line0pictureCurrent++;
+                                                          var line0picture = getPropPictures($('#line0PicIndx').val());
+                                                          line0pictureCurrent = (line0pictureCurrent > (line0picture.length -1)) ? 0 : line0pictureCurrent;
+                                                          $(".comslider").html(line0picture[line0pictureCurrent]);
+                                                        });
+
                                                         });
                                                     div#details
                                                         div#black
-                                                            a.comproductName
+                                                            span#closeBox0.close_box
+                                                                script.
+                                                                    $('#closeBox0').html('<h3>X</h3>');
+                                                                    $('#closeBox0').on('click', function(){
+                                                                        $('#line0').hide();
+                                                                        $('#comparison').show();
+                                                                    });
+                                                            a.comproductName0
                                                                 script.
                                                                     document.write(checkValues[0]['productName']);
                                                             br
-                                                            p.comAddress
+                                                            p.comAddress0
                                                                 script.
                                                                     document.write(checkValues[0]['address']['line1']+',');
 
-                                                            p.comAddress
+                                                            p.comAddress01
                                                                 script.
                                                                     document.write(checkValues[0]['address']['city']+', '+checkValues[0]['address']['country']);
+
                                                         div.comslider
                                                         p#comparePrice
                                                             script.
@@ -641,7 +776,7 @@ html
                                                         p#CompareBuilt 2012
                                                         p#CompareMls 0091948
                                                         p#CompareFeatures Alarm Balcony
-                                                li
+                                                li#line1
                                                     script.
                                                         $(document).ready(function(){
                                                             $('.comslider1').bxSlider({
@@ -654,20 +789,41 @@ html
                                                             pause:3000,
                                                             speed: 2000
                                                             });
+                                                          var  line1pictureCurrent = 0;
+                                                        $('#line1 > #details > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(1)').on('click', function() {
+                                                          line1pictureCurrent--;
+                                                          var line1picture = getPropPictures($('#line1PicIndx').val());
+                                                          line1pictureCurrent = (line1pictureCurrent < 0) ? (line1picture.length - 1) : line1pictureCurrent;
+                                                          $(".comslider1").html(line1picture[line1pictureCurrent]);
+                                                        });
+                                                        $('#line1 > #details > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(2)').on('click', function() {
+                                                          line1pictureCurrent++
+                                                          var line1picture = getPropPictures($('#line1PicIndx').val());
+                                                          line1pictureCurrent = (line1pictureCurrent > (line1picture.length -1)) ? 0 : line1pictureCurrent;
+                                                          $(".comslider1").html(line1picture[line1pictureCurrent]);
+                                                        });
+
+
                                                         });
                                                     div#details
                                                         div#black
-                                                            a.comproductName
+                                                            span#close_box1.close_box
+                                                                script.
+                                                                    $('#close_box1').html('<h3>X</h3>');
+                                                                    $('#close_box1').on('click', function(){
+                                                                        $('#line1').hide();
+                                                                        $('#comparison').show();
+                                                                    });
+                                                            a.comproductName1
                                                                 script.
                                                                     document.write(checkValues[1]['productName']);
                                                             br
-                                                            p.comAddress
+                                                            p.comAddress1
                                                                 script.
                                                                     document.write(checkValues[1]['address']['line1']+',');
-
-                                                            p.comAddress
+                                                            p.comAddress11
                                                                 script.
-                                                                    document.write(checkValues[1]['address']['city']+', '+checkValues[0]['address']['country']);
+                                                                    document.write(checkValues[1]['address']['city']+', '+checkValues[1]['address']['country']);
                                                         div.comslider1
                                                         p#comparePrice1
                                                             script.
@@ -700,20 +856,41 @@ html
                                                             pause:3000,
                                                             speed: 2000
                                                             });
+                                                            
+                                                            var classPictureCurrent = 0;
+                                                            $('#class > #details > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(1)').on('click', function() {
+                                                              classPictureCurrent--;
+                                                              var classPicture = getPropPictures($('#classPicIndx').val());
+                                                              classPictureCurrent = (classPictureCurrent < 0) ? (classPicture.length - 1) : classPictureCurrent;
+                                                              $(".comslider2").html(classPicture[classPictureCurrent]);
+                                                            });
+                                                            $('#class > #details > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(2)').on('click', function() {
+                                                              classPictureCurrent++;
+                                                              var classPicture = getPropPictures($('#classPicIndx').val());
+                                                              classPictureCurrent = (classPictureCurrent > (classPicture.length -1)) ? 0 : classPictureCurrent;
+                                                              $(".comslider2").html(classPicture[classPictureCurrent]);
+                                                            });
                                                         });
                                                     div#details
                                                         div#black
-                                                            a.comproductName
+                                                            span#close_box2.close_box
+                                                                script.
+                                                                    $('#close_box2').html('<h3>X</h3>');
+                                                                    $('#close_box2').on('click', function(){
+                                                                        $('#class').hide();
+                                                                        $('#comparison').show();
+                                                                    });
+                                                            a.comproductName2
                                                                 script.
                                                                     document.write(checkValues[2]['productName']);
                                                             br
-                                                            p.comAddress
+                                                            p.comAddress2
                                                                 script.
                                                                     document.write(checkValues[2]['address']['line1']+',');
 
-                                                            p.comAddress
+                                                            p.comAddress21
                                                                 script.
-                                                                    document.write(checkValues[2]['address']['city']+', '+checkValues[0]['address']['country']);
+                                                                    document.write(checkValues[2]['address']['city']+', '+checkValues[2]['address']['country']);
                                                         div.comslider2
                                                         p#comparePrice2
                                                             script.
@@ -746,20 +923,41 @@ html
                                                             pause:3000,
                                                             speed: 2000
                                                             });
+                                                            
+                                                            var class1PictureCurrent = 0;
+                                                            $('#class1 > #details > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(1)').on('click', function() {
+                                                              class1PictureCurrent--;
+                                                              var classPicture = getPropPictures($('#class1PicIndx').val());
+                                                              class1PictureCurrent = (class1PictureCurrent < 0) ? (classPicture.length - 1) : class1PictureCurrent;
+                                                              $(".comslider3").html(classPicture[class1PictureCurrent]);
+                                                            });
+                                                            $('#class1 > #details > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(2)').on('click', function() {
+                                                              class1PictureCurrent++;
+                                                              var classPicture = getPropPictures($('#class1PicIndx').val());
+                                                              class1PictureCurrent = (class1PictureCurrent > (classPicture.length -1)) ? 0 : class1PictureCurrent;
+                                                              $(".comslider3").html(classPicture[class1PictureCurrent]);
+                                                            });
                                                         });
                                                     div#details
                                                         div#black
-                                                            a.comproductName
+                                                            span#close_box3.close_box
+                                                                script.
+                                                                    $('#close_box3').html('<h3>X</h3>');
+                                                                    $('#close_box3').on('click', function(){
+                                                                        $('#class1').hide();
+                                                                        $('#comparison').show();
+                                                                    });
+                                                            a.comproductName3
                                                                 script.
                                                                     document.write(checkValues[3]['productName']);
                                                             br
-                                                            p.comAddress
+                                                            p.comAddress3
                                                                 script.
                                                                     document.write(checkValues[3]['address']['line1']+',');
 
-                                                            p.comAddress
+                                                            p.comAddress31
                                                                 script.
-                                                                    document.write(checkValues[3]['address']['city']+', '+checkValues[0]['address']['country']);
+                                                                    document.write(checkValues[3]['address']['city']+', '+checkValues[3]['address']['country']);
                                                         div.comslider3
                                                         p#comparePrice3
                                                             script.
@@ -779,6 +977,108 @@ html
                                                         p#CompareBuilt3 2012
                                                         p#CompareMls3 0091948
                                                         p#CompareFeatures3 Alarm Balcony
+                                            div#nextNav
+                                                br
+                                                br
+                                                br
+                                                br
+                                                br
+                                                br
+                                                br
+                                                br
+                                                br
+                                                br
+                                                br
+                                                br
+                                                br
+                                                br
+                                                br
+                                                script.
+                                                    document.write('<div class=\"bx-wrapper\"><div class=\"bx-controls bx-has-controls-direction\"><div class=\"bx-controls-direction\"> <a class=\"bx-next\"></a></div></div></div>');
+                                                    firstTimeClicked = '';
+                                                    $('#nextNav').on('click', function() {
+                                                        //console.log('firstTimeClicked: '+firstTimeClicked);
+                                                        //console.log('firstTimeClickedPrev :'+firstTimeClickedPrev);
+                                                        //if(propertyIndexCurrent === 0 && firstTimeClicked === ''){
+                                                        //    propertyIndexCurrent = 3;
+                                                        //}
+                                                        //if(propertyIndexCurrent === 0 && !firstTimeClicked && !firstTimeClickedPrev){
+                                                        //    propertyIndexCurrent = 4;
+                                                        //}
+                                                        //if (firstTimeClicked === 'true' && firstTimeClickedPrev === 'true') {
+                                                        //    propertyIndexCurrent++;
+                                                        // }
+                                                        //if (firstTimeClicked === 'true' && !firstTimeClickedPrev) {
+                                                        //    propertyIndexCurrent++;
+                                                        //}
+                                                        //firstTimeClicked = 'true';
+                                                        //propertyIndexCurrent++;
+                                                        //console.log('checkValues.length NEXT :'+checkValues.length);
+                                                        //console.log('Selected prop: '+($('#selectedPropCount').val() - 1));
+                                                        selectedPropCount = ($('#selectedPropCount').val() - 1);
+                                                        
+                                                        //propertyIndexCurrent = (propertyIndexCurrent > selectedPropCount)? 0 : propertyIndexCurrent;
+
+                                                        //console.log('propertyIndexCurrent : '+propertyIndexCurrent);
+                                                        
+
+                                                        propIndex0 = propIndex1;
+                                                        propIndex1 = propIndex2;
+                                                        propIndex2 = propIndex3;
+                                                        //propIndex3 = propIndex3Temp;
+                                                        propIndex3++;
+                                                        if(propIndex3 > selectedPropCount){
+                                                            propIndex3 = 0;
+                                                        };
+
+                                                        $('#line0PicIndx').val(propIndex0);
+                                                        $('#line1PicIndx').val(propIndex1);
+                                                        $('#classPicIndx').val(propIndex2);
+                                                        $('#class1PicIndx').val(propIndex3);
+
+                                                        $(".comslider").html('<img src='+checkValues[propIndex0]['picture']['linkFront']+' width=247 height=110/>');
+                                                        $("#comparePrice").html(checkValues[propIndex0]['price']);
+                                                        $("#CompareBeds").html(checkValues[propIndex0]['bedrooms']);
+                                                        $("#CompareBaths").html(checkValues[propIndex0]['bathrooms']);
+                                                        $("#CompareSqft").html(checkValues[propIndex0]['area']);
+                                                        $("#CompareType").html(checkValues[propIndex0]['productType']);
+                                                        $('.comproductName0').html(checkValues[propIndex0]['productName']);
+                                                        $('.comAddress0').html(checkValues[propIndex0]['address']['line1']+',');
+                                                        $('.comAddress01').html(checkValues[propIndex0]['address']['city']+', '+checkValues[propIndex0]['address']['country']);
+
+                                                        $(".comslider1").html('<img src='+checkValues[propIndex1]['picture']['linkFront']+' width=247 height=110/>');
+                                                        $("#comparePrice1").html(checkValues[propIndex1]['price']);
+                                                        $("#CompareBeds1").html(checkValues[propIndex1]['bedrooms']);
+                                                        $("#CompareBaths1").html(checkValues[propIndex1]['bathrooms']);
+                                                        $("#CompareSqft1").html(checkValues[propIndex1]['area']);
+                                                        $("#CompareType1").html(checkValues[propIndex1]['productType']);
+                                                        $('.comproductName1').html(checkValues[propIndex1]['productName']);
+                                                        $('.comAddress1').html(checkValues[propIndex1]['address']['line1']+',');
+                                                        $('.comAddress11').html(checkValues[propIndex1]['address']['city']+', '+checkValues[propIndex1]['address']['country']);
+                                                        if (selectedPropCount >= 2){
+                                                            $(".comslider2").html('<img src='+checkValues[propIndex2]['picture']['linkFront']+' width=247 height=110/>');
+                                                            $("#comparePrice2").html(checkValues[propIndex2]['price']);
+                                                            $("#CompareBeds2").html(checkValues[propIndex2]['bedrooms']);
+                                                            $("#CompareBaths2").html(checkValues[propIndex2]['bathrooms']);
+                                                            $("#CompareSqft2").html(checkValues[propIndex2]['area']);
+                                                            $("#CompareType2").html(checkValues[propIndex2]['productType']);
+                                                            $('.comproductName2').html(checkValues[propIndex2]['productName']);
+                                                            $('.comAddress2').html(checkValues[propIndex2]['address']['line1']+',');
+                                                            $('.comAddress21').html(checkValues[propIndex2]['address']['city']+', '+checkValues[propIndex2]['address']['country']);
+                                                            if (selectedPropCount >= 3){
+                                                                $(".comslider3").html('<img src='+checkValues[propIndex3]['picture']['linkFront']+' width=247 height=110/>');
+                                                                $("#comparePrice3").html(checkValues[propIndex3]['price']);
+                                                                $("#CompareBeds3").html(checkValues[propIndex3]['bedrooms']);
+                                                                $("#CompareBaths3").html(checkValues[propIndex3]['bathrooms']);
+                                                                $("#CompareSqft3").html(checkValues[propIndex3]['area']);
+                                                                $("#CompareType3").html(checkValues[propIndex3]['productType']);
+                                                                $('.comproductName3').html(checkValues[propIndex3]['productName']);
+                                                                $('.comAddress3').html(checkValues[propIndex3]['address']['line1']+',');
+                                                                $('.comAddress31').html(checkValues[propIndex3]['address']['city']+', '+checkValues[propIndex3]['address']['country']);
+                                                            };
+                                                        };
+
+                                                    });
                                 else if routePath === "Add"
                                     form(method="POST",action="/properties",enctype='multipart/form-data')
                                         p#Addelements Name for Property :
@@ -1117,6 +1417,7 @@ html
                                 $("#baths").html("Baths: "+propertyList[i].bathrooms);
                                 $("#area").html("Area: "+propertyList[i].area);
                                 $("#type").html("Type: "+propertyList[i].productType);
+                                console.log('propertyList[i] :'+propertyList[i]);
                                     $('.slider').empty();
                                     $('.slider').append(
                                          "<div class=\"bxslider\"> <img src="+propertyList[i].picture.linkFront+" width=102.5% height=270/>"
@@ -1270,19 +1571,38 @@ html
                                    a.remove();
                                 });
                                 $('#TwitterShareClick').click(function(){
+                                    var index = $(this).attr('class')
+                                        , price = propertyList[index].price
+                                        , beds = propertyList[index].bedrooms
+                                        , area = propertyList[index].area
+                                        , built = 2005 //TODO: propertyList[index].price
+                                        , bath = propertyList[index].bathrooms
+                                        , type = propertyList[index].productType;
                                    selectedImage = selectedImage.substring(selectedImage.lastIndexOf('/'));
                                    url = url.replace('localhost','www.mysite.com');
-                                   var a = $('<a>').attr('href', url+'/sharetwitter'+selectedImage).attr('target', '_blank').appendTo('body');
+                                   var a = $('<a>').attr('href', url+'/sharetwitter'+selectedImage+'/'+price+'/'+beds+'/'+area+'/'+built+'/'+bath+'/'+type).attr('target', '_blank').appendTo('body');
                                    a[0].click();
                                    a.remove();
                                  });
 
                                  $('#LinkedinShareClick').click(function(){
-                                   selectedImage = selectedImage.substring(selectedImage.lastIndexOf('/'));
-                                   url = url.replace('localhost','www.mysite.com');
-                                   var a = $('<a>').attr('href', url+'/sharelinkedin'+selectedImage).attr('target', '_blank').appendTo('body');
-                                   a[0].click();
-                                   a.remove();
+                                    var index = $(this).attr('class')
+                                       , price = propertyList[index].price
+                                       , beds = propertyList[index].bedrooms
+                                       , area = propertyList[index].area
+                                       , built = 2005 //TODO: propertyList[index].price
+                                       , bath = propertyList[index].bathrooms
+                                       , type = propertyList[index].productType;
+                                    selectedImage = selectedImage.substring(selectedImage.lastIndexOf('/'));
+                                    var a = $("<a>").attr("href", url+'/sharelinkedin'+selectedImage+'/'+price+'/'+beds+'/'+area+'/'+built+'/'+bath+'/'+type).attr('target', '_blank').appendTo("body");
+                                    a[0].click();
+                                    a.remove();
+
+                                   //selectedImage = selectedImage.substring(selectedImage.lastIndexOf('/'));
+                                   //url = url.replace('localhost','www.mysite.com');
+                                   //var a = $('<a>').attr('href', url+'/sharetwitter'+selectedImage).attr('target', '_blank').appendTo('body');
+                                   //a[0].click();
+                                   //a.remove();
                                 });
                                 $("#PrintClick").live('click',function() {
                                     var propDtlHtml =  document.getElementById('mainAside').innerHTML.substring(document.getElementById('mainAside').innerHTML.indexOf('<div id="price">'));

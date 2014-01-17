@@ -33,7 +33,7 @@ a, button, input[type="submit"] {
 
 #bigWarpper{
     margin: 0 auto;
-   /* min-width: 1250px;*/
+    min-width: 1250px;
     width: 100%;
     background-color: #f1f1f1;
 	max-height: 1080px;
@@ -312,14 +312,16 @@ a, button, input[type="submit"] {
     height: 590px;
     /*width: 315px;*/
     width: 100%;
-    overflow: hidden;
+    /*overflow: auto;*/
+    overflow-x: hidden;
+    overflow-y: scroll;
     margin: 0 auto;
 }
 
 #list1{
     width: 100%;
-    overflow: auto;
-    height: 100%;
+/*    overflow: auto;*/
+    height: 106%;
     padding-right: 35px;
 }
 #MapDiv ul li:last-child{
@@ -665,7 +667,7 @@ a, button, input[type="submit"] {
     display: inline-block;
     height: 20px;
     vertical-align: top;
-    width: 50%;
+    width: 48%;
     font: 11px Tahoma;
     text-align: left;
     font-size: 12px;
@@ -1238,12 +1240,11 @@ input[type="range"]{
 }
 
 #compare_header{
-    display: inline-block;
+    display: inline-flex;
 }
 
 #compare_header h4{
     width: 200px;
-    display: inline-block;
     margin: 0 auto;
 }
 
@@ -1251,8 +1252,6 @@ input[type="range"]{
     height: 30px;
     width: 58px;
     background: #ffffff;
-    float: left;
-    display: inline-block;
     border: 2px solid #dadada;
     border-radius: 5px;
 }
@@ -1266,8 +1265,6 @@ input[type="range"]{
     height: 30px;
     width: 58px;
     background: #ffffff;
-    float: right;
-    display: inline-block;
     border: 2px solid #dadada;
     border-radius: 5px;
 }
@@ -1275,6 +1272,19 @@ input[type="range"]{
 #close a{
     margin: 5px;
     color: #212121;
+}
+
+.close_box{
+    width: 19px;
+    height: 19px;
+    float: right;
+    color: #fff;
+    cursor:pointer;
+    border-radius:3px;
+    /*background:fuchsia;*/
+    background-color: #000000;
+    border: 1px solid #dadada;
+    text-align: center;
 }
 
 #comparison{
@@ -1289,20 +1299,17 @@ input[type="range"]{
 }
 
 #comparison ul{
-    /*max-width: 630px;*/
-    width: 800px;
+    max-width: 630px;
     height: 480px;
     margin-top: 10px;
-    display: inline-block;
-    /*display: inline-flex;
-    display:-webkit-inline-flex;
+    display: inline-flex;
     /*overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;*/
 }
 
 #comparison ul li{
-    width: 24%;
+    width: 247px;
     height: 100%;
     border: 1px solid #dadada;
     border-radius: 5px;
@@ -1311,7 +1318,7 @@ input[type="range"]{
 }
 
 #name{
-    width: 60px;
+    width: 9%;
     height: 100%;
     border: 1px solid #dadada;
     background-color: #f1f1f1;
@@ -1320,12 +1327,10 @@ input[type="range"]{
     vertical-align: bottom;
     box-shadow: none;
     margin-right: 5px;
-    float:left;
-    margin-left: 2.5%;
 }
 
 #comparison ul li:first-child{
-    width: 24%;
+    width: 247px;
     height: 100%;
     border: 1px solid #dadada;
     border-radius: 5px;
@@ -1334,7 +1339,7 @@ input[type="range"]{
 }
 
 #comparison ul li:last-child{
-    width: 24%;
+    width: 247px;
     height: 100%;
     border: 1px solid #dadada;
     display: inline-block;
@@ -1438,6 +1443,63 @@ input[type="range"]{
     font-size: 11px;
     padding-left: 10px;
 }
+.comproductName0{
+    font: 16px bold;
+    padding-left: 10px;
+}
+.comAddress0{
+    color: #ffffff;
+    font-size: 11px;
+    padding-left: 10px;
+}
+.comAddress01{
+    color: #ffffff;
+    font-size: 11px;
+    padding-left: 10px;
+}
+.comproductName1{
+    font: 16px bold;
+    padding-left: 10px;
+}
+.comAddress1{
+    color: #ffffff;
+    font-size: 11px;
+    padding-left: 10px;
+}
+.comAddress11{
+    color: #ffffff;
+    font-size: 11px;
+    padding-left: 10px;
+}
+.comproductName2{
+    font: 16px bold;
+    padding-left: 10px;
+}
+.comAddress2{
+    color: #ffffff;
+    font-size: 11px;
+    padding-left: 10px;
+}
+.comAddress21{
+    color: #ffffff;
+    font-size: 11px;
+    padding-left: 10px;
+}
+.comproductName3{
+    font: 16px bold;
+    padding-left: 10px;
+}
+.comAddress3{
+    color: #ffffff;
+    font-size: 11px;
+    padding-left: 10px;
+}
+.comAddress31{
+    color: #ffffff;
+    font-size: 11px;
+    padding-left: 10px;
+}
+
 
 #comparePrice{
     width: 100%;
@@ -1742,12 +1804,12 @@ select {
 /* Select arrow styling */
 #sort label:after {
      content: '';
-    width: 26px;
-    height: 26px;
+    width: 23px;
+    height: 23px;
     position: absolute;
     display: inline-block;
     background: url("../images/bropdown.png") no-repeat center center #fff;
-    top: -17px;
+    top: -16px;
     right: -174px;
     /*left: 469px;*/
     pointer-events: none;

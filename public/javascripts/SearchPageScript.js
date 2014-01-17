@@ -128,9 +128,16 @@ function showListView(){
         });
 
         $('#twitterimg').click(function(){
+            var index = $(this).attr('class')
+                       , price = propertyList[index].price
+                       , beds = propertyList[index].bedrooms
+                       , area = propertyList[index].area
+                       , built = 2005 //TODO: propertyList[index].price
+                       , bath = propertyList[index].bathrooms
+                       , type = propertyList[index].productType;
             selectedImage = selectedImage.substring(selectedImage.lastIndexOf('/'));
             url = url.replace('localhost','www.mysite.com');
-            var a = $('<a>').attr('href', url+'/sharetwitter'+selectedImage).attr('target', '_blank').appendTo('body');
+           var a = $('<a>').attr('href', url+'/sharetwitter'+selectedImage+'/'+price+'/'+beds+'/'+area+'/'+built+'/'+bath+'/'+type).attr('target', '_blank').appendTo('body');
             a[0].click();
             a.remove();
         });
@@ -143,7 +150,7 @@ function showListView(){
                        , built = 2005 //TODO: propertyList[index].price
                        , bath = propertyList[index].bathrooms
                        , type = propertyList[index].productType;
-            var a = $("<a>").attr("href", url+'/sharelinkedin'+selectedImage+'/'+price+'/'+beds+'/'+area+'/'+built+'/'+bath+'/'+type).appendTo("body");
+            var a = $("<a>").attr("href", url+'/sharelinkedin'+selectedImage+'/'+price+'/'+beds+'/'+area+'/'+built+'/'+bath+'/'+type).attr('target', '_blank').appendTo("body");
             a[0].click();
             a.remove();
             // selectedImage = selectedImage.substring(selectedImage.lastIndexOf('/'));
@@ -230,15 +237,14 @@ function showListView(){
             }
 
             downloadLink.click();
-
         });
-
         function setSelectedProp(i) {
             $("#mapimg").removeClass().addClass(i);
             $("#messageimg").removeClass().addClass(i);
             $("#saveimg").removeClass().addClass(i);
             $("#socialimg").removeClass().addClass(i);
             $("#printimg").removeClass().addClass(i);
+
             $("#price p").html("Price: $"+propertyList[i].price);
             $("#beds").html("Beds: "+propertyList[i].bedrooms);
             $("#baths").html("Baths: "+propertyList[i].bathrooms);
@@ -285,11 +291,11 @@ function showListView(){
                             break;
                     }
                 }
-
             });
 
             return false;
         };
+        
         $("#propertyPriceSearch").live('click',function() {
             var i = $(this).attr('class');
             setSelectedProp(i);

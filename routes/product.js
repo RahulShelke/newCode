@@ -41,14 +41,14 @@ var propertyModel = mongoose.model('Property', propertySchema);
 exports.index = function (req, res) {
     propertyModel.find({}, function (err, docs) {
         if (err) return res.render('Error occurred');
-        res.render('index', {products: docs, routePath: "prod", title: 'Product List - By Sandeep Pagi',mapIndex: 0});
+        res.render('index', {products: docs, routePath: "prod", title: 'Product List - By Sandeep Pagi', mapIndex: 0});
     });
 };
 
-exports.locationMap = function(req, res){
-    propertyModel.find({},function(err, docs){
-        if(err)return res.render('Error Occured');
-        res.render('index',{products: JSON.stringify(docs),routePath:'home', title: 'Product List - By Sandeep Pagi', mapIndex:req.params.propid});
+exports.locationMap = function (req, res) {
+    propertyModel.find({}, function (err, docs) {
+        if (err) return res.render('Error occurred');
+        res.render('index', {products: JSON.stringify(docs), routePath: "home", title: 'Product List - By Sandeep Pagi', mapIndex: req.params.propid});
     });
 };
 
@@ -264,7 +264,6 @@ exports.getsearch =function(req,res){
     console.log("results in getsearch"+results);
     res.render('search', {products:JSON.stringify(results), routePath: "search", mapIndex: 0});
 };
-
 exports.searchProp =function(req,res){
     res.render('search', {products:JSON.stringify(results), routePath: "search", mapIndex: req.params.propid});
 };
