@@ -425,14 +425,18 @@ html
                                                                             console.log('checkValues: ' +checkValues.length);
                                                                             $('#comTitle').html('Comparing '+checkValues.length + ' Properties');
                                                                             $('#selectedPropCount').val(checkValues.length);
-                                                                            $('#line0PicIndx').val(0);
-                                                                            $('#line1PicIndx').val(1);
-                                                                            $('#classPicIndx').val(2);
-                                                                            $('#class1PicIndx').val(3);
+                                                                            //$('#line0PicIndx').val(0);
+                                                                            //$('#line1PicIndx').val(1);
+                                                                            //$('#classPicIndx').val(2);
+                                                                            //$('#class1PicIndx').val(3);
                                                                             //console.log(checkValues[1]);
                                                                             //console.log(checkValues[3]);
                                                                             if(checkValues[3] != null){
                                                                                 console.log('checkValues[3] :'+checkValues[3]);
+                                                                                $('#line0PicIndx').val(0);
+                                                                                $('#line1PicIndx').val(1);
+                                                                                $('#classPicIndx').val(2);
+                                                                                $('#class1PicIndx').val(3);
                                                                                 $("#MapDiv").hide();
                                                                                 $("#compare_body").show();
                                                                                 console.log(checkValues);
@@ -473,6 +477,10 @@ html
                                                                                 $("#CompareSqft3").html(checkValues[3]['area']);
                                                                                 $("#CompareType3").html(checkValues[3]['productType']);
                                                                             }else if(checkValues[2] != null){
+                                                                                console.log('checkValues[2] :'+checkValues[2]);
+                                                                                $('#line0PicIndx').val(0);
+                                                                                $('#line1PicIndx').val(1);
+                                                                                $('#classPicIndx').val(2);
                                                                                 $("#MapDiv").hide();
                                                                                 $("#compare_body").show();
                                                                                 $("#class1").hide();
@@ -495,6 +503,9 @@ html
                                                                                 $("#CompareSqft2").html(checkValues[2]['area']);
                                                                                 $("#CompareType2").html(checkValues[2]['productType']);
                                                                             }else if(checkValues[1] != null){
+                                                                                console.log('checkValues[1] :'+checkValues[1]);
+                                                                                $('#line0PicIndx').val(0);
+                                                                                $('#line1PicIndx').val(1);
                                                                                 $("#MapDiv").hide();
                                                                                 $("#compare_body").show();
                                                                                 $("#class").hide();
@@ -1021,15 +1032,30 @@ html
 
                                                         //console.log('propertyIndexCurrent : '+propertyIndexCurrent);
                                                         
-
+                                                        if(selectedPropCount === 1 ){
+                                                            var propIndex0Temp  = propIndex0;
                                                         propIndex0 = propIndex1;
+                                                                propIndex1 = propIndex0Temp;
+                                                        } else if(selectedPropCount === 2){
+                                                            var propIndex0Temp  = propIndex0;
+                                                                propIndex0 = propIndex1;
                                                         propIndex1 = propIndex2;
+                                                                propIndex2 = propIndex0Temp;
+                                                        } else if(selectedPropCount === 3){
+                                                            var propIndex0Temp  = propIndex0;
+                                                                propIndex0 = propIndex1;
+                                                                propIndex1 = propIndex2;
                                                         propIndex2 = propIndex3;
-                                                        //propIndex3 = propIndex3Temp;
+                                                                propIndex3 = propIndex0Temp;
+                                                        } else {
+                                                            propIndex0 = propIndex1;
+                                                            propIndex1 = propIndex2;
+                                                            propIndex2 = propIndex3;
                                                         propIndex3++;
                                                         if(propIndex3 > selectedPropCount){
                                                             propIndex3 = 0;
                                                         };
+                                                        }
 
                                                         $('#line0PicIndx').val(propIndex0);
                                                         $('#line1PicIndx').val(propIndex1);
