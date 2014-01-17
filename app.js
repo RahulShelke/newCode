@@ -484,7 +484,7 @@ app.get('/sharelinkedin/:image/:price/:beds/:area/:built/:baths/:type', function
     +', Baths:'+req.params.baths
     +', Type:'+req.params.type
     +'</title>'
-    +'<submitted-url>https://localhost:3030/images/'+req.params.image+'</submitted-url>'
+    +'<submitted-url>'+config.development.serverUrl+'/images/'+req.params.image+'</submitted-url>'
    // +'<submitted-image-url>http://farm4.staticflickr.com/3332/3451193407_b7f047f4b4_o.jpg</submitted-image-url>'
     +'</content>'
     +'<visibility><code>anyone</code></visibility>'

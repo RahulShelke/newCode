@@ -22,6 +22,7 @@ module.exports = {
             LINKEDIN_SECRET_KEY: "XTj0TNj0eTbnU5cS",
             url: "http://206.72.207.4:3000/auth/linkedin/callback"
         },
-        dbUrl: 'mongodb://localhost/LSR'
+        dbUrl: 'mongodb://localhost/LSR',
+        serverUrl: 'https://206.72.207.4:3030'
     }
 };
