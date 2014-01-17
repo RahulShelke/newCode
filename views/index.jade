@@ -449,6 +449,9 @@ html
                                                                                 $("#CompareBaths").html(checkValues[0]['bathrooms']);
                                                                                 $("#CompareSqft").html(checkValues[0]['area']);
                                                                                 $("#CompareType").html(checkValues[0]['productType']);
+                                                                                $('.comproductName0').html(checkValues[0]['productName']);     
+                                                                                $('.comAddress0').html(checkValues[0]['address']['line1']+',');
+                                                                                $('.comAddress01').html(checkValues[0]['address']['city']+', '+checkValues[0]['address']['country']);
                                                                                 $(".comslider1").html('<img src='+checkValues[1]['picture']['linkFront']+' width=247 height=110/>');
                                                                                 /*$(".comslider1").html('<img src='+checkValues[1]['picture']['linkBack']+' width=247 height=110/>');
                                                                                 $(".comslider1").html('<img src='+checkValues[1]['picture']['linkLeft']+' width=247 height=110/>');
@@ -458,6 +461,9 @@ html
                                                                                 $("#CompareBaths1").html(checkValues[1]['bathrooms']);
                                                                                 $("#CompareSqft1").html(checkValues[1]['area']);
                                                                                 $("#CompareType1").html(checkValues[1]['productType']);
+                                                                                $('.comproductName1').html(checkValues[1]['productName']);     
+                                                                                $('.comAddress1').html(checkValues[1]['address']['line1']+',');
+                                                                                $('.comAddress11').html(checkValues[1]['address']['city']+', '+checkValues[1]['address']['country']);
                                                                                 $(".comslider2").html('<img src='+checkValues[2]['picture']['linkFront']+' width=247 height=110/>');
                                                                                 /*$(".comslider2").html('<img src='+checkValues[2]['picture']['linkBack']+' width=247 height=110/>');
                                                                                 $(".comslider2").html('<img src='+checkValues[2]['picture']['linkLeft']+' width=247 height=110/>');
@@ -467,6 +473,9 @@ html
                                                                                 $("#CompareBaths2").html(checkValues[2]['bathrooms']);
                                                                                 $("#CompareSqft2").html(checkValues[2]['area']);
                                                                                 $("#CompareType2").html(checkValues[2]['productType']);
+                                                                                $('.comproductName2').html(checkValues[2]['productName']);     
+                                                                                $('.comAddress2').html(checkValues[2]['address']['line1']+',');
+                                                                                $('.comAddress21').html(checkValues[2]['address']['city']+', '+checkValues[2]['address']['country']);
                                                                                 $(".comslider3").html('<img src='+checkValues[3]['picture']['linkFront']+' width=247 height=110/>');
                                                                                 /*$(".comslider3").html('<img src='+checkValues[3]['picture']['linkBack']+' width=247 height=110/>');
                                                                                 $(".comslider3").html('<img src='+checkValues[3]['picture']['linkLeft']+' width=247 height=110/>');
@@ -476,6 +485,9 @@ html
                                                                                 $("#CompareBaths3").html(checkValues[3]['bathrooms']);
                                                                                 $("#CompareSqft3").html(checkValues[3]['area']);
                                                                                 $("#CompareType3").html(checkValues[3]['productType']);
+                                                                                $('.comproductName3').html(checkValues[3]['productName']);     
+                                                                                $('.comAddress3').html(checkValues[3]['address']['line1']+',');
+                                                                                $('.comAddress31').html(checkValues[3]['address']['city']+', '+checkValues[3]['address']['country']);
                                                                             }else if(checkValues[2] != null){
                                                                                 console.log('checkValues[2] :'+checkValues[2]);
                                                                                 $('#line0PicIndx').val(0);
@@ -490,18 +502,27 @@ html
                                                                                 $("#CompareBaths").html(checkValues[0]['bathrooms']);
                                                                                 $("#CompareSqft").html(checkValues[0]['area']);
                                                                                 $("#CompareType").html(checkValues[0]['productType']);
+                                                                                $('.comproductName0').html(checkValues[0]['productName']);     
+                                                                                $('.comAddress0').html(checkValues[0]['address']['line1']+',');
+                                                                                $('.comAddress01').html(checkValues[0]['address']['city']+', '+checkValues[0]['address']['country']);
                                                                                 $(".comslider1").html('<img src='+checkValues[1]['picture']['linkFront']+' width=247 height=110/>');
                                                                                 $("#comparePrice1").html(checkValues[1]['price']);
                                                                                 $("#CompareBeds1").html(checkValues[1]['bedrooms']);
                                                                                 $("#CompareBaths1").html(checkValues[1]['bathrooms']);
                                                                                 $("#CompareSqft1").html(checkValues[1]['area']);
                                                                                 $("#CompareType1").html(checkValues[1]['productType']);
+                                                                                $('.comproductName1').html(checkValues[1]['productName']);     
+                                                                                $('.comAddress1').html(checkValues[1]['address']['line1']+',');
+                                                                                $('.comAddress11').html(checkValues[1]['address']['city']+', '+checkValues[1]['address']['country']);
                                                                                 $(".comslider2").html('<img src='+checkValues[2]['picture']['linkFront']+' width=247 height=110/>');
                                                                                 $("#comparePrice2").html(checkValues[2]['price']);
                                                                                 $("#CompareBeds2").html(checkValues[2]['bedrooms']);
                                                                                 $("#CompareBaths2").html(checkValues[2]['bathrooms']);
                                                                                 $("#CompareSqft2").html(checkValues[2]['area']);
                                                                                 $("#CompareType2").html(checkValues[2]['productType']);
+                                                                                $('.comproductName2').html(checkValues[2]['productName']);     
+                                                                                $('.comAddress2').html(checkValues[2]['address']['line1']+',');
+                                                                                $('.comAddress21').html(checkValues[2]['address']['city']+', '+checkValues[2]['address']['country']);
                                                                             }else if(checkValues[1] != null){
                                                                                 console.log('checkValues[1] :'+checkValues[1]);
                                                                                 $('#line0PicIndx').val(0);
@@ -516,12 +537,19 @@ html
                                                                                 $("#CompareBaths").html(checkValues[0]['bathrooms']);
                                                                                 $("#CompareSqft").html(checkValues[0]['area']);
                                                                                 $("#CompareType").html(checkValues[0]['productType']);
+                                                                                $('.comproductName0').html(checkValues[0]['productName']);     
+                                                                                $('.comAddress0').html(checkValues[0]['address']['line1']+',');
+                                                                                $('.comAddress01').html(checkValues[0]['address']['city']+', '+checkValues[0]['address']['country']);
                                                                                 $(".comslider1").html('<img src='+checkValues[1]['picture']['linkFront']+' width=247 height=110/>');
                                                                                 $("#comparePrice1").html(checkValues[1]['price']);
                                                                                 $("#CompareBeds1").html(checkValues[1]['bedrooms']);
                                                                                 $("#CompareBaths1").html(checkValues[1]['bathrooms']);
                                                                                 $("#CompareSqft1").html(checkValues[1]['area']);
                                                                                 $("#CompareType1").html(checkValues[1]['productType']);
+                                                                                $('.comproductName1').html(checkValues[1]['productName']);     
+                                                                                $('.comAddress1').html(checkValues[1]['address']['line1']+',');
+                                                                                $('.comAddress11').html(checkValues[1]['address']['city']+', '+checkValues[1]['address']['country']);
+
                                                                             }else{
                                                                                 alert("Select atleast Two properties");
                                                                             }
@@ -628,10 +656,15 @@ html
                                                         propIndex1 = 1,
                                                         propIndex2 = 2,
                                                         propIndex3 = 3;
-                                                        var firstTimeClickedPrev = '';
+                                                        var selectedPropPrev;
                                                     $('#preNav').on('click', function() {
                                                         //propertyIndexCurrent--;
-                                                        //console.log('checkValues.length  :'+checkValues.length);
+                                                        if(selectedPropPrev == undefined){
+                                                            selectedPropPrev = $('input[name=property]:checked').map(function() {
+                                                                                console.log($(this).val());
+                                                                                return propertyList[$(this).val()];
+                                                                            }).get();
+                                                        }
                                                         //console.log('Selected prop: '+($('#selectedPropCount').val() - 1));
                                                         selectedPropCount = ($('#selectedPropCount').val() - 1);
 
@@ -652,45 +685,45 @@ html
                                                         $('#classPicIndx').val(propIndex2);
                                                         $('#class1PicIndx').val(propIndex3);
 
-                                                        $(".comslider").html('<img src='+checkValues[propIndex0]['picture']['linkFront']+' width=247 height=110/>');
-                                                        $("#comparePrice").html(checkValues[propIndex0]['price']);
-                                                        $("#CompareBeds").html(checkValues[propIndex0]['bedrooms']);
-                                                        $("#CompareBaths").html(checkValues[propIndex0]['bathrooms']);
-                                                        $("#CompareSqft").html(checkValues[propIndex0]['area']);
-                                                        $("#CompareType").html(checkValues[propIndex0]['productType']);
-                                                        $('.comproductName0').html(checkValues[propIndex0]['productName']);
-                                                        $('.comAddress0').html(checkValues[propIndex0]['address']['line1']+',');
-                                                        $('.comAddress01').html(checkValues[propIndex0]['address']['city']+', '+checkValues[propIndex0]['address']['country']);
+                                                        $(".comslider").html('<img src='+selectedPropPrev[propIndex0]['picture']['linkFront']+' width=247 height=110/>');
+                                                        $("#comparePrice").html(selectedPropPrev[propIndex0]['price']);
+                                                        $("#CompareBeds").html(selectedPropPrev[propIndex0]['bedrooms']);
+                                                        $("#CompareBaths").html(selectedPropPrev[propIndex0]['bathrooms']);
+                                                        $("#CompareSqft").html(selectedPropPrev[propIndex0]['area']);
+                                                        $("#CompareType").html(selectedPropPrev[propIndex0]['productType']);
+                                                        $('.comproductName0').html(selectedPropPrev[propIndex0]['productName']);
+                                                        $('.comAddress0').html(selectedPropPrev[propIndex0]['address']['line1']+',');
+                                                        $('.comAddress01').html(selectedPropPrev[propIndex0]['address']['city']+', '+selectedPropPrev[propIndex0]['address']['country']);
 
-                                                        $(".comslider1").html('<img src='+checkValues[propIndex1]['picture']['linkFront']+' width=247 height=110/>');
-                                                        $("#comparePrice1").html(checkValues[propIndex1]['price']);
-                                                        $("#CompareBeds1").html(checkValues[propIndex1]['bedrooms']);
-                                                        $("#CompareBaths1").html(checkValues[propIndex1]['bathrooms']);
-                                                        $("#CompareSqft1").html(checkValues[propIndex1]['area']);
-                                                        $("#CompareType1").html(checkValues[propIndex1]['productType']);
-                                                        $('.comproductName1').html(checkValues[propIndex1]['productName']);
-                                                        $('.comAddress1').html(checkValues[propIndex1]['address']['line1']+',');
-                                                        $('.comAddress11').html(checkValues[propIndex1]['address']['city']+', '+checkValues[propIndex1]['address']['country']);
+                                                        $(".comslider1").html('<img src='+selectedPropPrev[propIndex1]['picture']['linkFront']+' width=247 height=110/>');
+                                                        $("#comparePrice1").html(selectedPropPrev[propIndex1]['price']);
+                                                        $("#CompareBeds1").html(selectedPropPrev[propIndex1]['bedrooms']);
+                                                        $("#CompareBaths1").html(selectedPropPrev[propIndex1]['bathrooms']);
+                                                        $("#CompareSqft1").html(selectedPropPrev[propIndex1]['area']);
+                                                        $("#CompareType1").html(selectedPropPrev[propIndex1]['productType']);
+                                                        $('.comproductName1').html(selectedPropPrev[propIndex1]['productName']);
+                                                        $('.comAddress1').html(selectedPropPrev[propIndex1]['address']['line1']+',');
+                                                        $('.comAddress11').html(selectedPropPrev[propIndex1]['address']['city']+', '+selectedPropPrev[propIndex1]['address']['country']);
                                                         if (selectedPropCount >= 2){
-                                                            $(".comslider2").html('<img src='+checkValues[propIndex2]['picture']['linkFront']+' width=247 height=110/>');
-                                                            $("#comparePrice2").html(checkValues[propIndex2]['price']);
-                                                            $("#CompareBeds2").html(checkValues[propIndex2]['bedrooms']);
-                                                            $("#CompareBaths2").html(checkValues[propIndex2]['bathrooms']);
-                                                            $("#CompareSqft2").html(checkValues[propIndex2]['area']);
-                                                            $("#CompareType2").html(checkValues[propIndex2]['productType']);
-                                                            $('.comproductName2').html(checkValues[propIndex2]['productName']);
-                                                            $('.comAddress2').html(checkValues[propIndex2]['address']['line1']+',');
-                                                            $('.comAddress21').html(checkValues[propIndex2]['address']['city']+', '+checkValues[propIndex2]['address']['country']);
+                                                            $(".comslider2").html('<img src='+selectedPropPrev[propIndex2]['picture']['linkFront']+' width=247 height=110/>');
+                                                            $("#comparePrice2").html(selectedPropPrev[propIndex2]['price']);
+                                                            $("#CompareBeds2").html(selectedPropPrev[propIndex2]['bedrooms']);
+                                                            $("#CompareBaths2").html(selectedPropPrev[propIndex2]['bathrooms']);
+                                                            $("#CompareSqft2").html(selectedPropPrev[propIndex2]['area']);
+                                                            $("#CompareType2").html(selectedPropPrev[propIndex2]['productType']);
+                                                            $('.comproductName2').html(selectedPropPrev[propIndex2]['productName']);
+                                                            $('.comAddress2').html(selectedPropPrev[propIndex2]['address']['line1']+',');
+                                                            $('.comAddress21').html(selectedPropPrev[propIndex2]['address']['city']+', '+selectedPropPrev[propIndex2]['address']['country']);
                                                             if (selectedPropCount >= 3){
-                                                                $(".comslider3").html('<img src='+checkValues[propIndex3]['picture']['linkFront']+' width=247 height=110/>');
-                                                                $("#comparePrice3").html(checkValues[propIndex3]['price']);
-                                                                $("#CompareBeds3").html(checkValues[propIndex3]['bedrooms']);
-                                                                $("#CompareBaths3").html(checkValues[propIndex3]['bathrooms']);
-                                                                $("#CompareSqft3").html(checkValues[propIndex3]['area']);
-                                                                $("#CompareType3").html(checkValues[propIndex3]['productType']);
-                                                                $('.comproductName3').html(checkValues[propIndex3]['productName']);
-                                                                $('.comAddress3').html(checkValues[propIndex3]['address']['line1']+',');
-                                                                $('.comAddress31').html(checkValues[propIndex3]['address']['city']+', '+checkValues[propIndex3]['address']['country']);
+                                                                $(".comslider3").html('<img src='+selectedPropPrev[propIndex3]['picture']['linkFront']+' width=247 height=110/>');
+                                                                $("#comparePrice3").html(selectedPropPrev[propIndex3]['price']);
+                                                                $("#CompareBeds3").html(selectedPropPrev[propIndex3]['bedrooms']);
+                                                                $("#CompareBaths3").html(selectedPropPrev[propIndex3]['bathrooms']);
+                                                                $("#CompareSqft3").html(selectedPropPrev[propIndex3]['area']);
+                                                                $("#CompareType3").html(selectedPropPrev[propIndex3]['productType']);
+                                                                $('.comproductName3').html(selectedPropPrev[propIndex3]['productName']);
+                                                                $('.comAddress3').html(selectedPropPrev[propIndex3]['address']['line1']+',');
+                                                                $('.comAddress31').html(selectedPropPrev[propIndex3]['address']['city']+', '+selectedPropPrev[propIndex3]['address']['country']);
                                                             };
                                                         };
 
@@ -698,10 +731,10 @@ html
                                                     });
                                                      function getPropPictures(picIndx){
                                                               var propPicture =
-                                                                    ['<img src='+checkValues[picIndx]['picture']['linkFront']+' width=247 height=110/>',
-                                                                     '<img src='+checkValues[picIndx]['picture']['linkBack']+' width=247 height=110/>',
-                                                                     '<img src='+checkValues[picIndx]['picture']['linkLeft']+' width=247 height=110/>',
-                                                                     '<img src='+checkValues[picIndx]['picture']['linkRight']+' width=247 height=110/>'];
+                                                                    ['<img src='+selectedPropPrev[picIndx]['picture']['linkFront']+' width=247 height=110/>',
+                                                                     '<img src='+selectedPropPrev[picIndx]['picture']['linkBack']+' width=247 height=110/>',
+                                                                     '<img src='+selectedPropPrev[picIndx]['picture']['linkLeft']+' width=247 height=110/>',
+                                                                     '<img src='+selectedPropPrev[picIndx]['picture']['linkRight']+' width=247 height=110/>'];
                                                               return propPicture;
                                                     }
                                             div#name
@@ -1007,6 +1040,8 @@ html
                                                 script.
                                                     document.write('<div class=\"bx-wrapper\"><div class=\"bx-controls bx-has-controls-direction\"><div class=\"bx-controls-direction\"> <a class=\"bx-next\"></a></div></div></div>');
                                                     firstTimeClicked = '';
+                                                    var selectedProp;
+
                                                     $('#nextNav').on('click', function() {
                                                         //console.log('firstTimeClicked: '+firstTimeClicked);
                                                         //console.log('firstTimeClickedPrev :'+firstTimeClickedPrev);
@@ -1024,7 +1059,14 @@ html
                                                         //}
                                                         //firstTimeClicked = 'true';
                                                         //propertyIndexCurrent++;
-                                                        //console.log('checkValues.length NEXT :'+checkValues.length);
+
+                                                        if(selectedProp == undefined){
+                                                            selectedProp = $('input[name=property]:checked').map(function() {
+                                                                                console.log($(this).val());
+                                                                                return propertyList[$(this).val()];
+                                                                            }).get();
+                                                            console.log('selectedProp.length NEXT :'+selectedProp.length);
+                                                        }
                                                         //console.log('Selected prop: '+($('#selectedPropCount').val() - 1));
                                                         selectedPropCount = ($('#selectedPropCount').val() - 1);
                                                         
@@ -1062,45 +1104,45 @@ html
                                                         $('#classPicIndx').val(propIndex2);
                                                         $('#class1PicIndx').val(propIndex3);
 
-                                                        $(".comslider").html('<img src='+checkValues[propIndex0]['picture']['linkFront']+' width=247 height=110/>');
-                                                        $("#comparePrice").html(checkValues[propIndex0]['price']);
-                                                        $("#CompareBeds").html(checkValues[propIndex0]['bedrooms']);
-                                                        $("#CompareBaths").html(checkValues[propIndex0]['bathrooms']);
-                                                        $("#CompareSqft").html(checkValues[propIndex0]['area']);
-                                                        $("#CompareType").html(checkValues[propIndex0]['productType']);
-                                                        $('.comproductName0').html(checkValues[propIndex0]['productName']);
-                                                        $('.comAddress0').html(checkValues[propIndex0]['address']['line1']+',');
-                                                        $('.comAddress01').html(checkValues[propIndex0]['address']['city']+', '+checkValues[propIndex0]['address']['country']);
+                                                        $(".comslider").html('<img src='+selectedProp[propIndex0]['picture']['linkFront']+' width=247 height=110/>');
+                                                        $("#comparePrice").html(selectedProp[propIndex0]['price']);
+                                                        $("#CompareBeds").html(selectedProp[propIndex0]['bedrooms']);
+                                                        $("#CompareBaths").html(selectedProp[propIndex0]['bathrooms']);
+                                                        $("#CompareSqft").html(selectedProp[propIndex0]['area']);
+                                                        $("#CompareType").html(selectedProp[propIndex0]['productType']);
+                                                        $('.comproductName0').html(selectedProp[propIndex0]['productName']);
+                                                        $('.comAddress0').html(selectedProp[propIndex0]['address']['line1']+',');
+                                                        $('.comAddress01').html(selectedProp[propIndex0]['address']['city']+', '+selectedProp[propIndex0]['address']['country']);
 
-                                                        $(".comslider1").html('<img src='+checkValues[propIndex1]['picture']['linkFront']+' width=247 height=110/>');
-                                                        $("#comparePrice1").html(checkValues[propIndex1]['price']);
-                                                        $("#CompareBeds1").html(checkValues[propIndex1]['bedrooms']);
-                                                        $("#CompareBaths1").html(checkValues[propIndex1]['bathrooms']);
-                                                        $("#CompareSqft1").html(checkValues[propIndex1]['area']);
-                                                        $("#CompareType1").html(checkValues[propIndex1]['productType']);
-                                                        $('.comproductName1').html(checkValues[propIndex1]['productName']);
-                                                        $('.comAddress1').html(checkValues[propIndex1]['address']['line1']+',');
-                                                        $('.comAddress11').html(checkValues[propIndex1]['address']['city']+', '+checkValues[propIndex1]['address']['country']);
+                                                        $(".comslider1").html('<img src='+selectedProp[propIndex1]['picture']['linkFront']+' width=247 height=110/>');
+                                                        $("#comparePrice1").html(selectedProp[propIndex1]['price']);
+                                                        $("#CompareBeds1").html(selectedProp[propIndex1]['bedrooms']);
+                                                        $("#CompareBaths1").html(selectedProp[propIndex1]['bathrooms']);
+                                                        $("#CompareSqft1").html(selectedProp[propIndex1]['area']);
+                                                        $("#CompareType1").html(selectedProp[propIndex1]['productType']);
+                                                        $('.comproductName1').html(selectedProp[propIndex1]['productName']);
+                                                        $('.comAddress1').html(selectedProp[propIndex1]['address']['line1']+',');
+                                                        $('.comAddress11').html(selectedProp[propIndex1]['address']['city']+', '+selectedProp[propIndex1]['address']['country']);
                                                         if (selectedPropCount >= 2){
-                                                            $(".comslider2").html('<img src='+checkValues[propIndex2]['picture']['linkFront']+' width=247 height=110/>');
-                                                            $("#comparePrice2").html(checkValues[propIndex2]['price']);
-                                                            $("#CompareBeds2").html(checkValues[propIndex2]['bedrooms']);
-                                                            $("#CompareBaths2").html(checkValues[propIndex2]['bathrooms']);
-                                                            $("#CompareSqft2").html(checkValues[propIndex2]['area']);
-                                                            $("#CompareType2").html(checkValues[propIndex2]['productType']);
-                                                            $('.comproductName2').html(checkValues[propIndex2]['productName']);
-                                                            $('.comAddress2').html(checkValues[propIndex2]['address']['line1']+',');
-                                                            $('.comAddress21').html(checkValues[propIndex2]['address']['city']+', '+checkValues[propIndex2]['address']['country']);
+                                                            $(".comslider2").html('<img src='+selectedProp[propIndex2]['picture']['linkFront']+' width=247 height=110/>');
+                                                            $("#comparePrice2").html(selectedProp[propIndex2]['price']);
+                                                            $("#CompareBeds2").html(selectedProp[propIndex2]['bedrooms']);
+                                                            $("#CompareBaths2").html(selectedProp[propIndex2]['bathrooms']);
+                                                            $("#CompareSqft2").html(selectedProp[propIndex2]['area']);
+                                                            $("#CompareType2").html(selectedProp[propIndex2]['productType']);
+                                                            $('.comproductName2').html(selectedProp[propIndex2]['productName']);
+                                                            $('.comAddress2').html(selectedProp[propIndex2]['address']['line1']+',');
+                                                            $('.comAddress21').html(selectedProp[propIndex2]['address']['city']+', '+selectedProp[propIndex2]['address']['country']);
                                                             if (selectedPropCount >= 3){
-                                                                $(".comslider3").html('<img src='+checkValues[propIndex3]['picture']['linkFront']+' width=247 height=110/>');
-                                                                $("#comparePrice3").html(checkValues[propIndex3]['price']);
-                                                                $("#CompareBeds3").html(checkValues[propIndex3]['bedrooms']);
-                                                                $("#CompareBaths3").html(checkValues[propIndex3]['bathrooms']);
-                                                                $("#CompareSqft3").html(checkValues[propIndex3]['area']);
-                                                                $("#CompareType3").html(checkValues[propIndex3]['productType']);
-                                                                $('.comproductName3').html(checkValues[propIndex3]['productName']);
-                                                                $('.comAddress3').html(checkValues[propIndex3]['address']['line1']+',');
-                                                                $('.comAddress31').html(checkValues[propIndex3]['address']['city']+', '+checkValues[propIndex3]['address']['country']);
+                                                                $(".comslider3").html('<img src='+selectedProp[propIndex3]['picture']['linkFront']+' width=247 height=110/>');
+                                                                $("#comparePrice3").html(selectedProp[propIndex3]['price']);
+                                                                $("#CompareBeds3").html(selectedProp[propIndex3]['bedrooms']);
+                                                                $("#CompareBaths3").html(selectedProp[propIndex3]['bathrooms']);
+                                                                $("#CompareSqft3").html(selectedProp[propIndex3]['area']);
+                                                                $("#CompareType3").html(selectedProp[propIndex3]['productType']);
+                                                                $('.comproductName3').html(selectedProp[propIndex3]['productName']);
+                                                                $('.comAddress3').html(selectedProp[propIndex3]['address']['line1']+',');
+                                                                $('.comAddress31').html(selectedProp[propIndex3]['address']['city']+', '+selectedProp[propIndex3]['address']['country']);
                                                             };
                                                         };
 
