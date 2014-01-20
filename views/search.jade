@@ -24,6 +24,9 @@ html
         script(type='text/javascript', src='/javascripts/SearchPageScript.js')
     body
         div#bigWarpper
+            script.
+                var selectedProp,
+                populateValues;
             div#header
                 ul
                     li
@@ -255,12 +258,8 @@ html
                                                                 );
                                             };
                                             $(document).ready(function(){
-                                                $(function compare() {
-                                                    $('#compare').click(function () {
-                                                        var checkValues = $('input[name=property]:checked').map(function() {
-                                                            console.log($(this).val());
-                                                            return propertyList[$(this).val()];
-                                                        }).get();
+                                                populateValues = function(checkValues){
+                                                        selectedProp = checkValues;
                                                         console.log(checkValues[0]);
                                                         console.log(checkValues[1]);
                                                         console.log(checkValues[2]);
@@ -388,6 +387,14 @@ html
                                                         }else{
                                                             alert("Select atleast Two properties");
                                                         }
+                                                    }
+                                                $(function compare() {
+                                                    $('#compare').click(function () {
+                                                        var checkValues = $('input[name=property]:checked').map(function() {
+                                                            console.log($(this).val());
+                                                            return propertyList[$(this).val()];
+                                                        }).get();
+                                                        populateValues(checkValues);
                                                     });
                                                 });
                                             });
@@ -635,15 +642,15 @@ html
                                             propIndex1 = 1,
                                             propIndex2 = 2,
                                             propIndex3 = 3;
-                                            var selectedPropPrev;
+                                            //var selectedPropPrev;
                                             $('#preNav').on('click', function() {
-                                                        if(selectedPropPrev == undefined){
-                                                            selectedPropPrev = $('input[name=property]:checked').map(function() {
-                                                                                console.log($(this).val());
-                                                                                return propertyList[$(this).val()];
-                                                                            }).get();
-                                                            console.log('selectedPropPrev.length PREV :'+selectedPropPrev.length);
-                                                        }
+                                                        //if(selectedPropPrev == undefined){
+                                                        //    selectedPropPrev = $('input[name=property]:checked').map(function() {
+                                                        //                        console.log($(this).val());
+                                                        //                        return propertyList[$(this).val()];
+                                                        //                    }).get();
+                                                        //    console.log('selectedPropPrev.length PREV :'+selectedPropPrev.length);
+                                                        //}
 
                                                 selectedPropCount = ($('#selectedPropCount').val() - 1);
                                                 propIndex3 = propIndex2;
@@ -659,45 +666,45 @@ html
                                                 $('#classPicIndx').val(propIndex2);
                                                 $('#class1PicIndx').val(propIndex3);
 
-                                                        $(".comslider").html('<img src='+selectedPropPrev[propIndex0]['picture']['linkFront']+' width=247 height=110/>');
-                                                        $("#comparePrice").html(selectedPropPrev[propIndex0]['price']);
-                                                        $("#CompareBeds").html(selectedPropPrev[propIndex0]['bedrooms']);
-                                                        $("#CompareBaths").html(selectedPropPrev[propIndex0]['bathrooms']);
-                                                        $("#CompareSqft").html(selectedPropPrev[propIndex0]['area']);
-                                                        $("#CompareType").html(selectedPropPrev[propIndex0]['productType']);
-                                                        $('.comproductName0').html(selectedPropPrev[propIndex0]['productName']);
-                                                        $('.comAddress0').html(selectedPropPrev[propIndex0]['address']['line1']+',');
-                                                        $('.comAddress01').html(selectedPropPrev[propIndex0]['address']['city']+', '+selectedPropPrev[propIndex0]['address']['country']);
+                                                        $(".comslider").html('<img src='+selectedProp[propIndex0]['picture']['linkFront']+' width=247 height=110/>');
+                                                        $("#comparePrice").html(selectedProp[propIndex0]['price']);
+                                                        $("#CompareBeds").html(selectedProp[propIndex0]['bedrooms']);
+                                                        $("#CompareBaths").html(selectedProp[propIndex0]['bathrooms']);
+                                                        $("#CompareSqft").html(selectedProp[propIndex0]['area']);
+                                                        $("#CompareType").html(selectedProp[propIndex0]['productType']);
+                                                        $('.comproductName0').html(selectedProp[propIndex0]['productName']);
+                                                        $('.comAddress0').html(selectedProp[propIndex0]['address']['line1']+',');
+                                                        $('.comAddress01').html(selectedProp[propIndex0]['address']['city']+', '+selectedProp[propIndex0]['address']['country']);
 
-                                                        $(".comslider1").html('<img src='+selectedPropPrev[propIndex1]['picture']['linkFront']+' width=247 height=110/>');
-                                                        $("#comparePrice1").html(selectedPropPrev[propIndex1]['price']);
-                                                        $("#CompareBeds1").html(selectedPropPrev[propIndex1]['bedrooms']);
-                                                        $("#CompareBaths1").html(selectedPropPrev[propIndex1]['bathrooms']);
-                                                        $("#CompareSqft1").html(selectedPropPrev[propIndex1]['area']);
-                                                        $("#CompareType1").html(selectedPropPrev[propIndex1]['productType']);
-                                                        $('.comproductName1').html(selectedPropPrev[propIndex1]['productName']);
-                                                        $('.comAddress1').html(selectedPropPrev[propIndex1]['address']['line1']+',');
-                                                        $('.comAddress11').html(selectedPropPrev[propIndex1]['address']['city']+', '+selectedPropPrev[propIndex1]['address']['country']);
+                                                        $(".comslider1").html('<img src='+selectedProp[propIndex1]['picture']['linkFront']+' width=247 height=110/>');
+                                                        $("#comparePrice1").html(selectedProp[propIndex1]['price']);
+                                                        $("#CompareBeds1").html(selectedProp[propIndex1]['bedrooms']);
+                                                        $("#CompareBaths1").html(selectedProp[propIndex1]['bathrooms']);
+                                                        $("#CompareSqft1").html(selectedProp[propIndex1]['area']);
+                                                        $("#CompareType1").html(selectedProp[propIndex1]['productType']);
+                                                        $('.comproductName1').html(selectedProp[propIndex1]['productName']);
+                                                        $('.comAddress1').html(selectedProp[propIndex1]['address']['line1']+',');
+                                                        $('.comAddress11').html(selectedProp[propIndex1]['address']['city']+', '+selectedProp[propIndex1]['address']['country']);
                                                 if (selectedPropCount >= 2){
-                                                            $(".comslider2").html('<img src='+selectedPropPrev[propIndex2]['picture']['linkFront']+' width=247 height=110/>');
-                                                            $("#comparePrice2").html(selectedPropPrev[propIndex2]['price']);
-                                                            $("#CompareBeds2").html(selectedPropPrev[propIndex2]['bedrooms']);
-                                                            $("#CompareBaths2").html(selectedPropPrev[propIndex2]['bathrooms']);
-                                                            $("#CompareSqft2").html(selectedPropPrev[propIndex2]['area']);
-                                                            $("#CompareType2").html(selectedPropPrev[propIndex2]['productType']);
-                                                            $('.comproductName2').html(selectedPropPrev[propIndex2]['productName']);
-                                                            $('.comAddress2').html(selectedPropPrev[propIndex2]['address']['line1']+',');
-                                                            $('.comAddress21').html(selectedPropPrev[propIndex2]['address']['city']+', '+selectedPropPrev[propIndex2]['address']['country']);
+                                                            $(".comslider2").html('<img src='+selectedProp[propIndex2]['picture']['linkFront']+' width=247 height=110/>');
+                                                            $("#comparePrice2").html(selectedProp[propIndex2]['price']);
+                                                            $("#CompareBeds2").html(selectedProp[propIndex2]['bedrooms']);
+                                                            $("#CompareBaths2").html(selectedProp[propIndex2]['bathrooms']);
+                                                            $("#CompareSqft2").html(selectedProp[propIndex2]['area']);
+                                                            $("#CompareType2").html(selectedProp[propIndex2]['productType']);
+                                                            $('.comproductName2').html(selectedProp[propIndex2]['productName']);
+                                                            $('.comAddress2').html(selectedProp[propIndex2]['address']['line1']+',');
+                                                            $('.comAddress21').html(selectedProp[propIndex2]['address']['city']+', '+selectedProp[propIndex2]['address']['country']);
                                                     if (selectedPropCount >= 3){
-                                                                $(".comslider3").html('<img src='+selectedPropPrev[propIndex3]['picture']['linkFront']+' width=247 height=110/>');
-                                                                $("#comparePrice3").html(selectedPropPrev[propIndex3]['price']);
-                                                                $("#CompareBeds3").html(selectedPropPrev[propIndex3]['bedrooms']);
-                                                                $("#CompareBaths3").html(selectedPropPrev[propIndex3]['bathrooms']);
-                                                                $("#CompareSqft3").html(selectedPropPrev[propIndex3]['area']);
-                                                                $("#CompareType3").html(selectedPropPrev[propIndex3]['productType']);
-                                                                $('.comproductName3').html(selectedPropPrev[propIndex3]['productName']);
-                                                                $('.comAddress3').html(selectedPropPrev[propIndex3]['address']['line1']+',');
-                                                                $('.comAddress31').html(selectedPropPrev[propIndex3]['address']['city']+', '+selectedPropPrev[propIndex3]['address']['country']);
+                                                                $(".comslider3").html('<img src='+selectedProp[propIndex3]['picture']['linkFront']+' width=247 height=110/>');
+                                                                $("#comparePrice3").html(selectedProp[propIndex3]['price']);
+                                                                $("#CompareBeds3").html(selectedProp[propIndex3]['bedrooms']);
+                                                                $("#CompareBaths3").html(selectedProp[propIndex3]['bathrooms']);
+                                                                $("#CompareSqft3").html(selectedProp[propIndex3]['area']);
+                                                                $("#CompareType3").html(selectedProp[propIndex3]['productType']);
+                                                                $('.comproductName3').html(selectedProp[propIndex3]['productName']);
+                                                                $('.comAddress3').html(selectedProp[propIndex3]['address']['line1']+',');
+                                                                $('.comAddress31').html(selectedProp[propIndex3]['address']['city']+', '+selectedProp[propIndex3]['address']['country']);
                                                     };
                                                 };
 
@@ -705,10 +712,10 @@ html
                                             });
                                             function getPropPictures(picIndx){
                                                   var propPicture =
-                                                                    ['<img src='+selectedPropPrev[picIndx]['picture']['linkFront']+' width=247 height=110/>',
-                                                                     '<img src='+selectedPropPrev[picIndx]['picture']['linkBack']+' width=247 height=110/>',
-                                                                     '<img src='+selectedPropPrev[picIndx]['picture']['linkLeft']+' width=247 height=110/>',
-                                                                     '<img src='+selectedPropPrev[picIndx]['picture']['linkRight']+' width=247 height=110/>'];
+                                                                    ['<img src='+selectedProp[picIndx]['picture']['linkFront']+' width=247 height=110/>',
+                                                                     '<img src='+selectedProp[picIndx]['picture']['linkBack']+' width=247 height=110/>',
+                                                                     '<img src='+selectedProp[picIndx]['picture']['linkLeft']+' width=247 height=110/>',
+                                                                     '<img src='+selectedProp[picIndx]['picture']['linkRight']+' width=247 height=110/>'];
                                                   return propPicture;
                                             }
                                 div#name
@@ -759,8 +766,16 @@ html
                                                             script.
                                                                 $('#closeBox0').html('<h3>X</h3>');
                                                                 $('#closeBox0').on('click', function(){
-                                                                    $('#line0').hide();
-                                                                    $('#comparison').show();
+                                                                   if(selectedProp.length > 2){
+                                                                        selectedProp.splice(propIndex0,1);
+                                                                        populateValues(selectedProp);
+                                                                        propIndex0 = 0;
+                                                                        propIndex1 = 1;
+                                                                        propIndex2 = 2;
+                                                                        propIndex3 = 3;
+                                                                    } else {
+                                                                        alert("Select atleast Two properties");
+                                                                    }
                                                                 });
                                                 a.comproductName0
                                                     script.
@@ -827,8 +842,16 @@ html
                                                             script.
                                                                 $('#close_box1').html('<h3>X</h3>');
                                                                 $('#close_box1').on('click', function(){
-                                                                    $('#line1').hide();
-                                                                    $('#comparison').show();
+                                                                    if (selectedProp.length > 2){
+                                                                        selectedProp.splice(propIndex1,1);
+                                                                        populateValues(selectedProp);
+                                                                        propIndex0 = 0;
+                                                                        propIndex1 = 1;
+                                                                        propIndex2 = 2;
+                                                                        propIndex3 = 3;
+                                                                    } else {
+                                                                        alert("Select atleast Two properties");
+                                                                    }
                                                                 });
                                                 a.comproductName1
                                                     script.
@@ -894,8 +917,16 @@ html
                                                             script.
                                                                 $('#close_box2').html('<h3>X</h3>');
                                                                 $('#close_box2').on('click', function(){
-                                                                    $('#class').hide();
-                                                                    $('#comparison').show();
+                                                                    if(selectedProp.length > 2){
+                                                                        selectedProp.splice(propIndex2,1);
+                                                                         populateValues(selectedProp);
+                                                                        propIndex0 = 0;
+                                                                        propIndex1 = 1;
+                                                                        propIndex2 = 2;
+                                                                        propIndex3 = 3;
+                                                                    } else {
+                                                                        alert("Select atleast Two properties");
+                                                                    }
                                                                 });
                                                 a.comproductName2
                                                     script.
@@ -961,8 +992,16 @@ html
                                                             script.
                                                                 $('#close_box3').html('<h3>X</h3>');
                                                                 $('#close_box3').on('click', function(){
-                                                                    $('#class1').hide();
-                                                                    $('#comparison').show();
+                                                                    if(selectedProp.length > 2){
+                                                                        selectedProp.splice(propIndex3,1);
+                                                                        populateValues(selectedProp);
+                                                                        propIndex0 = 0;
+                                                                        propIndex1 = 1;
+                                                                        propIndex2 = 2;
+                                                                        propIndex3 = 3;
+                                                                    } else {
+                                                                        alert("Select atleast Two properties");
+                                                                    }
                                                                 });
                                                 a.comproductName3
                                                     script.
@@ -1012,18 +1051,18 @@ html
                                         br
                                         script.
                                             document.write('<div class=\"bx-wrapper\"><div class=\"bx-controls bx-has-controls-direction\"><div class=\"bx-controls-direction\"> <a class=\"bx-next\"></a></div></div></div>');
-                                            var selectedProp;
+                                            //var selectedProp;
 
                                             $('#nextNav').on('click', function() {
 
 
-                                                        if(selectedProp == undefined){
-                                                            selectedProp = $('input[name=property]:checked').map(function() {
-                                                                                console.log($(this).val());
-                                                                                return propertyList[$(this).val()];
-                                                                            }).get();
-                                                            console.log('selectedProp.length NEXT :'+selectedProp.length);
-                                                        }
+                                                        //if(selectedProp == undefined){
+                                                        //    selectedProp = $('input[name=property]:checked').map(function() {
+                                                        //                        console.log($(this).val());
+                                                        //                        return propertyList[$(this).val()];
+                                                        //                    }).get();
+                                                        //    console.log('selectedProp.length NEXT :'+selectedProp.length);
+                                                        //}
                                                         //console.log('Selected prop: '+($('#selectedPropCount').val() - 1));
                                                 selectedPropCount = ($('#selectedPropCount').val() - 1);
                                                 if(selectedPropCount === 1 ){
