@@ -54,7 +54,7 @@ var selectedImage,
     propPrice = '0', propBeds = '0', propArea = '0', propBuilt = '0', propBaths = '0', propType = '0',
     oaLinkedin = new OAuth("https://api.linkedin.com/uas/oauth/requestToken",
         "https://api.linkedin.com/uas/oauth/accessToken",
-        LINKEDIN_API_KEY, LINKEDIN_SECRET_KEY, "1.0A", "https://www.mysite.com:3030/oauth/callback", "HMAC-SHA1"),
+        LINKEDIN_API_KEY, LINKEDIN_SECRET_KEY, "1.0A", "https://www.mysite.com:3030/oauth/callback", "HMAC-SHA1");
     user.userName = 'Hi Guest';
 
 var tuwm = new twitter_update_with_media({
