@@ -51,10 +51,11 @@ var LINKEDIN_ACCESS_TOKEN_SECRET = "d50b99d8-b56b-4b1b-b11c-9f386e79879a";
 
 var selectedImage,
     shareOnFbClicked = '',
-    propPrice = '0', propBeds = '0', propArea = '0', propBuilt = '0', propBaths = '0', propType = '0';
+    propPrice = '0', propBeds = '0', propArea = '0', propBuilt = '0', propBaths = '0', propType = '0',
     oaLinkedin = new OAuth("https://api.linkedin.com/uas/oauth/requestToken",
         "https://api.linkedin.com/uas/oauth/accessToken",
-        LINKEDIN_API_KEY, LINKEDIN_SECRET_KEY, "1.0A", "https://www.mysite.com:3030/oauth/callback", "HMAC-SHA1");
+        LINKEDIN_API_KEY, LINKEDIN_SECRET_KEY, "1.0A", "https://www.mysite.com:3030/oauth/callback", "HMAC-SHA1"),
+    user.userName = 'Hi Guest';
 
 var tuwm = new twitter_update_with_media({
     consumer_key: TWITTER_CONSUMER_KEY,
@@ -158,13 +159,13 @@ passport.use(new TwitterStrategy({
             query.exec(function (err, oldUser) {
                 console.log(oldUser);
                 if(oldUser) {
-                    // tuwm.post('Property details...', path.join(__dirname,'/public/images/'+selectedImage), function(err, response) {
-                    //   if (err) {
-                    //     console.log(err);
-                    //   }
-                    //   console.log('Posted the property on Twitter successfully.');
-                    // });
-                    // console.log('User: ' + oldUser.name + ' found and logged in!');
+                    tuwm.post('Property details...', path.join(__dirname,'/public/images/'+selectedImage), function(err, response) {
+                      if (err) {
+                        console.log(err);
+                      }
+                      console.log('Posted the property on Twitter successfully.');
+                    });
+                    console.log('User: ' + oldUser.name + ' found and logged in!');
                     done(null, oldUser);
 //                    console.log ("profile", profile);
                 } else {
@@ -182,7 +183,7 @@ passport.use(new TwitterStrategy({
                             //throw err;
                         }
                         console.log ("profile", profile);
-                        console.log('New user: ' + newUser.name + ' created and logged in!');
+                        console.log('Twitter New user: ' + newUser.name + ' created and logged in!');
                         done(null, newUser);
                     });
                 }
@@ -206,11 +207,11 @@ passport.use(new LinkedInStrategy({
                 console.log(oldUser);
                 if(oldUser) {
                     console.log('User: ' + oldUser.name + ' found and logged in!');
-                      //luwm.post('Property details...', path.join(__dirname,'/public/images/'+selectedImage), function(err, response) {
-                      //if (err) {
-                      //  console.log(err);
-                      //}
-                    //});
+                      luwm.post('Property details...', path.join(__dirname,'/public/images/'+selectedImage), function(err, response) {
+                      if (err) {
+                        console.log(err);
+                      }
+                    });
                     done(null, oldUser);
                     console.log ("profile", profile);
                 } else {
@@ -224,7 +225,7 @@ passport.use(new LinkedInStrategy({
                             //throw err;
                         }
                         console.log ("profile", profile);
-                        console.log('New user: ' + newUser.name + ' created and logged in!');
+                        console.log('LinkedIn New user: ' + newUser.name + ' created and logged in!');
                         done(null, newUser);
                     });
                 }
@@ -304,8 +305,11 @@ app.get('/locationmap/:propid', productRoutes.locationMap);
 
 app.get('/compare',productRoutes.compare);
 
+app.get('/logout', user.logout);
+
 //Routing
 app.post('/lsrLogin',user.index);
+app.post('/login',user.index);
 app.get('/signup', user.signup);
 app.post('/signedup', user.signedup);
 app.get('/index1',function(req,res){

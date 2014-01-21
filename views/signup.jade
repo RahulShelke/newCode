@@ -46,7 +46,9 @@ html
                         $("#form").submit(function(){
                         $.post('signedup',$("#form").serialize(), function(data){
                             $("#username").html(data);
-                        //window.location.replace("https://localhost:3030/login");
+                        var url = $(location).attr('href');
+                            url = url.substring(0, url.indexOf('/signup'));
+                        window.location.replace(url+'/loggedin');
                         console.log("redrecting");
                         });
                         return false;

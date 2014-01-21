@@ -1,7 +1,8 @@
 //CopyRight Tag Solutions pvt.ltd 2013
 var mongoose = require('mongoose')
     , Schema = mongoose.Schema
-    , path = require('path');
+    , path = require('path')
+    , user = require('./user');
 
 var propertySchema = new Schema({
     productType: String,
@@ -41,14 +42,14 @@ var propertyModel = mongoose.model('Property', propertySchema);
 exports.index = function (req, res) {
     propertyModel.find({}, function (err, docs) {
         if (err) return res.render('Error occurred');
-        res.render('index', {products: docs, routePath: "prod", title: 'Product List - By Sandeep Pagi', mapIndex: 0});
+        res.render('index', {products: docs, routePath: "prod", title: 'Product List - By Sandeep Pagi', mapIndex: 0, userName: user.userName});
     });
 };
 
 exports.locationMap = function (req, res) {
     propertyModel.find({}, function (err, docs) {
         if (err) return res.render('Error occurred');
-        res.render('index', {products: JSON.stringify(docs), routePath: "home", title: 'Product List - By Sandeep Pagi', mapIndex: req.params.propid});
+        res.render('index', {products: JSON.stringify(docs), routePath: "home", title: 'Product List - By Sandeep Pagi', mapIndex: req.params.propid, userName: user.userName});
     });
 };
 
@@ -201,10 +202,16 @@ exports.remove = function (req, res) {
 exports.home = function (req, res) {
     propertyModel.find({}, function (err, docs) {
         if (err) return res.render('Error occurred');
-        res.render('index', {products: JSON.stringify(docs), routePath: "home", title: 'Product List - By Sandeep Pagi', mapIndex: 0});
+        res.render('index', {products: JSON.stringify(docs), routePath: "home", title: 'Product List - By Sandeep Pagi', mapIndex: 0, userName: user.userName});
     });
 };
 
+exports.loggedin = function (req, res) {
+    propertyModel.find({}, function (err, docs) {
+        if (err) return res.render('Error occurred');
+        res.render('index', {products: JSON.stringify(docs), routePath: "home", title: 'Product List - By Sandeep Pagi', mapIndex: 0, userName: req.params.username});
+    });
+};
 var results;
 exports.search = function (req, res) {
     //Message if search fails
@@ -247,7 +254,7 @@ exports.search = function (req, res) {
             console.log(req.body);
         if(docs.length > 0){
             console.log("Not Failed"+docs.length);
-            res.render('search', {products: JSON.stringify(docs), routePath: "search", mapIndex: 0});
+            res.render('search', {products: JSON.stringify(docs), routePath: "search", mapIndex: 0, userName: user.userName});
         }else{
             console.log("Failed"+docs.length);
             res.render('index', {products:req.body.location , routePath: "searchFailed"});
@@ -257,13 +264,13 @@ exports.search = function (req, res) {
 
 exports.searchList =function(req,res){
     console.log("results in searchLink"+results);
-    res.render('search', {products:JSON.stringify(results), routePath: "searchList", mapIndex: 0});
+    res.render('search', {products:JSON.stringify(results), routePath: "searchList", mapIndex: 0, userName: user.userName});
 };
 
 exports.getsearch =function(req,res){
     console.log("results in getsearch"+results);
-    res.render('search', {products:JSON.stringify(results), routePath: "search", mapIndex: 0});
+    res.render('search', {products:JSON.stringify(results), routePath: "search", mapIndex: 0, userName: user.userName});
 };
 exports.searchProp =function(req,res){
-    res.render('search', {products:JSON.stringify(results), routePath: "search", mapIndex: req.params.propid});
+    res.render('search', {products:JSON.stringify(results), routePath: "search", mapIndex: req.params.propid, userName: user.userName});
 };

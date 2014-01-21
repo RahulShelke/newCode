@@ -162,6 +162,20 @@ a, button, input[type="submit"] {
     width: 21%;
 }
 
+#mainNav ul li:nth-child(4){
+    width: 15%;
+}
+
+#mainNav ul li:nth-child(5){
+    text-align: center;
+    width: 35%;
+    display: inline-block;
+}
+#mainNav ul li:nth-child(5) a{
+    float: left;
+    width:100%;
+    text-align: 
+}
 #choosePropertyType{
     text-align: center;
     margin: 0 auto;
@@ -1046,15 +1060,19 @@ input[type="range"]{
 }
 
 #form p{
-    width: 150px;
+    width: 152px;
     float:left;
-    margin-top: 10px;
-    margin-right: 50px;
+    /*margin-top: 10px;*/
+    margin-right: 45px;
+    margin-left: 3px;
     color: #3F81C7;
 }
 
 #form p a{
     color: #3F81C7;
+}
+#form div{
+    margin-top: -20px;
 }
 
 #social_network{
@@ -1169,7 +1187,7 @@ input[type="range"]{
 
 #checkbox{
     float: left;
-    margin-left: 20px;
+   /* margin-left: 5px;*/
 }
 
 #remember{
@@ -1180,10 +1198,11 @@ input[type="range"]{
 
 #forgot{
     width: 170px;
-    margin-left: 16px;
+    margin-left: 10px;
 }
 
 #forgot a{
+    /*width: 180px;*/
     color: #0093D9;
 }
 
@@ -1223,7 +1242,7 @@ input[type="range"]{
 /*------------------------------------------------------Compare Page Style-----------------------------------------------*/
 
 #compare_body{
-    width: 95%;
+    width: 900px;
     height: 550px;
     margin: 10px auto;
     background-color: #ffffff;
@@ -1232,20 +1251,52 @@ input[type="range"]{
 }
 
 #compare_header{
-    width: 95%;
+    /*width: 1000px;*/
+    width: 900px;
     height: 40px;
-    margin: 0 auto;
+/*    margin: 0 auto;*/
     padding-top: 10px;
     border-bottom: 1px solid #dadada;
+    /*min-width: 970px;*/
+    text-align:center;
 }
 
+/*#compare_header div{
+    margin: 0 auto;
+    display: flex;
+    vertical-align: top;
+    
+}*/
+/*
 #compare_header{
     display: inline-flex;
 }
-
-#compare_header h4{
-    width: 200px;
+*/
+/*#compare_header h4{
+    width: 100px;
     margin: 0 auto;
+} */
+
+
+#comTitle{
+    height: 30px;
+    width: 200px;
+    background: #ffffff;
+    /*border: 2px solid #dadada;
+    border-radius: 5px;*/
+    display: inline-block;
+    margin: 0 auto;
+    /*margin-left: 10px;*/
+    /*float: left;*/
+    font-weight:bold;
+    color: #212121;
+    
+}
+#comTitle_div h4{
+    margin: 5px;
+    color: #212121;
+    font-weight:bold;
+
 }
 
 #back{
@@ -1254,6 +1305,10 @@ input[type="range"]{
     background: #ffffff;
     border: 2px solid #dadada;
     border-radius: 5px;
+    display: flex;
+   /* margin: 0 auto;*/
+    float: left;
+    margin-left: 31px;
 }
 
 #back a{
@@ -1262,11 +1317,16 @@ input[type="range"]{
 }
 
 #close{
+    float: right;
     height: 30px;
     width: 58px;
     background: #ffffff;
     border: 2px solid #dadada;
     border-radius: 5px;
+    display: flex;
+   /* margin: 0 auto;*/
+    /*margin-top: -200px;*/
+    margin-right: 31px;
 }
 
 #close a{
@@ -1286,9 +1346,16 @@ input[type="range"]{
     border: 1px solid #dadada;
     text-align: center;
 }
-
+/*.comMainSlider{
+    adaptiveHeight: true;
+    mode: 'fade';
+    captions: true;
+    height: 700px;
+    display: inline-block;
+}*/
 #comparison{
-    width: 100%;
+    /*width: 100%;*/
+    width: 900px;
     height: 480px;
     margin: 0 auto;
 }
@@ -1299,22 +1366,26 @@ input[type="range"]{
 }
 
 #comparison ul{
-    max-width: 630px;
+    /*max-width: 630px;*/
+    max-width: 750px;
     height: 480px;
     margin-top: 10px;
     display: inline-flex;
     /*overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;*/
+    text-align: center;
+
 }
 
 #comparison ul li{
-    width: 247px;
+    width: 22%;
     height: 100%;
     border: 1px solid #dadada;
     border-radius: 5px;
-    display: inline-block;
+    display: inline-flex;
     margin-right: 5px;
+
 }
 
 #name{
@@ -1330,7 +1401,8 @@ input[type="range"]{
 }
 
 #comparison ul li:first-child{
-    width: 247px;
+    /*width: 247px;*/
+    width: 22%;
     height: 100%;
     border: 1px solid #dadada;
     border-radius: 5px;
@@ -1339,7 +1411,8 @@ input[type="range"]{
 }
 
 #comparison ul li:last-child{
-    width: 247px;
+    /*width: 247px;*/
+    width: 22%;
     height: 100%;
     border: 1px solid #dadada;
     display: inline-block;

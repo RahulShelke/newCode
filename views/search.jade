@@ -26,7 +26,8 @@ html
         div#bigWarpper
             script.
                 var selectedProp,
-                populateValues;
+                    populateValues,
+                    loginoutLable;
             div#header
                 ul
                     li
@@ -50,8 +51,9 @@ html
                                     abbr#navText PROPERTY
                                 li: a(href="/properties/add", style="text-decoration: none")
                                     abbr#navText ADD
-                                li: a(class="group1", href="#box1", style="text-decoration: none")
+                                li#loginid: a(class="group1", href="#box1", style="text-decoration: none")
                                     | LOGIN
+                                li: a#username
             div#mainBody
                 ul
                     li.propertiesListContainer
@@ -71,7 +73,6 @@ html
                                                 $(this).css('background', '#606060');
                                                 var hahaha=$(this).attr("value");
 
-                                                //alert(hahaha);
                                                 document.getElementById("chosenType").value=hahaha;
                                             });
                             p#place
@@ -275,10 +276,10 @@ html
                                                             $(".hidelist").hide();
                                                             $("#compare_body").show();
                                                             console.log(checkValues);
-                                                            $(".comslider").html('<img src='+checkValues[0]['picture']['linkFront']+' width=247 height=110/>');
-                                                            /*$(".comslider").html('<img src='+checkValues[0]['picture']['linkBack']+' width=247 height=110/>');
-                                                            $(".comslider").html('<img src='+checkValues[0]['picture']['linkLeft']+' width=247 height=110/>');
-                                                            $(".comslider").html('<img src='+checkValues[0]['picture']['linkRight']+' width=247 height=110/>');*/
+                                                            $(".comslider").html('<img src='+checkValues[0]['picture']['linkFront']+' width=165 height=110/>');
+                                                            /*$(".comslider").html('<img src='+checkValues[0]['picture']['linkBack']+' width=165 height=110/>');
+                                                            $(".comslider").html('<img src='+checkValues[0]['picture']['linkLeft']+' width=165 height=110/>');
+                                                            $(".comslider").html('<img src='+checkValues[0]['picture']['linkRight']+' width=165 height=110/>');*/
                                                             $("#comparePrice").html(checkValues[0]['price']);
                                                             $("#CompareBeds").html(checkValues[0]['bedrooms']);
                                                             $("#CompareBaths").html(checkValues[0]['bathrooms']);
@@ -287,10 +288,10 @@ html
                                                             $('.comproductName0').html(checkValues[0]['productName']);     
                                                             $('.comAddress0').html(checkValues[0]['address']['line1']+',');
                                                             $('.comAddress01').html(checkValues[0]['address']['city']+', '+checkValues[0]['address']['country']);
-                                                            $(".comslider1").html('<img src='+checkValues[1]['picture']['linkFront']+' width=247 height=110/>');
-                                                            /*$(".comslider1").html('<img src='+checkValues[1]['picture']['linkBack']+' width=247 height=110/>');
-                                                            $(".comslider1").html('<img src='+checkValues[1]['picture']['linkLeft']+' width=247 height=110/>');
-                                                            $(".comslider1").html('<img src='+checkValues[1]['picture']['linkRight']+' width=247 height=110/>');*/
+                                                            $(".comslider1").html('<img src='+checkValues[1]['picture']['linkFront']+' width=165 height=110/>');
+                                                            /*$(".comslider1").html('<img src='+checkValues[1]['picture']['linkBack']+' width=165 height=110/>');
+                                                            $(".comslider1").html('<img src='+checkValues[1]['picture']['linkLeft']+' width=165 height=110/>');
+                                                            $(".comslider1").html('<img src='+checkValues[1]['picture']['linkRight']+' width=165 height=110/>');*/
                                                             $("#comparePrice1").html(checkValues[1]['price']);
                                                             $("#CompareBeds1").html(checkValues[1]['bedrooms']);
                                                             $("#CompareBaths1").html(checkValues[1]['bathrooms']);
@@ -299,10 +300,10 @@ html
                                                             $('.comproductName1').html(checkValues[1]['productName']);     
                                                             $('.comAddress1').html(checkValues[1]['address']['line1']+',');
                                                             $('.comAddress11').html(checkValues[1]['address']['city']+', '+checkValues[1]['address']['country']);
-                                                            $(".comslider2").html('<img src='+checkValues[2]['picture']['linkFront']+' width=247 height=110/>');
-                                                            /*$(".comslider2").html('<img src='+checkValues[2]['picture']['linkBack']+' width=247 height=110/>');
-                                                            $(".comslider2").html('<img src='+checkValues[2]['picture']['linkLeft']+' width=247 height=110/>');
-                                                            $(".comslider2").html('<img src='+checkValues[2]['picture']['linkRight']+' width=247 height=110/>');*/
+                                                            $(".comslider2").html('<img src='+checkValues[2]['picture']['linkFront']+' width=165 height=110/>');
+                                                            /*$(".comslider2").html('<img src='+checkValues[2]['picture']['linkBack']+' width=165 height=110/>');
+                                                            $(".comslider2").html('<img src='+checkValues[2]['picture']['linkLeft']+' width=165 height=110/>');
+                                                            $(".comslider2").html('<img src='+checkValues[2]['picture']['linkRight']+' width=165 height=110/>');*/
                                                             $("#comparePrice2").html(checkValues[2]['price']);
                                                             $("#CompareBeds2").html(checkValues[2]['bedrooms']);
                                                             $("#CompareBaths2").html(checkValues[2]['bathrooms']);
@@ -311,10 +312,10 @@ html
                                                             $('.comproductName2').html(checkValues[2]['productName']);     
                                                             $('.comAddress2').html(checkValues[2]['address']['line1']+',');
                                                             $('.comAddress21').html(checkValues[2]['address']['city']+', '+checkValues[2]['address']['country']);
-                                                            $(".comslider3").html('<img src='+checkValues[3]['picture']['linkFront']+' width=247 height=110/>');
-                                                            /*$(".comslider3").html('<img src='+checkValues[3]['picture']['linkBack']+' width=247 height=110/>');
-                                                            $(".comslider3").html('<img src='+checkValues[3]['picture']['linkLeft']+' width=247 height=110/>');
-                                                            $(".comslider3").html('<img src='+checkValues[3]['picture']['linkRight']+' width=247 height=110/>');*/
+                                                            $(".comslider3").html('<img src='+checkValues[3]['picture']['linkFront']+' width=165 height=110/>');
+                                                            /*$(".comslider3").html('<img src='+checkValues[3]['picture']['linkBack']+' width=165 height=110/>');
+                                                            $(".comslider3").html('<img src='+checkValues[3]['picture']['linkLeft']+' width=165 height=110/>');
+                                                            $(".comslider3").html('<img src='+checkValues[3]['picture']['linkRight']+' width=165 height=110/>');*/
                                                             $("#comparePrice3").html(checkValues[3]['price']);
                                                             $("#CompareBeds3").html(checkValues[3]['bedrooms']);
                                                             $("#CompareBaths3").html(checkValues[3]['bathrooms']);
@@ -331,7 +332,7 @@ html
                                                             $(".hidelist").hide();
                                                             $("#compare_body").show();
                                                             $("#class1").hide();
-                                                            $(".comslider").html('<img src='+checkValues[0]['picture']['linkFront']+' width=247 height=110/>');
+                                                            $(".comslider").html('<img src='+checkValues[0]['picture']['linkFront']+' width=165 height=110/>');
                                                             $("#comparePrice").html(checkValues[0]['price']);
                                                             $("#CompareBeds").html(checkValues[0]['bedrooms']);
                                                             $("#CompareBaths").html(checkValues[0]['bathrooms']);
@@ -340,7 +341,7 @@ html
                                                             $('.comproductName0').html(checkValues[0]['productName']);     
                                                             $('.comAddress0').html(checkValues[0]['address']['line1']+',');
                                                             $('.comAddress01').html(checkValues[0]['address']['city']+', '+checkValues[0]['address']['country']);
-                                                            $(".comslider1").html('<img src='+checkValues[1]['picture']['linkFront']+' width=247 height=110/>');
+                                                            $(".comslider1").html('<img src='+checkValues[1]['picture']['linkFront']+' width=165 height=110/>');
                                                             $("#comparePrice1").html(checkValues[1]['price']);
                                                             $("#CompareBeds1").html(checkValues[1]['bedrooms']);
                                                             $("#CompareBaths1").html(checkValues[1]['bathrooms']);
@@ -349,7 +350,7 @@ html
                                                             $('.comproductName1').html(checkValues[1]['productName']);     
                                                             $('.comAddress1').html(checkValues[1]['address']['line1']+',');
                                                             $('.comAddress11').html(checkValues[1]['address']['city']+', '+checkValues[1]['address']['country']);
-                                                            $(".comslider2").html('<img src='+checkValues[2]['picture']['linkFront']+' width=247 height=110/>');
+                                                            $(".comslider2").html('<img src='+checkValues[2]['picture']['linkFront']+' width=165 height=110/>');
                                                             $("#comparePrice2").html(checkValues[2]['price']);
                                                             $("#CompareBeds2").html(checkValues[2]['bedrooms']);
                                                             $("#CompareBaths2").html(checkValues[2]['bathrooms']);
@@ -366,7 +367,7 @@ html
                                                             $("#compare_body").show();
                                                             $("#class").hide();
                                                             $("#class1").hide();
-                                                            $(".comslider").html('<img src='+checkValues[0]['picture']['linkFront']+' width=247 height=110/>');
+                                                            $(".comslider").html('<img src='+checkValues[0]['picture']['linkFront']+' width=165 height=110/>');
                                                             $("#comparePrice").html(checkValues[0]['price']);
                                                             $("#CompareBeds").html(checkValues[0]['bedrooms']);
                                                             $("#CompareBaths").html(checkValues[0]['bathrooms']);
@@ -375,7 +376,7 @@ html
                                                             $('.comproductName0').html(checkValues[0]['productName']);     
                                                             $('.comAddress0').html(checkValues[0]['address']['line1']+',');
                                                             $('.comAddress01').html(checkValues[0]['address']['city']+', '+checkValues[0]['address']['country']);
-                                                            $(".comslider1").html('<img src='+checkValues[1]['picture']['linkFront']+' width=247 height=110/>');
+                                                            $(".comslider1").html('<img src='+checkValues[1]['picture']['linkFront']+' width=165 height=110/>');
                                                             $("#comparePrice1").html(checkValues[1]['price']);
                                                             $("#CompareBeds1").html(checkValues[1]['bedrooms']);
                                                             $("#CompareBaths1").html(checkValues[1]['bathrooms']);
@@ -405,6 +406,10 @@ html
                                         script.
                                             var map;
                                             var propertyList = JSON.parse( !{JSON.stringify(products)} );
+                                            var loginidhtml = document.getElementById("loginid").innerHTML;
+                                                loginidhtml = (('#{userName}').indexOf('Guest') < 0 )? loginidhtml.replace('#box1', '/logout').replace('LOGIN', 'LOGOUT').replace('group1', 'grouptemp') : loginidhtml.replace('/logout', '#box1').replace('LOGOUT', 'LOGIN').replace('grouptemp', 'group1');
+                                                $('#username').html('#{userName}');
+                                                $('#loginid').html(loginidhtml);
                                             function initialize() {
                                             // Initial Map Options.
                                             var mapOptions = {
@@ -614,7 +619,7 @@ html
                             div#compare_header
                                 div#back
                                     a(href="/search") Back
-                                h4#comTitle
+                                div#comTitle
                                 div#close
                                     a(href="/search") Close
                             div#comparison
@@ -666,7 +671,7 @@ html
                                                 $('#classPicIndx').val(propIndex2);
                                                 $('#class1PicIndx').val(propIndex3);
 
-                                                        $(".comslider").html('<img src='+selectedProp[propIndex0]['picture']['linkFront']+' width=247 height=110/>');
+                                                        $(".comslider").html('<img src='+selectedProp[propIndex0]['picture']['linkFront']+' width=165 height=110/>');
                                                         $("#comparePrice").html(selectedProp[propIndex0]['price']);
                                                         $("#CompareBeds").html(selectedProp[propIndex0]['bedrooms']);
                                                         $("#CompareBaths").html(selectedProp[propIndex0]['bathrooms']);
@@ -676,7 +681,7 @@ html
                                                         $('.comAddress0').html(selectedProp[propIndex0]['address']['line1']+',');
                                                         $('.comAddress01').html(selectedProp[propIndex0]['address']['city']+', '+selectedProp[propIndex0]['address']['country']);
 
-                                                        $(".comslider1").html('<img src='+selectedProp[propIndex1]['picture']['linkFront']+' width=247 height=110/>');
+                                                        $(".comslider1").html('<img src='+selectedProp[propIndex1]['picture']['linkFront']+' width=165 height=110/>');
                                                         $("#comparePrice1").html(selectedProp[propIndex1]['price']);
                                                         $("#CompareBeds1").html(selectedProp[propIndex1]['bedrooms']);
                                                         $("#CompareBaths1").html(selectedProp[propIndex1]['bathrooms']);
@@ -686,7 +691,7 @@ html
                                                         $('.comAddress1').html(selectedProp[propIndex1]['address']['line1']+',');
                                                         $('.comAddress11').html(selectedProp[propIndex1]['address']['city']+', '+selectedProp[propIndex1]['address']['country']);
                                                 if (selectedPropCount >= 2){
-                                                            $(".comslider2").html('<img src='+selectedProp[propIndex2]['picture']['linkFront']+' width=247 height=110/>');
+                                                            $(".comslider2").html('<img src='+selectedProp[propIndex2]['picture']['linkFront']+' width=165 height=110/>');
                                                             $("#comparePrice2").html(selectedProp[propIndex2]['price']);
                                                             $("#CompareBeds2").html(selectedProp[propIndex2]['bedrooms']);
                                                             $("#CompareBaths2").html(selectedProp[propIndex2]['bathrooms']);
@@ -696,7 +701,7 @@ html
                                                             $('.comAddress2').html(selectedProp[propIndex2]['address']['line1']+',');
                                                             $('.comAddress21').html(selectedProp[propIndex2]['address']['city']+', '+selectedProp[propIndex2]['address']['country']);
                                                     if (selectedPropCount >= 3){
-                                                                $(".comslider3").html('<img src='+selectedProp[propIndex3]['picture']['linkFront']+' width=247 height=110/>');
+                                                                $(".comslider3").html('<img src='+selectedProp[propIndex3]['picture']['linkFront']+' width=165 height=110/>');
                                                                 $("#comparePrice3").html(selectedProp[propIndex3]['price']);
                                                                 $("#CompareBeds3").html(selectedProp[propIndex3]['bedrooms']);
                                                                 $("#CompareBaths3").html(selectedProp[propIndex3]['bathrooms']);
@@ -712,10 +717,10 @@ html
                                             });
                                             function getPropPictures(picIndx){
                                                   var propPicture =
-                                                                    ['<img src='+selectedProp[picIndx]['picture']['linkFront']+' width=247 height=110/>',
-                                                                     '<img src='+selectedProp[picIndx]['picture']['linkBack']+' width=247 height=110/>',
-                                                                     '<img src='+selectedProp[picIndx]['picture']['linkLeft']+' width=247 height=110/>',
-                                                                     '<img src='+selectedProp[picIndx]['picture']['linkRight']+' width=247 height=110/>'];
+                                                                    ['<img src='+selectedProp[picIndx]['picture']['linkFront']+' width=165 height=110/>',
+                                                                     '<img src='+selectedProp[picIndx]['picture']['linkBack']+' width=165 height=110/>',
+                                                                     '<img src='+selectedProp[picIndx]['picture']['linkLeft']+' width=165 height=110/>',
+                                                                     '<img src='+selectedProp[picIndx]['picture']['linkRight']+' width=165 height=110/>'];
                                                   return propPicture;
                                             }
                                 div#name
@@ -736,7 +741,7 @@ html
                                         script.
                                             $(document).ready(function(){
                                                 $('.comslider').bxSlider({
-                                                slideWidth: 247,
+                                                slideWidth: 165,
                                                 minSlides: 1,
                                                 auto: true,
                                                 autoControls: false,
@@ -811,7 +816,7 @@ html
                                         script.
                                             $(document).ready(function(){
                                                 $('.comslider1').bxSlider({
-                                                slideWidth: 247,
+                                                slideWidth: 165,
                                                 minSlides: 1,
                                                 auto: true,
                                                 autoControls: false,
@@ -887,7 +892,7 @@ html
                                         script.
                                             $(document).ready(function(){
                                                 $('.comslider2').bxSlider({
-                                                slideWidth: 247,
+                                                slideWidth: 165,
                                                 minSlides: 1,
                                                 auto: true,
                                                 autoControls: false,
@@ -962,7 +967,7 @@ html
                                         script.
                                             $(document).ready(function(){
                                                 $('.comslider3').bxSlider({
-                                                slideWidth: 247,
+                                                slideWidth: 165,
                                                 minSlides: 1,
                                                 auto: true,
                                                 autoControls: false,
@@ -1095,7 +1100,7 @@ html
                                                 $('#classPicIndx').val(propIndex2);
                                                 $('#class1PicIndx').val(propIndex3);
 
-                                                        $(".comslider").html('<img src='+selectedProp[propIndex0]['picture']['linkFront']+' width=247 height=110/>');
+                                                        $(".comslider").html('<img src='+selectedProp[propIndex0]['picture']['linkFront']+' width=165 height=110/>');
                                                         $("#comparePrice").html(selectedProp[propIndex0]['price']);
                                                         $("#CompareBeds").html(selectedProp[propIndex0]['bedrooms']);
                                                         $("#CompareBaths").html(selectedProp[propIndex0]['bathrooms']);
@@ -1105,7 +1110,7 @@ html
                                                         $('.comAddress0').html(selectedProp[propIndex0]['address']['line1']+',');
                                                         $('.comAddress01').html(selectedProp[propIndex0]['address']['city']+', '+selectedProp[propIndex0]['address']['country']);
 
-                                                        $(".comslider1").html('<img src='+selectedProp[propIndex1]['picture']['linkFront']+' width=247 height=110/>');
+                                                        $(".comslider1").html('<img src='+selectedProp[propIndex1]['picture']['linkFront']+' width=165 height=110/>');
                                                         $("#comparePrice1").html(selectedProp[propIndex1]['price']);
                                                         $("#CompareBeds1").html(selectedProp[propIndex1]['bedrooms']);
                                                         $("#CompareBaths1").html(selectedProp[propIndex1]['bathrooms']);
@@ -1115,7 +1120,7 @@ html
                                                         $('.comAddress1').html(selectedProp[propIndex1]['address']['line1']+',');
                                                         $('.comAddress11').html(selectedProp[propIndex1]['address']['city']+', '+selectedProp[propIndex1]['address']['country']);
                                                 if (selectedPropCount >= 2){
-                                                            $(".comslider2").html('<img src='+selectedProp[propIndex2]['picture']['linkFront']+' width=247 height=110/>');
+                                                            $(".comslider2").html('<img src='+selectedProp[propIndex2]['picture']['linkFront']+' width=165 height=110/>');
                                                             $("#comparePrice2").html(selectedProp[propIndex2]['price']);
                                                             $("#CompareBeds2").html(selectedProp[propIndex2]['bedrooms']);
                                                             $("#CompareBaths2").html(selectedProp[propIndex2]['bathrooms']);
@@ -1125,7 +1130,7 @@ html
                                                             $('.comAddress2').html(selectedProp[propIndex2]['address']['line1']+',');
                                                             $('.comAddress21').html(selectedProp[propIndex2]['address']['city']+', '+selectedProp[propIndex2]['address']['country']);
                                                     if (selectedPropCount >= 3){
-                                                                $(".comslider3").html('<img src='+selectedProp[propIndex3]['picture']['linkFront']+' width=247 height=110/>');
+                                                                $(".comslider3").html('<img src='+selectedProp[propIndex3]['picture']['linkFront']+' width=165 height=110/>');
                                                                 $("#comparePrice3").html(selectedProp[propIndex3]['price']);
                                                                 $("#CompareBeds3").html(selectedProp[propIndex3]['bedrooms']);
                                                                 $("#CompareBaths3").html(selectedProp[propIndex3]['bathrooms']);
@@ -1196,8 +1201,27 @@ html
                         div#normal_login
                             div#hr_login
                                 p  LSR login
-                            form#form
                                 div#form-div
+                                script.
+                                    function validateForm()
+                                        {
+                                        var emailVal = document.forms["form"]["email"].value;
+                                        var pwdVal = document.forms["form"]["password"].value;
+                                        var atpos=emailVal.indexOf("@");
+                                        var dotpos=emailVal.lastIndexOf(".");
+                                        if (atpos<1 || dotpos<atpos+2 || dotpos+2>=emailVal.length)
+                                          {
+                                          alert("Not a valid e-mail address");
+                                          return false;
+                                          }
+                                          if (pwdVal.length == 0)
+                                          {
+                                          alert("Please Enter a valid password");
+                                          return false;
+                                          }
+
+                                        }
+                                form#form(method='post', action='/login', onsubmit='return validateForm();')
                                     input#email(type="email", name="email")
                                     input#password(type="password", name="password")
                             input(type="checkbox",id="checkbox")
@@ -1205,7 +1229,7 @@ html
                             p#forgot Forgot password?
                                 a  Reset it
                             div#button
-                                input#submit(type="submit", value="Login", id="login", onsubmit="validateForm()")
+                                        input#submit(type="submit", value="Login", id="login")
                         div#border
                             a OR
                         div#social_network
