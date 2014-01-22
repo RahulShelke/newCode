@@ -388,13 +388,13 @@ app.get('/sendignupmail', function(req, res){
     var transport = nodemailer.createTransport("SMTP", {
         service: "Gmail",
         auth: {
-            user: "chinna.wip@gmail.com",
-            pass: "Muhil68445"
+            user: "tagtest123456@gmail.com",
+            pass: "tag123456"
         }
     });
     var mailOptions = {
-        from: "chinna.wip@gmail.com",
-        to: "chinna_wip@yahoo.com",
+        from: "tagtest123456@gmail.com",
+        to: "tagtest123456@gmail.com",
         subject: "Welcome to LSR portal",
  //       text: req.params.image,
         html:
@@ -418,13 +418,13 @@ app.get('/sendmail/images/:image/:price/:beds/:area/:built/:baths/:type', functi
     var transport = nodemailer.createTransport("SMTP", {
         service: "Gmail",
         auth: {
-            user: "chinna.wip@gmail.com",
-            pass: "Muhil68445"
+            user: "tagtest123456@gmail.com",
+            pass: "tag123456"
         }
     });
     var mailOptions = {
-        from: "chinna.wip@gmail.com",
-        to: "chinna_wip@yahoo.com",
+        from: "tagtest123456@gmail.com",
+        to: "tagtest123456@gmail.com",
         subject: "Property Details...",
  //       text: req.params.image,
         html: 
