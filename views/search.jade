@@ -90,11 +90,11 @@ html
                                 br
                                 a Bedrooms
                                 br
-                                //input#BedroomsSlider(type="slider", value="2", name="bedroom", style="display:block;")
+                                //input#BedroomsSlider(type="slider", value="2", name="bedrooms", style="display:block;")
                                 div(style="width: 83%;height: 20px;border: 1px solid #d9d9d9;margin:0 auto;background:#fff;border-radius:3px;")
                                     div.noUiSlider(style="width: 180px;height: 20px; margin: 0 auto")
                                     script(type='text/javascript', charset='utf-8').
-                                        var inp1= $('.noUiSlider').parent().find('[name="bedroom"]')
+                                        var inp1= $('.noUiSlider').parent().find('[name="bedrooms"]')
                                         $('.noUiSlider').noUiSlider({
                                         range: [1,5],
                                         start: 1,
@@ -102,7 +102,7 @@ html
                                         connect: false,
                                         step:1,
                                         serialization: {
-                                        to: ["bedroom",inp1],
+                                        to: ["bedrooms",inp1],
                                         // round to 0 decimals
                                             resolution: 1
                                         }
@@ -111,11 +111,11 @@ html
                                 br
                                 a Bathrooms
                                 br
-                                //input#BathroomsSlider(type="slider", value="2", name="bathroom", style="display:block;")
+                                //input#BathroomsSlider(type="slider", value="2", name="bathrooms", style="display:block;")
                                 div(style="width: 83%;height: 20px;border: 1px solid #d9d9d9;margin:0 auto;background:#fff;border-radius:3px;")
                                     div.noUiSlider2(style="width: 180px;height: 20px; margin: 0 auto")
                                     script(type='text/javascript', charset='utf-8').
-                                               var inp2 = $('.noUiSlider').parent().find('[name="bathroom"]')
+                                               var inp2 = $('.noUiSlider').parent().find('[name="bathrooms"]')
                                                 $('.noUiSlider2').noUiSlider({
                                                 range: [1,5],
                                                 start: 1,
@@ -123,7 +123,7 @@ html
                                                 connect: false,
                                                 step:1,
                                                 serialization: {
-                                                to: ["bathroom",inp2],
+                                                to: ["bathrooms",inp2],
                                                 // round to 0 decimals
                                                     resolution: 1
                                                 }
@@ -155,15 +155,15 @@ html
                                 p#place
                                     a Country
                                     br
-                                    input#location(type="text", name="country")
+                                    input#country(type="text", name="country")
                                 p#place
                                     a Postal Code
                                     br
-                                    input#location(type="text", name="zipcode")
+                                    input#zipcode(type="text", name="zipcode")
                                 p#place
                                     a Area Within
                                     br
-                                    input#location(type="text", name="areaOfSearch")
+                                    input#areaOfSearch(type="text", name="areaOfSearch")
 
                                 div#reset
                                     script.
@@ -252,7 +252,7 @@ html
                                             for(var i=0; i < propertyList.length ; i++){
                                                 console.log(propertyList[i]);
                                                 document.write("<br/> <div class=propertiesList style=background:url("+propertyList[i].picture.linkFront+")no-repeat;background-size:300px 175px>"
-                                                                                        +"<div id=propertyNameSearch>"+propertyList[i].productName+"<a style=float:right;margin-top:-2px;margin-right:20px><input type=checkbox name=property value="+i+"></a></div>"
+                                                                                        +"<div id=propertyNameSearch>"+propertyList[i].productName+"<a style=float:right;margin-top:-2px;margin-right:20px><input type=checkbox name=property id=cb"+i+" value="+i+"></a></div>"
                                                                                         +"<div id=propertyPriceSearch class="+i+">$"+propertyList[i].price+"<br /><a> Bed:"+propertyList[i].bedrooms+" Bath:"+propertyList[i].bathrooms+" Sqft:"+propertyList[i].area+"</a><a style=float:right;margin-top:-2px;margin-right:20px><img src=/images/green_arrow.png></div>"
                                                                                         //+"<div id=arrowKey></div>"
                                                                                         +"</div></a>"
@@ -548,9 +548,9 @@ html
                                             //Check result 0
                                             var result = results[0];
                                             //look for locality tag and administrative_area_level_1
-                                            var city = "";
-                                            var state = "";
-                                            var postalCode= "";
+                                            var city = '';
+                                            var state = '';
+                                            var postalCode= '';
                                             for (var i = 0, len = result.address_components.length; i < len; i++) {
 
                                             var ac = result.address_components[i];
@@ -615,6 +615,7 @@ html
                         input#line1PicIndx(type='hidden', value='')
                         input#classPicIndx(type='hidden', value='')
                         input#class1PicIndx(type='hidden', value='')
+                        input#propIdSldrHdr(type='hidden', value='0')
                         div#compare_body(style="display:none; width: 79%; float: right")
                             div#compare_header
                                 div#back

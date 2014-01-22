@@ -59,7 +59,7 @@ exports.signedup=function(req,res,done){
                     //res.send({redirect:'/loggedin'});
                     userFirstname = newUser.name.split(' ');
                     exports.userName = 'Hi '+userFirstname[0];
-                    res.redirect('/');
+                    res.redirect('/sendignupmail');
                 }
                 });
            // }

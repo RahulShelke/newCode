@@ -220,13 +220,14 @@ exports.search = function (req, res) {
     console.log(city[0]);
     if(req.body.min_price == "" ||req.body.max_price == ""){
         req.body.min_price=0;
-        req.body.max_price=1000000000000000000000;}
+        //req.body.max_price=1000000000000000000000;}
+        req.body.max_price=999999999;}
     if(req.body.prop_type == "" ){
         req.body.prop_type='';}
 
     //Query Database to find properties
-    propertyModel.where('price').gte(req.body.min_price)
-        .where('price').lte(req.body.max_price)
+    propertyModel.where('price').gte(parseInt(req.body.min_price))
+        .where('price').lte(parseInt(req.body.max_price))
         .where('bedrooms',req.body.bedrooms)
         .where('bathrooms',req.body.bathrooms)
         .where('type').in([new RegExp(req.body.location,'i')])

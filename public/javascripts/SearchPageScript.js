@@ -3,8 +3,20 @@ function showListView(){
     var selectedImage;
     document.getElementById('mainAside').innerHTML='<div id=MapDiv>' +
                                                         '<ul id="searchList">'+
-                                                            "<li class=zoomedDetails style=width:100%><div id=propertyZoomedDetails><br />" +
-                                                            "<div class=slider> <div class=bxslider>"
+                                                            "<li class=zoomedDetails style=width:100%><div id=propertyZoomedDetails><br/>" +
+                                                            '<div id="sliderHdrAddr">'
+                                                            +'<span id="selectButton" class="select_box"><div id="selectButtonDiv"><h3>Select</h3></div></span>'
+                                                            +'<a class="comproductNameSldrHdr">'
+                                                            +propertyList[0].productName
+                                                            +'</a><p class="comAddressSldrHdr">'
+                                                            +propertyList[0].address.line1+', '
+                                                            +propertyList[0].address.line2+', '
+                                                            +propertyList[0].address.city+', '
+                                                            +propertyList[0].address.state+', '
+                                                            +propertyList[0].address.country +' - '
+                                                            +propertyList[0].address.zip
+                                                            +'</p></div>'
+                                                            +"<div class=slider> <div class=bxslider>"
                                                             +"<img src="+propertyList[0].picture.linkFront+" width=580 height=270/>"
                                                             +"<img src="+propertyList[0].picture.linkBack+" width=580 height=270/>"
                                                             +"<img src="+propertyList[0].picture.linkLeft+" width=580 height=270/>"
@@ -185,9 +197,20 @@ function showListView(){
                 , bath = propertyList[index].bathrooms
                 , type = propertyList[index].productType;
 
-                var a = $("<a>").attr("href", url+'/sendmail'+selectedImage+'/'+price+'/'+beds+'/'+area+'/'+built+'/'+bath+'/'+type).appendTo("body");
+            /*var a = $("<a>").attr("href", url+'/sendmail'+selectedImage+'/'+price+'/'+beds+'/'+area+'/'+built+'/'+bath+'/'+type).appendTo("body");
             a[0].click();
-            a.remove();
+            a.remove();*/
+            alert('Mail sent.');
+            $.ajax({
+                  url:url+'/sendmail'+selectedImage+'/'+price+'/'+beds+'/'+area+'/'+built+'/'+bath+'/'+type,
+                  type:'GET',
+                  success:function(reslt){
+                              console.log('Mail sent.');
+                          },
+                  error:function(error){
+                              console.log('Error while sending mail:'+ error);
+                          }
+              });
           });                                    
         $('#printimg').click(function(){
             var propDtlHtml = document.getElementById('mainAside').innerHTML.substring(document.getElementById('mainAside').innerHTML.indexOf('<div id="price">'));
@@ -250,6 +273,9 @@ function showListView(){
             $("#baths").html("Baths: "+propertyList[i].bathrooms);
             $("#area").html("Area: "+propertyList[i].area);
             $("#type").html("Type: "+propertyList[i].productType);
+            $('#propIdSldrHdr').val(i);
+            $('.comproductNameSldrHdr').html(propertyList[i].productName);
+            $('.comAddressSldrHdr').html(propertyList[i].address.line1+', '+propertyList[i].address.line2+', '+propertyList[i].address.city+', '+propertyList[i].address.state+', '+propertyList[i].address.country +' - '+propertyList[i].address.zip);
             $('.slider').empty();
             $('.slider').append(
                 "<div class=\"bxslider\"> <img src="+propertyList[i].picture.linkFront+" width=100% height=270/>"
@@ -300,7 +326,9 @@ function showListView(){
             var i = $(this).attr('class');
             setSelectedProp(i);
         });
-        
+        $('#selectButtonDiv').on('click', function(){
+            $("#cb"+$('#propIdSldrHdr').val()).attr('checked','checked');
+        });
         $(document).ready(function(){
             console.log("Document Ready...");
             $('.bxslider').bxSlider({

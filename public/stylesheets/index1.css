@@ -266,6 +266,49 @@ a, button, input[type="submit"] {
 
 }
 
+#selectButtonDiv{
+    background: #5DA629;
+    border: 0 none;
+    border-radius:2px ;
+    padding: 7px 23px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 40px;
+}
+
+#sliderHdrAddr span { 
+    float: right;
+    width: 40px;
+    margin-right: 50px;
+    margin-top: 13px;
+}
+#sliderHdrAddr{
+    width: 100%;
+    height: 60px;
+    background-color: #000000;
+    text-align: justify;
+}
+
+#sliderHdrAddr a{
+    color: #ffffff;
+}
+.comproductNameSldrHdr{
+    font: 26px bold;
+    padding-left: 10px;
+}
+.comAddressSldrHdr{
+    color: #ffffff;
+    font-size: 12px;
+    padding-left: 10px;
+}
+.comAddress1SldrHdr{
+    color: #ffffff;
+    font-size: 12px;
+    padding-left: 10px;
+}
+
 #bannerAd{
     width: 160px;
     height: 220px;

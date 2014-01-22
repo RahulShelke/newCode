@@ -81,7 +81,7 @@ var fbAccessToken = '';
 passport.use(new FacebookStrategy({
         clientID: config.development.fb.appId,
         clientSecret: config.development.fb.appSecret,
-        callbackURL: config.development.fb.url+ '/' +'fbauthed',
+        callbackURL: config.development.fb.url+ '/' + 'fbauthed',
         passReqToCallback: true
     },
     function(req,accessToken, refreshToken, profile, done){
@@ -137,7 +137,7 @@ passport.use(new FacebookStrategy({
                             console.log(err);
                             //throw err;
                         }
-                        console.log('New user: ' + newUser.name + ' created and logged in!');
+                        console.log('FB New user: ' + newUser.name + ' created and logged in!');
                         done(null, newUser);
                     });
                 }
@@ -384,26 +384,56 @@ function ensureAuthenticated(req, res, next) {
     res.redirect('/login')
 };
 
+app.get('/sendignupmail', function(req, res){
+    var transport = nodemailer.createTransport("SMTP", {
+        service: "Gmail",
+        auth: {
+            user: "chinna.wip@gmail.com",
+            pass: "Muhil68445"
+        }
+    });
+    var mailOptions = {
+        from: "chinna.wip@gmail.com",
+        to: "chinna_wip@yahoo.com",
+        subject: "Welcome to LSR portal",
+ //       text: req.params.image,
+        html:
+'<div><p style="padding-left:0">Hi  '+user.userName +'</p></div>'+
+'<div><p>Welcome and thanks to signup to LSR portal. Hope you get what you came here for.</p></div>'        
+    };
+    transport.sendMail(mailOptions, function(error, response){
+        if(error){
+            console.log(error);
+            return;
+        }else {
+            transport.close();
+        //   console.log('Mail sent...');
+        }
+        res.redirect('/search');
+});
+});
+
+
 app.get('/sendmail/images/:image/:price/:beds/:area/:built/:baths/:type', function(req, res){
     var transport = nodemailer.createTransport("SMTP", {
         service: "Gmail",
         auth: {
-            user: "tagtest123456@gmail.com",
-            pass: "tag123456"
+            user: "chinna.wip@gmail.com",
+            pass: "Muhil68445"
         }
     });
     var mailOptions = {
         from: "chinna.wip@gmail.com",
         to: "chinna_wip@yahoo.com",
         subject: "Property Details...",
-        //text: req.params.image,
-        html:
-            +'<div id="price"><p style="padding-left:0">Price: '+req.params.price+'</p></div><div id="property">'+
-                +'<div id="property_details"><h4>Property Details</h4></div><div id="property_types"><ul><li id="beds">Beds: '+req.params.beds+
-                +'</li><li id="area">Area: '+req.params.area+'</li><li>Built: '+req.params.built+'</li><li id="baths">Baths: '+req.params.baths+'</li><li id="type">Type: '+req.params.type+
-                +'</li></ul></div></div>'+
-                +'<div id="description_prop"><h4>Descriptions</h4><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.</p></div>'+
-                +'</div></div></li></ul></div>',
+ //       text: req.params.image,
+        html: 
+'<div id="price"><p style="padding-left:0">Price: '+req.params.price+'</p></div><div id="property">'+
+'<div id="property_details"><h4>Property Details</h4></div><div id="property_types"><ul><li id="beds">Beds: '+req.params.beds+
+'</li><li id="area">Area: '+req.params.area+'</li><li>Built: '+req.params.built+'</li><li id="baths">Baths: '+req.params.baths+'</li><li id="type">Type: '+req.params.type+
+'</li></ul></div></div>'+
+'<div id="description_prop"><h4>Descriptions</h4><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.</p></div>'+
+'</div></div></li></ul></div>',
         attachments: [{
             filePath: path.join(__dirname,'/public/images/'+req.params.image)
         }]
@@ -419,6 +449,7 @@ app.get('/sendmail/images/:image/:price/:beds/:area/:built/:baths/:type', functi
         res.redirect('/search');
 });
 });
+
 
 app.get('/sharefacebook/:image/:price/:beds/:area/:built/:baths/:type', function(req, res){
     shareOnFbClicked = 'true';
