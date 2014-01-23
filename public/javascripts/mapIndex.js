@@ -173,7 +173,7 @@ function init() {
                     //only report if we got Good Stuff
                     if (city != '' && state != '') {
                         document.getElementById("location").value = city + ',' + state;
-                        document.getElementById("zipcode").value = postalCode;
+                        //document.getElementById("zipcode").value = postalCode;
                         document.getElementById("country").value = country;
                     } else {
                         console.log('Geocoder failed' + status)
