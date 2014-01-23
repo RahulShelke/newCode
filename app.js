@@ -383,6 +383,13 @@ function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) { return next(); }
     res.redirect('/login')
 };
+app.get('/loadcountry',  function(req, res){
+var countryList = [{"ccode":"IN","country":"India"},
+{"ccode":"US","country":"United States"}];
+    
+    res.send(countryList);
+
+});
 
 app.get('/sendignupmail', function(req, res){
     var transport = nodemailer.createTransport("SMTP", {

@@ -166,7 +166,8 @@ function init() {
                         if (ac.types.indexOf("locality") >= 0) city = ac.long_name;
                         if (ac.types.indexOf("administrative_area_level_1") >= 0) state = ac.short_name;
                         if (ac.types.indexOf("postal_code") >= 0) postalCode = ac.long_name;
-                        if (ac.types.indexOf("country") >= 0) country = ac.long_name;
+                        //if (ac.types.indexOf("country") >= 0) country = ac.long_name;
+                        if (ac.types.indexOf("country") >= 0) country = ac.short_name;
                         //console.log(postalCode)
                         //console.log("**************************")
                     }
