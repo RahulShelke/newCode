@@ -225,6 +225,11 @@ exports.search = function (req, res) {
     if(req.body.prop_type == "" ){
         req.body.prop_type='';}
 
+    if(req.body.zipcode == undefined ){
+        console.loggedin('Zipcode :'+ req.body.zipcode);
+        req.body.zipcode = '';
+    }
+
     //Query Database to find properties
     propertyModel.where('price').gte(parseInt(req.body.min_price))
         .where('price').lte(parseInt(req.body.max_price))
