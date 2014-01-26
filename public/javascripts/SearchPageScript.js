@@ -374,6 +374,3 @@ function showListView(){
 
 
 }
-
-
-

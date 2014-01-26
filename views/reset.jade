@@ -1,0 +1,28 @@
+//CopyRight Tag Solutions pvt.ltd 2013
+doctype 5
+html
+    head(lang="en")
+        title LSR
+        link(rel='stylesheet', href='/stylesheets/main.css')
+        script(type='text/javascript', src='/javascripts/jquery-1.7.1.js')
+    body
+        div#container
+            div#header
+                div#logo
+                    a(href='/',style="text-decoration:none") LSR
+            div#fb-root
+            div#sub_container
+                div#id_login
+                    div#hr_login
+                        p Reset Password
+                    form#form(method='post', action='/resetPassword', onsubmit='return validateForm();')
+                        div#form-div
+                            label Email
+                            input#email(type="email", name="email")
+                            label Password
+                            input#password(type="password", name="password")
+                        div#button
+                            input#submit(type="submit", value="Reset")
+                            //input#logout(type="submit", value="Logout")
+                            //p
+                                a Forgot password?

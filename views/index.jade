@@ -72,7 +72,6 @@ html
                                                 $(this).css('background', '#606060');
                                                 var hahaha=$(this).attr("value");
 
-                                                //alert(hahaha);
                                                 document.getElementById("chosenType").value=hahaha;
                                             });
                             p#place
@@ -148,30 +147,7 @@ html
                                         $("#hidingDiv").show();
                                         $("#showingDiv").hide();
                                     });
-                                    var url = '';
-                                        url = (window.location.pathname.length > 1)? window.location.href.replace(window.location.pathname, '/') + 'loadcountry' : window.location.href + 'loadcountry' ;
-                                    $.ajax({
-                                            type: "get",
-                                            contentType: "application/json; charset=utf-8",
-                                            data: {},
-                                            url: url,
-                                            dataType: "json",
-                                            success: successResponse,
-                                            error: errorResponse
-                                    });// end ajax
-
-                                    // success function
-                                    function successResponse(response){
-                                    $.each(response, function (key, value) {
-                                        var appendData = "<option value='" + value.ccode + "'>" + value.country + "</option>";
-                                        $("#country").html($("#country").html() + appendData);
-                                    });
-                                    }
-                                    // ajax error function
-                                    function errorResponse(xhr, ajaxOptions, thrownError) {
-                                        alert('Error on Ajax Call' + '\n Status: ' + xhr.status + '\n Response Text: ' + xhr.responseText + '\n Error: ' + thrownError);                
-                                    }
-
+                                    loadCountries('#country', '');
                                 });
                             div#showingDiv(style="display: none")
                                 div#less
@@ -205,6 +181,22 @@ html
                                     div#MapDiv
                                         script.
                                             var propertyList = JSON.parse( !{JSON.stringify(products)} );
+                                            if('#{sort}' == 'Priceh'){
+                                                propertyList.sort(function(a, b){
+                                                return b.price - a.price;});
+                                            }
+                                            else if('#{sort}' == 'Pricel'){
+                                                propertyList.sort(function(a, b){
+                                                return a.price - b.price;});
+                                            }
+                                            else if('#{sort}' == 'Bedl'){
+                                                propertyList.sort(function(a, b){
+                                                return a.bedrooms - b.bedrooms;});
+                                            }
+                                            else if('#{sort}' == 'Batl'){
+                                                propertyList.sort(function(a, b){
+                                                return a.bathrooms - b.bathrooms;});
+                                            }
                                             var mapIndex = #{mapIndex}
                                                 , userName = '#{userName}'
                                                 , loginidhtml = document.getElementById("loginid").innerHTML;
@@ -411,7 +403,7 @@ html
                                                                 for(var i=0; i < propertyList.length ; i++){
                                                                 console.log(propertyList[i].bathrooms);
                                                                 document.getElementById("list1").innerHTML += "<br/><div class=propertiesList style=background:url("+propertyList[i].picture.linkFront+")no-repeat;background-size:300px 175px>"
-                                                                                                                +"<div id=propertyName>"+propertyList[i].productName+"<a style=float:right;margin-top:-2px;margin-right:20px><input type=checkbox name=property value="+i+"></a></div>"
+                                                                                                                +"<div id=propertyName>"+propertyList[i].productName+"<a style=float:right;margin-top:-2px;margin-right:20px><input type=checkbox name=property id=cb"+i+" value="+i+"></a></div>"
                                                                                                                 +"<div id=propertyPrice class="+i+">$"+propertyList[i].price+"<br /><a> Bed:"+propertyList[i].bedrooms+" Bath:"+propertyList[i].bathrooms+" Sqft:"+propertyList[i].area+"</a><a style=float:right;margin-top:-2px;margin-right:20px><img src=/images/green_arrow.png></div>"
                                                                                                                 //+"<div id=arrowKey></div>"
                                                                                                                 +"</div></a>" }}
@@ -421,6 +413,7 @@ html
                                                                 return a.price - b.price;})
                                                                 console.log(propertyList);
                                                                 populate();
+                                                                setPropSlider('0');
                                                                 }
 
                                                                 function sortDescendingByPrice(){
@@ -428,6 +421,7 @@ html
                                                                     return b.price - a.price;})
                                                                     console.log(propertyList);
                                                                     populate();
+                                                                    setPropSlider('0');
                                                                 }
 
                                                                 function sortAscendingBybed(){
@@ -435,13 +429,17 @@ html
                                                                     return a.bedrooms - b.bedrooms;})
                                                                     console.log(propertyList);
                                                                     populate();
+                                                                    setPropSlider('0');
                                                                 }
 
                                                                 function sortAscendingBybath(){
                                                                     propertyList.sort(function(a, b){
                                                                     return a.bathrooms - b.bathrooms;})
                                                                     populate();
+                                                                    setPropSlider('0');
                                                                 }
+                                                                propertyList.sort(function(a, b){
+                                                                    return b.price - a.price;})
 
                                                                 for(var i=0; i < propertyList.length ; i++){
                                                                     console.log(propertyList[i]);
@@ -1230,7 +1228,12 @@ html
 
                                                     });
                                 else if routePath === "Add"
-                                    form(method="POST",action="/properties",enctype='multipart/form-data')
+                                    div#form-add-div
+                                        script.
+                                            $(document).ready(function(){
+                                               loadCountries('#country-add', '');
+                                            });
+                                        form#form-add(method="POST",action="/properties",enctype='multipart/form-data')
                                         p#Addelements Name for Property :
                                             input(type="text", name="productName")
                                         p#Addelements Type for the Product :
@@ -1257,8 +1260,10 @@ html
                                             input(type="text", name="city")
                                         p#Addelements Property's State:
                                             input(type="text", name="state")
-                                        p#Addelements Property's Country:
-                                            input(type="text", name="country")
+                                            p#country-label Property's Country:
+                                                //input(type="text", name="country")
+                                                select#country-add(name="country")
+                                                    option(value='')
                                         p#Addelements Property's Zip:
                                             input(type="text", name="zip")
                                         p#Addelements Property's Latitude :
@@ -1275,9 +1280,13 @@ html
                                             input(type="file", name="pictureRight")
                                         button#serachFunctionButton(type="submit", name="AddProduct") Add Product
                                 else if routePath === "Edit"
-                                    div#dispaly
+                                    div#form-edit-div
+                                        script.
+                                            $(document).ready(function(){
+                                               loadCountries('#country-edit', "#{product.address.country}");
+                                            });
                                         h3 Update Products
-                                        form(method="POST",action="/properties/#{product.productName}",enctype='multipart/form-data')
+                                        form#form-edit(method="POST",action="/properties/#{product.productName}",enctype='multipart/form-data')
                                             input(type="hidden", name="_method", value="PUT")
                                             p#Addelements Name for Property :
                                                 input(type="text", name="name", value="#{product.productName}")
@@ -1305,8 +1314,10 @@ html
                                                 input(type="text", name="city", value="#{product.address.city}")
                                             p#Addelements Property's State:
                                                 input(type="text", name="state", value="#{product.address.state}")
-                                            p#Addelements Property's Country:
-                                                input(type="text", name="country", value="#{product.address.country}")
+                                            p#edit-country-label Property's Country:
+                                                //input(type="text", name="country", value="#{product.address.country}")
+                                                select#country-edit(name="country")
+                                                    option(value='')
                                             p#Addelements Property's Zip:
                                                 input(type="text", name="zip", value="#{product.address.zip}")
                                             p#Addelements Property's Latitude :
@@ -1323,23 +1334,39 @@ html
                                                 input(type="file", name="pictureRight")
                                             button#serachFunctionButton(type="submit") Update
                                 else if routePath === "Show"
-                                    div#dispaly
-                                        p Name for Property : #{product.productName}
-                                        p Type for the Property (Sale/Rental etc) : #{product.type}
-                                        p Property Price : #{product.price}
-                                        p Property's Number of Bedrooms : #{product.bedrooms}
-                                        p Property's Number of Bathrooms : #{product.bathrooms}
-                                        p Property's Area : #{product.area}
-                                        p Property's Amenities : #{product.amenities}
-                                        p Property's Comments : #{product.comments_from_user}
-                                        p Property's Address line1 : #{product.address.line1}
-                                        p Property's Address line2 : #{product.address.line2}
-                                        p Property's City: #{product.address.city}
-                                        p Property's State: #{product.address.state}
-                                        p Property's Country: #{product.address.country}
-                                        p Property's Zip: #{product.address.zip}
-                                        p Property's Latitude : #{product.LatLng.latitude}
-                                        p Property's Longitude : #{product.LatLng.longitude}
+                                    div#show-div
+                                        p Name for Property :
+                                            a #{product.productName}
+                                        p Type for the Property (Sale/Rental etc) :
+                                            a #{product.type}
+                                        p Property Price : 
+                                            a #{product.price}
+                                        p Property's Number of Bedrooms : 
+                                            a #{product.bedrooms}
+                                        p Property's Number of Bathrooms : 
+                                            a #{product.bathrooms}
+                                        p Property's Area : 
+                                            a #{product.area}
+                                        p Property's Amenities : 
+                                            a #{product.amenities}
+                                        p Property's Comments : 
+                                            a #{product.comments_from_user}
+                                        p Property's Address line1 : 
+                                            a #{product.address.line1}
+                                        p Property's Address line2 : 
+                                            a #{product.address.line2}
+                                        p Property's City: 
+                                            a #{product.address.city}
+                                        p Property's State: 
+                                            a #{product.address.state}
+                                        p Property's Country: 
+                                            a #{product.address.country}
+                                        p Property's Zip: 
+                                            a #{product.address.zip}
+                                        p Property's Latitude : 
+                                            a #{product.LatLng.latitude}
+                                        p Property's Longitude : 
+                                            a #{product.LatLng.longitude}
                                         img(src="#{product.picture}", width="32", height="32")
                                         a(href="/properties/#{product.productName}/edit", style="text-decoration: none")
                                             h3 Edit
@@ -1529,6 +1556,7 @@ html
                                 p  LSR login
                             div#form-div
                                 script.
+                                    $(document).ready(function(){
                                     function validateForm()
                                         {
                                         var emailVal = document.forms["form"]["email"].value;
@@ -1545,15 +1573,21 @@ html
                                           alert("Please Enter a valid password");
                                           return false;
                                           }
-
-                                        }
+                                            }
+                                            $('#email').val('#{email}');
+                                            $('#password').val('#{pwd}');
+                                            if('#{remember}'){
+                                                $("#remember").attr('checked','checked');
+                                            }
+                                    });
+                                        
                                 form#form(method='post', action='/login', onsubmit='return validateForm();')
-                                    input#email(type="email", name="email")
-                                    input#password(type="password", name="password")
-                                    input(type="checkbox",id="checkbox")
-                                    p#remember Remember me
+                                    input#email(type="email", name="email", value="")
+                                    input#password(type="password", name="password", value="")
+                                    input#remember(type="checkbox", name="remember")
+                                    p#remember-lable Remember me
                                     p#forgot Forgot password?
-                                        a  Reset it
+                                        a(href="/reset")  Reset it
                                     div#button
                                         input#submit(type="submit", value="Login", id="login")
                         div#border
@@ -1574,6 +1608,10 @@ html
                             script.
                                 $("#propertyPrice").live('click',function() {
                                 var i = $(this).attr('class');
+                                setPropSlider(i);
+                                return false;
+                                });
+                                function setPropSlider(i){
                                 $("#LocationClick").removeClass().addClass(i);
                                 $("#SendMailClick").removeClass().addClass(i);
                                 $("#SaveClick").removeClass().addClass(i);
@@ -1632,10 +1670,32 @@ html
                                         }
                                     });
 
-                                return false;
-                                });
-
+                                }
                                 $(document).ready(function(){
+                                    var url = '';
+                                        url = (window.location.pathname.length > 1)? window.location.href.replace(window.location.pathname, '/') + 'loadcountry' : window.location.href + 'loadcountry' ;
+                                    $.ajax({
+                                            type: "get",
+                                            contentType: "application/json; charset=utf-8",
+                                            data: {},
+                                            url: url.replace('#', ''),
+                                            dataType: "json",
+                                            success: successResponse,
+                                            error: errorResponse
+                                    });// end ajax
+
+                                    // success function
+                                    function successResponse(response){
+                                    $.each(response, function (key, value) {
+                                        //var appendData = "<option value='" + value.ccode + "'>" + value.country + "</option>";
+                                        var appendData = "<option value='" + value.country + "'>" + value.country + "</option>";
+                                        $("#country").html($("#country").html() + appendData);
+                                    });
+                                    }
+                                    // ajax error function
+                                    function errorResponse(xhr, ajaxOptions, thrownError) {
+                                        alert('Error on loading countries.' + thrownError);                
+                                    }
                                     $('.bxslider').bxSlider({
                                         mode: 'horizontal',
                                          auto: true,
@@ -1673,11 +1733,42 @@ html
                                     });
                                 });
                             script.
+                                function loadCountries(countrySelecter, defaultVal){
+                                    var url = '';
+                                    url = (window.location.pathname.length > 1)? window.location.href.replace(window.location.pathname, '/') + 'loadcountry' : window.location.href + 'loadcountry' ;
+                                    $.ajax({
+                                            type: "get",
+                                            contentType: "application/json; charset=utf-8",
+                                            data: {},
+                                            url: url.replace('#', ''),
+                                            dataType: "json",
+                                            success: successResponse,
+                                            error: errorResponse
+                                    });// end ajax
+
+                                    // success function
+                                    function successResponse(response){
+                                    $.each(response, function (key, value) {
+                                        //var appendData = "<option value='" + value.ccode + "'>" + value.country + "</option>";
+                                        var appendData = "<option value='" + value.country + "'>" + value.country + "</option>";
+                                        $(countrySelecter).html($(countrySelecter).html() + appendData);
+                                    });
+                                        if (countrySelecter === '#country-edit'){
+                                            $(countrySelecter).val(defaultVal);
+                                        }
+                                    }
+                                    // ajax error function
+                                    function errorResponse(xhr, ajaxOptions, thrownError) {
+                                        alert('Error on Loading Countries.' + thrownError);                
+                                    }
+                                };
                                 var url = $(location).attr('href');
                                 url = url.substring(0, url.lastIndexOf('/'));
                                 $("#LocationClick").live('click',function() {
                                     var propid = $(this).attr('class');
-                                    var a = $('<a>').attr('href', url+'/locationmap/'+propid).appendTo('body');
+                                    var mylist=document.getElementById("mySelect");
+                                    var sort = mylist.options[mylist.selectedIndex].value;
+                                    var a = $('<a>').attr('href', url+'/locationmap/'+propid+'/'+sort).appendTo('body');
                                     a[0].click();
                                     a.remove();
                                 });

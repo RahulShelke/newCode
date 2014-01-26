@@ -303,6 +303,8 @@ app.get('/s',function(req,res){
 });
 app.get('/locationmap/:propid', productRoutes.locationMap);
 
+app.get('/locationmap/:propid/:sort', productRoutes.locationMap);
+
 app.get('/compare',productRoutes.compare);
 
 app.get('/logout', user.logout);
@@ -311,6 +313,8 @@ app.get('/logout', user.logout);
 app.post('/lsrLogin',user.index);
 app.post('/login',user.index);
 app.get('/signup', user.signup);
+app.get('/reset', user.reset);
+app.post('/resetPassword', user.resetPassword);
 app.post('/signedup', user.signedup);
 app.get('/index1',function(req,res){
     res.render('indexnew.jade')
@@ -384,11 +388,282 @@ function ensureAuthenticated(req, res, next) {
     res.redirect('/login')
 };
 app.get('/loadcountry',  function(req, res){
-var countryList = [{"ccode":"IN","country":"India"},
-{"ccode":"US","country":"United States"}];
+// var countryList = [{"ccode":"IN","country":"India"},
+// {"ccode":"US","country":"United States"}];
+
+var countryList = [{"ccode":  "AF", "country": "AFGHANISTAN"},
+{"ccode":  "AL", "country": "ALBANIA"},
+{"ccode":  "DZ", "country": "ALGERIA"},
+{"ccode":  "AS", "country": "AMERICAN SAMOA"},
+{"ccode":  "AD", "country": "ANDORRA"},
+{"ccode":  "AO", "country": "ANGOLA"},
+{"ccode":  "AI", "country": "ANGUILLA"},
+{"ccode":  "AQ", "country": "ANTARCTICA"},
+{"ccode":  "AG", "country": "ANTIGUA AND BARBUDA"},
+{"ccode":  "AR", "country": "ARGENTINA"},
+{"ccode":  "AM", "country": "ARMENIA"},
+{"ccode":  "AW", "country": "ARUBA"},
+{"ccode":  "AU", "country": "AUSTRALIA"},
+{"ccode":  "AT", "country": "AUSTRIA"},
+{"ccode":  "AZ", "country": "AZERBAIJAN"},
+{"ccode":  "BS", "country": "BAHAMAS"},
+{"ccode":  "BH", "country": "BAHRAIN"},
+{"ccode":  "BD", "country": "BANGLADESH"},
+{"ccode":  "BB", "country": "BARBADOS"},
+{"ccode":  "BY", "country": "BELARUS"},
+{"ccode":  "BE", "country": "BELGIUM"},
+{"ccode":  "BZ", "country": "BELIZE"},
+{"ccode":  "BJ", "country": "BENIN"},
+{"ccode":  "BM", "country": "BERMUDA"},
+{"ccode":  "BT", "country": "BHUTAN"},
+{"ccode":  "BO", "country": "BOLIVIA"},
+{"ccode":  "BA", "country": "BOSNIA AND HERZEGOWINA"},
+{"ccode":  "BW", "country": "BOTSWANA"},
+{"ccode":  "BV", "country": "BOUVET ISLAND"},
+{"ccode":  "BR", "country": "BRAZIL"},
+{"ccode":  "IO", "country": "BRITISH INDIAN OCEAN TERRITORY"},
+{"ccode":  "BN", "country": "BRUNEI DARUSSALAM"},
+{"ccode":  "BG", "country": "BULGARIA"},
+{"ccode":  "BF", "country": "BURKINA FASO"},
+{"ccode":  "BI", "country": "BURUNDI"},
+{"ccode":  "KH", "country": "CAMBODIA"},
+{"ccode":  "CM", "country": "CAMEROON"},
+{"ccode":  "CA", "country": "CANADA"},
+{"ccode":  "CV", "country": "CAPE VERDE"},
+{"ccode":  "KY", "country": "CAYMAN ISLANDS"},
+{"ccode":  "CF", "country": "CENTRAL AFRICAN REPUBLIC"},
+{"ccode":  "TD", "country": "CHAD"},
+{"ccode":  "CL", "country": "CHILE"},
+{"ccode":  "CN", "country": "CHINA"},
+{"ccode":  "CX", "country": "CHRISTMAS ISLAND"},
+{"ccode":  "CC", "country": "COCOS (KEELING) ISLANDS"},
+{"ccode":  "CO", "country": "COLOMBIA"},
+{"ccode":  "KM", "country": "COMOROS"},
+{"ccode":  "CG", "country": "CONGO"},
+{"ccode":  "CD", "country": "CONGO, THE DRC"},
+{"ccode":  "CK", "country": "COOK ISLANDS"},
+{"ccode":  "CR", "country": "COSTA RICA"},
+{"ccode":  "CI", "country": "COTE D'IVOIRE"},
+{"ccode":  "HR", "country": "CROATIA (local name: Hrvatska)"},
+{"ccode":  "CU", "country": "CUBA"},
+{"ccode":  "CY", "country": "CYPRUS"},
+{"ccode":  "CZ", "country": "CZECH REPUBLIC"},
+{"ccode":  "DK", "country": "DENMARK"},
+{"ccode":  "DJ", "country": "DJIBOUTI"},
+{"ccode":  "DM", "country": "DOMINICA"},
+{"ccode":  "DO", "country": "DOMINICAN REPUBLIC"},
+{"ccode":  "TP", "country": "EAST TIMOR"},
+{"ccode":  "EC", "country": "ECUADOR"},
+{"ccode":  "EG", "country": "EGYPT"},
+{"ccode":  "SV", "country": "EL SALVADOR"},
+{"ccode":  "GQ", "country": "EQUATORIAL GUINEA"},
+{"ccode":  "ER", "country": "ERITREA"},
+{"ccode":  "EE", "country": "ESTONIA"},
+{"ccode":  "ET", "country": "ETHIOPIA"},
+{"ccode":  "FK", "country": "FALKLAND ISLANDS (MALVINAS)"},
+{"ccode":  "FO", "country": "FAROE ISLANDS"},
+{"ccode":  "FJ", "country": "FIJI"},
+{"ccode":  "FI", "country": "FINLAND"},
+{"ccode":  "FR", "country": "FRANCE"},
+{"ccode":  "FX", "country": "FRANCE, METROPOLITAN"},
+{"ccode":  "GF", "country": "FRENCH GUIANA"},
+{"ccode":  "PF", "country": "FRENCH POLYNESIA"},
+{"ccode":  "TF", "country": "FRENCH SOUTHERN TERRITORIES"},
+{"ccode":  "GA", "country": "GABON"},
+{"ccode":  "GM", "country": "GAMBIA"},
+{"ccode":  "GE", "country": "GEORGIA"},
+{"ccode":  "DE", "country": "GERMANY"},
+{"ccode":  "GH", "country": "GHANA"},
+{"ccode":  "GI", "country": "GIBRALTAR"},
+{"ccode":  "GR", "country": "GREECE"},
+{"ccode":  "GL", "country": "GREENLAND"},
+{"ccode":  "GD", "country": "GRENADA"},
+{"ccode":  "GP", "country": "GUADELOUPE"},
+{"ccode":  "GU", "country": "GUAM"},
+{"ccode":  "GT", "country": "GUATEMALA"},
+{"ccode":  "GN", "country": "GUINEA"},
+{"ccode":  "GW", "country": "GUINEA-BISSAU"},
+{"ccode":  "GY", "country": "GUYANA"},
+{"ccode":  "HT", "country": "HAITI"},
+{"ccode":  "HM", "country": "HEARD AND MC DONALD ISLANDS"},
+{"ccode":  "VA", "country": "HOLY SEE (VATICAN CITY STATE)"},
+{"ccode":  "HN", "country": "HONDURAS"},
+{"ccode":  "HK", "country": "HONG KONG"},
+{"ccode":  "HU", "country": "HUNGARY"},
+{"ccode":  "IS", "country": "ICELAND"},
+{"ccode":  "IN", "country": "INDIA"},
+{"ccode":  "ID", "country": "INDONESIA"},
+{"ccode":  "IR", "country": "IRAN (ISLAMIC REPUBLIC OF)"},
+{"ccode":  "IQ", "country": "IRAQ"},
+{"ccode":  "IE", "country": "IRELAND"},
+{"ccode":  "IL", "country": "ISRAEL"},
+{"ccode":  "IT", "country": "ITALY"},
+{"ccode":  "JM", "country": "JAMAICA"},
+{"ccode":  "JP", "country": "JAPAN"},
+{"ccode":  "JO", "country": "JORDAN"},
+{"ccode":  "KZ", "country": "KAZAKHSTAN"},
+{"ccode":  "KE", "country": "KENYA"},
+{"ccode":  "KI", "country": "KIRIBATI"},
+{"ccode":  "KP", "country": "KOREA, D.P.R.O."},
+{"ccode":  "KR", "country": "KOREA, REPUBLIC OF"},
+{"ccode":  "KW", "country": "KUWAIT"},
+{"ccode":  "KG", "country": "KYRGYZSTAN"},
+{"ccode":  "LA", "country": "LAOS "},
+{"ccode":  "LV", "country": "LATVIA"},
+{"ccode":  "LB", "country": "LEBANON"},
+{"ccode":  "LS", "country": "LESOTHO"},
+{"ccode":  "LR", "country": "LIBERIA"},
+{"ccode":  "LY", "country": "LIBYAN ARAB JAMAHIRIYA"},
+{"ccode":  "LI", "country": "LIECHTENSTEIN"},
+{"ccode":  "LT", "country": "LITHUANIA"},
+{"ccode":  "LU", "country": "LUXEMBOURG"},
+{"ccode":  "MO", "country": "MACAU"},
+{"ccode":  "MK", "country": "MACEDONIA"},
+{"ccode":  "MG", "country": "MADAGASCAR"},
+{"ccode":  "MW", "country": "MALAWI"},
+{"ccode":  "MY", "country": "MALAYSIA"},
+{"ccode":  "MV", "country": "MALDIVES"},
+{"ccode":  "ML", "country": "MALI"},
+{"ccode":  "MT", "country": "MALTA"},
+{"ccode":  "MH", "country": "MARSHALL ISLANDS"},
+{"ccode":  "MQ", "country": "MARTINIQUE"},
+{"ccode":  "MR", "country": "MAURITANIA"},
+{"ccode":  "MU", "country": "MAURITIUS"},
+{"ccode":  "YT", "country": "MAYOTTE"},
+{"ccode":  "MX", "country": "MEXICO"},
+{"ccode":  "FM", "country": "MICRONESIA, FEDERATED STATES OF"},
+{"ccode":  "MD", "country": "MOLDOVA, REPUBLIC OF"},
+{"ccode":  "MC", "country": "MONACO"},
+{"ccode":  "MN", "country": "MONGOLIA"},
+{"ccode":  "ME", "country": "MONTENEGRO"},
+{"ccode":  "MS", "country": "MONTSERRAT"},
+{"ccode":  "MA", "country": "MOROCCO"},
+{"ccode":  "MZ", "country": "MOZAMBIQUE"},
+{"ccode":  "MM", "country": "MYANMAR (Burma) "},
+{"ccode":  "NA", "country": "NAMIBIA"},
+{"ccode":  "NR", "country": "NAURU"},
+{"ccode":  "NP", "country": "NEPAL"},
+{"ccode":  "NL", "country": "NETHERLANDS"},
+{"ccode":  "AN", "country": "NETHERLANDS ANTILLES"},
+{"ccode":  "NC", "country": "NEW CALEDONIA"},
+{"ccode":  "NZ", "country": "NEW ZEALAND"},
+{"ccode":  "NI", "country": "NICARAGUA"},
+{"ccode":  "NE", "country": "NIGER"},
+{"ccode":  "NG", "country": "NIGERIA"},
+{"ccode":  "NU", "country": "NIUE"},
+{"ccode":  "NF", "country": "NORFOLK ISLAND"},
+{"ccode":  "MP", "country": "NORTHERN MARIANA ISLANDS"},
+{"ccode":  "NO", "country": "NORWAY"},
+{"ccode":  "OM", "country": "OMAN"},
+{"ccode":  "PK", "country": "PAKISTAN"},
+{"ccode":  "PW", "country": "PALAU"},
+{"ccode":  "PA", "country": "PANAMA"},
+{"ccode":  "PG", "country": "PAPUA NEW GUINEA"},
+{"ccode":  "PY", "country": "PARAGUAY"},
+{"ccode":  "PE", "country": "PERU"},
+{"ccode":  "PH", "country": "PHILIPPINES"},
+{"ccode":  "PN", "country": "PITCAIRN"},
+{"ccode":  "PL", "country": "POLAND"},
+{"ccode":  "PT", "country": "PORTUGAL"},
+{"ccode":  "PR", "country": "PUERTO RICO"},
+{"ccode":  "QA", "country": "QATAR"},
+{"ccode":  "RE", "country": "REUNION"},
+{"ccode":  "RO", "country": "ROMANIA"},
+{"ccode":  "RU", "country": "RUSSIAN FEDERATION"},
+{"ccode":  "RW", "country": "RWANDA"},
+{"ccode":  "KN", "country": "SAINT KITTS AND NEVIS"},
+{"ccode":  "LC", "country": "SAINT LUCIA"},
+{"ccode":  "VC", "country": "SAINT VINCENT AND THE GRENADINES"},
+{"ccode":  "WS", "country": "SAMOA"},
+{"ccode":  "SM", "country": "SAN MARINO"},
+{"ccode":  "ST", "country": "SAO TOME AND PRINCIPE"},
+{"ccode":  "SA", "country": "SAUDI ARABIA"},
+{"ccode":  "SN", "country": "SENEGAL"},
+{"ccode":  "RS", "country": "SERBIA"},
+{"ccode":  "SC", "country": "SEYCHELLES"},
+{"ccode":  "SL", "country": "SIERRA LEONE"},
+{"ccode":  "SG", "country": "SINGAPORE"},
+{"ccode":  "SK", "country": "SLOVAKIA (Slovak Republic)"},
+{"ccode":  "SI", "country": "SLOVENIA"},
+{"ccode":  "SB", "country": "SOLOMON ISLANDS"},
+{"ccode":  "SO", "country": "SOMALIA"},
+{"ccode":  "ZA", "country": "SOUTH AFRICA"},
+{"ccode":  "SS", "country": "SOUTH SUDAN"},
+{"ccode":  "GS", "country": "SOUTH GEORGIA AND SOUTH S.S."},
+{"ccode":  "ES", "country": "SPAIN"},
+{"ccode":  "LK", "country": "SRI LANKA"},
+{"ccode":  "SH", "country": "ST. HELENA"},
+{"ccode":  "PM", "country": "ST. PIERRE AND MIQUELON"},
+{"ccode":  "SD", "country": "SUDAN"},
+{"ccode":  "SR", "country": "SURINAME"},
+{"ccode":  "SJ", "country": "SVALBARD AND JAN MAYEN ISLANDS"},
+{"ccode":  "SZ", "country": "SWAZILAND"},
+{"ccode":  "SE", "country": "SWEDEN"},
+{"ccode":  "CH", "country": "SWITZERLAND"},
+{"ccode":  "SY", "country": "SYRIAN ARAB REPUBLIC"},
+{"ccode":  "TW", "country": "TAIWAN, PROVINCE OF CHINA"},
+{"ccode":  "TJ", "country": "TAJIKISTAN"},
+{"ccode":  "TZ", "country": "TANZANIA, UNITED REPUBLIC OF"},
+{"ccode":  "TH", "country": "THAILAND"},
+{"ccode":  "TG", "country": "TOGO"},
+{"ccode":  "TK", "country": "TOKELAU"},
+{"ccode":  "TO", "country": "TONGA"},
+{"ccode":  "TT", "country": "TRINIDAD AND TOBAGO"},
+{"ccode":  "TN", "country": "TUNISIA"},
+{"ccode":  "TR", "country": "TURKEY"},
+{"ccode":  "TM", "country": "TURKMENISTAN"},
+{"ccode":  "TC", "country": "TURKS AND CAICOS ISLANDS"},
+{"ccode":  "TV", "country": "TUVALU"},
+{"ccode":  "UG", "country": "UGANDA"},
+{"ccode":  "UA", "country": "UKRAINE"},
+{"ccode":  "AE", "country": "UNITED ARAB EMIRATES"},
+{"ccode":  "GB", "country": "UNITED KINGDOM"},
+{"ccode":  "US", "country": "UNITED STATES"},
+{"ccode":  "UM", "country": "U.S. MINOR ISLANDS"},
+{"ccode":  "UY", "country": "URUGUAY"},
+{"ccode":  "UZ", "country": "UZBEKISTAN"},
+{"ccode":  "VU", "country": "VANUATU"},
+{"ccode":  "VE", "country": "VENEZUELA"},
+{"ccode":  "VN", "country": "VIET NAM"},
+{"ccode":  "VG", "country": "VIRGIN ISLANDS (BRITISH)"},
+{"ccode":  "VI", "country": "VIRGIN ISLANDS (U.S.)"},
+{"ccode":  "WF", "country": "WALLIS AND FUTUNA ISLANDS"},
+{"ccode":  "EH", "country": "WESTERN SAHARA"},
+{"ccode":  "YE", "country": "YEMEN"},
+{"ccode":  "ZM", "country": "ZAMBIA"},
+{"ccode":  "ZW", "country": "ZIMBABWE "}];
     
     res.send(countryList);
 
+});
+
+app.get('/sendresetpwdmail', function(req, res){
+    var transport = nodemailer.createTransport("SMTP", {
+        service: "Gmail",
+        auth: {
+            user: "chinna.wip@gmail.com",
+            pass: "Mom@12345"
+        }
+    });
+    var mailOptions = {
+        from: "chinna.wip@gmail.com",
+        to: "chinna_wip@yahoo.com",
+        subject: "LSR portal confidential information...",
+ //       text: req.params.image,
+        html: 
+'<div><p style="padding-left:0">'+user.userName +'</p></div>'+
+'<div><p>This is a notification mail that your password has been changed.</p></div>'        
+    };
+    transport.sendMail(mailOptions, function(error, response){
+        if(error){
+            console.log(error);
+            return;
+        }else {
+            transport.close();
+        //   console.log('Mail sent...');
+        }
+        res.redirect('/');
+});
 });
 
 app.get('/sendignupmail', function(req, res){
@@ -405,7 +680,7 @@ app.get('/sendignupmail', function(req, res){
         subject: "Welcome to LSR portal",
  //       text: req.params.image,
         html:
-'<div><p style="padding-left:0">Hi  '+user.userName +'</p></div>'+
+'<div><p style="padding-left:0">'+user.userName +'</p></div>'+
 '<div><p>Welcome and thanks to signup to LSR portal. Hope you get what you came here for.</p></div>'        
     };
     transport.sendMail(mailOptions, function(error, response){

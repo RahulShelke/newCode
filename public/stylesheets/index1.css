@@ -1010,6 +1010,73 @@ input[type="range"]{
     font-size: 0.875em;
     margin-left:20px;
 }
+#form-add-div{
+    -moz-border-radius:12px 12px 12px 12px;
+    -webkit-border-radius: 12px 12px 12px 12px;
+    font-family: "helvetica neue",arial,helvetica,freesans,"liberation sans","numbus sans l",sans-serif;
+    font-size: 1.200em;
+    margin: 0 auto;
+    min-width: 1027px;
+}
+#form-add-div p{
+    text-align: right;
+    margin-right: 350px;
+ }
+#country-label{
+      float: left;
+      margin-left: 364px;
+      min-width: 303px;
+ }
+#country-label select{
+    width: 158px;
+    height: 27px;
+    float: right;
+    margin-left: 2px;
+    margin-top: 4px;
+    min-width: 150px;
+ }
+ #form-edit-div{
+    -moz-border-radius:12px 12px 12px 12px;
+    -webkit-border-radius: 12px 12px 12px 12px;
+    font-family: "helvetica neue",arial,helvetica,freesans,"liberation sans","numbus sans l",sans-serif;
+    font-size: 1.200em;
+    margin: 0 auto;
+    min-width: 1027px;
+}
+#form-edit-div p{
+    text-align: right;
+    margin-right: 350px;
+ }
+#edit-country-label{
+      float: left;
+      margin-left: 364px;
+      min-width: 303px;
+ }
+#edit-country-label select{
+    width: 158px;
+    height: 27px;
+    float: right;
+    margin-left: 2px;
+    margin-top: 4px;
+    min-width: 150px;
+ }
+#show-div{
+    -moz-border-radius:12px 12px 12px 12px;
+    -webkit-border-radius: 12px 12px 12px 12px;
+    font-family: "helvetica neue",arial,helvetica,freesans,"liberation sans","numbus sans l",sans-serif;
+    font-size: 1.200em;
+    margin: 0 auto;
+    min-width: 1027px;
+}
+#show-div p{
+    text-align: right;
+    margin-right: 450px;
+ }
+#show-div p a{
+    text-align: right;
+    font-weight: bold;
+ }
+
 
 #name{
     width: 200px;
@@ -1233,10 +1300,14 @@ input[type="range"]{
    /* margin-left: 5px;*/
 }
 
-#remember{
+#remember-lable{
     width: 135px;
     margin-bottom: 10px;
     margin-top: -3px;
+}
+
+#remember{
+    float: left;
 }
 
 #forgot{
