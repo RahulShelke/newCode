@@ -42,7 +42,7 @@ var propertyModel = mongoose.model('Property', propertySchema);
 exports.index = function (req, res) {
     propertyModel.find({}, function (err, docs) {
         if (err) return res.render('Error occurred');
-        res.render('index', {products: docs, routePath: "prod", title: 'Product List - By Sandeep Pagi', mapIndex: 0, userName: user.userName, sort: 'Priceh', email: req.session.email, pwd: req.session.pwd, remember: req.session.remember});
+        res.render('index', {products: docs, routePath: "prod", title: 'Product List - By Sandeep Pagi', mapIndex: 0, userName: user.userName, sort: 'Priceh', email: req.session.email, pwd: req.session.pwd, remember: req.session.remember, errormsg: ''});
     });
 };
 
@@ -203,7 +203,7 @@ exports.remove = function (req, res) {
 exports.home = function (req, res) {
     propertyModel.find({}, function (err, docs) {
         if (err) return res.render('Error occurred');
-        res.render('index', {products: JSON.stringify(docs), routePath: "home", title: 'Product List - By Sandeep Pagi', mapIndex: 0, userName: user.userName, sort: 'Priceh', email: req.session.email, pwd: req.session.pwd, remember: req.session.remember});
+        res.render('index', {products: JSON.stringify(docs), routePath: "home", title: 'Product List - By Sandeep Pagi', mapIndex: 0, userName: user.userName, sort: 'Priceh', email: req.session.email, pwd: req.session.pwd, remember: req.session.remember,  errormsg: ''});
     });
 };
 

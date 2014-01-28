@@ -120,6 +120,30 @@ input:focus, textarea:focus {
     margin-bottom: 10px;
     margin-bottom: 10px;
 }
+#firstname{
+    width: 300px;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-bottom: 10px;
+}
+#lastname{
+    width: 300px;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-bottom: 10px;
+}
+#errormsg{
+    color: #EC0F0F;
+    text-shadow: 0 1px 0 #EEEEEE;
+    text-decoration: blink;
+}
+#errormsgi{
+    color: #EC0F0F;
+    text-shadow: 0 1px 0 #EEEEEE;
+    text-decoration: blink;
+}
 
 #terms{
     width: 5px;

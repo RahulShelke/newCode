@@ -508,7 +508,7 @@ var countryList = [{"ccode":  "AF", "country": "AFGHANISTAN"},
 {"ccode":  "KR", "country": "KOREA, REPUBLIC OF"},
 {"ccode":  "KW", "country": "KUWAIT"},
 {"ccode":  "KG", "country": "KYRGYZSTAN"},
-{"ccode":  "LA", "country": "LAOS "},
+{"ccode":  "LA", "country": "LAOS"},
 {"ccode":  "LV", "country": "LATVIA"},
 {"ccode":  "LB", "country": "LEBANON"},
 {"ccode":  "LS", "country": "LESOTHO"},
@@ -539,7 +539,7 @@ var countryList = [{"ccode":  "AF", "country": "AFGHANISTAN"},
 {"ccode":  "MS", "country": "MONTSERRAT"},
 {"ccode":  "MA", "country": "MOROCCO"},
 {"ccode":  "MZ", "country": "MOZAMBIQUE"},
-{"ccode":  "MM", "country": "MYANMAR (Burma) "},
+{"ccode":  "MM", "country": "MYANMAR (Burma)"},
 {"ccode":  "NA", "country": "NAMIBIA"},
 {"ccode":  "NR", "country": "NAURU"},
 {"ccode":  "NP", "country": "NEPAL"},
@@ -631,7 +631,7 @@ var countryList = [{"ccode":  "AF", "country": "AFGHANISTAN"},
 {"ccode":  "EH", "country": "WESTERN SAHARA"},
 {"ccode":  "YE", "country": "YEMEN"},
 {"ccode":  "ZM", "country": "ZAMBIA"},
-{"ccode":  "ZW", "country": "ZIMBABWE "}];
+{"ccode":  "ZW", "country": "ZIMBABWE"}];
     
     res.send(countryList);
 
@@ -641,13 +641,13 @@ app.get('/sendresetpwdmail', function(req, res){
     var transport = nodemailer.createTransport("SMTP", {
         service: "Gmail",
         auth: {
-            user: "chinna.wip@gmail.com",
-            pass: "Mom@12345"
+            user: "tagtest123456@gmail.com",
+            pass: "tag123456"
         }
     });
     var mailOptions = {
-        from: "chinna.wip@gmail.com",
-        to: "chinna_wip@yahoo.com",
+        from: "tagtest123456@gmail.com",
+        to: "tagtest123456@gmail.com",
         subject: "LSR portal confidential information...",
  //       text: req.params.image,
         html: 
@@ -666,7 +666,7 @@ app.get('/sendresetpwdmail', function(req, res){
 });
 });
 
-app.get('/sendignupmail', function(req, res){
+app.get('/sendsignupmail', function(req, res){
     var transport = nodemailer.createTransport("SMTP", {
         service: "Gmail",
         auth: {
@@ -691,10 +691,11 @@ app.get('/sendignupmail', function(req, res){
             transport.close();
         //   console.log('Mail sent...');
         }
-        res.redirect('/search');
+        res.redirect('/');
 });
 });
 
+app.post('/sendsignupmail', user.checkuser);
 
 app.get('/sendmail/images/:image/:price/:beds/:area/:built/:baths/:type', function(req, res){
     var transport = nodemailer.createTransport("SMTP", {

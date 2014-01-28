@@ -15,21 +15,51 @@ html
                 div#id_login
                     div#hr_login
                         p Sign Up
-                    form#form
-                        div#form-div
+                    div#form-div
+                        div#errormsg
+                        script.
+                            function validateForm()
+                                {
+                                    var emailVal = document.forms["form"]["email"].value;
+                                    var pwdVal = document.forms["form"]["password"].value;
+                                    var firstNameVal = document.forms["form"]["firstname"].value,
+                                        lastNameVal = document.forms["form"]["lastname"].value;
+                                    var atpos=emailVal.indexOf("@");
+                                    var dotpos=emailVal.lastIndexOf(".");
+                                    if (atpos<1 || dotpos<atpos+2 || dotpos+2>=emailVal.length || emailVal.length == 0)
+                                      {
+                                      alert("Not a valid e-mail address");
+                                      return false;
+                                      }
+                                    if(pwdVal.length === 0 ){
+                                      alert("Please enter password.");
+                                      return false;
+                                    }
+                                    if(firstNameVal.length == 0 || lastNameVal.length == 0){
+                                      alert("Please enter first and last name.");
+                                      return false;
+                                    }
+
+                                    $.post('sendsignupmail',$("#form").serialize(), function(data){
+                                        $("#username").html(data);
+                                    //    var url = $(location).attr('href');
+                                    //        url = url.substring(0, url.indexOf('/signup'));
+                                    //    window.location.replace(url+'/loggedin');
+                                        console.log("redrecting");
+                                    });
+                                }
+                            $('#errormsg').html('<h3>'+'#{errormsg}'+'</h3>');    
+                        form#form(method='post', action='/signedup', onsubmit='return validateForm();')
                             label Email
-                            input#email(type="email", name="email")
+                            input#email(type="email", name="email", value='')
                             label Password
-                            input#password(type="password", name="password")
+                            input#password(type="password", name="password", value='')
                             label First Name
-                            input#password(type="text", name="firstName")
+                            input#firstname(type="text", name="firstname", value='')
                             label Last Name
-                            input#password(type="text", name="lastName")
-                        div#button
-                            input#submit(type="submit", value="Sign up")
-                            //input#logout(type="submit", value="Logout")
-                            //p
-                                a Forgot password?
+                            input#lastname(type="text", name="lastname", value='')
+                            div#button
+                                input#submit(type="submit", value="Sign up")
                 //div#social_network
                     div#social_link
                         a#twitter
@@ -41,15 +71,4 @@ html
                 //div#signup
                     p Need an account?
                         a(href="/signup") Sign Up
-                script.
-                    //AJax Request for sending mail
-                        $("#form").submit(function(){
-                        $.post('signedup',$("#form").serialize(), function(data){
-                            $("#username").html(data);
-                        var url = $(location).attr('href');
-                            url = url.substring(0, url.indexOf('/signup'));
-                        window.location.replace(url+'/loggedin');
-                        console.log("redrecting");
-                        });
-                        return false;
-                        });
+                

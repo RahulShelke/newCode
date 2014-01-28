@@ -1,5 +1,6 @@
 var User = require('../models/user')
-    , userFirstname;
+    , userFirstname
+    , nodemailer = require("nodemailer");
 
 exports.index= function(req,res,done){
     process.nextTick(function(){
@@ -53,31 +54,78 @@ exports.logout = function(req, res){
 };
 
 exports.signup= function(req, res){
-    res.render('signup.jade')
+    res.render('signup.jade', {errormsg: ''});
 };
 
+exports.checkuser= function(req, res, done){
+    process.nextTick(function(){
+    var query =  User.findOne({ 'lsrId': req.body.email });
+    query.exec(function(err, oldUser){
+        if (oldUser){
+            console.log('checkuser - Existing User:' + oldUser.name + ' found and logged in!');
+            exports.userName =  'Hi Guest';   
+            done(null, oldUser);  
+        } else {
+            console.log('checkuser - No User found');
+            exports.userName = 'Hi '+req.body.firstname;
+            var transport = nodemailer.createTransport("SMTP", {
+                        service: "Gmail",
+                        auth: {
+                            user: "tagtest123456@gmail.com",
+                            pass: "tag123456"
+                        }
+                    });
+                    var mailOptions = {
+                        from: "tagtest123456@gmail.com",
+                        to: "tagtest123456@gmail.com",
+                        subject: "Welcome to LSR portal",
+                 //       text: req.params.image,
+                        html: 
+                '<div><p style="padding-left:0"> Hi '+req.body.firstname +'</p></div>'+
+                '<div><p>Welcome and thanks to signup to LSR portal. Hope you get what you came here for.</p></div>'        
+                    };
+                    transport.sendMail(mailOptions, function(error, response){
+                        if(error){
+                            console.log(error);
+                            return;
+                        }else {
+                            transport.close();
+                        //   console.log('Mail sent...');
+                        }
+                        res.redirect('/');
+                });
 
+            }
+        });
+    });
+}
 exports.signedup=function(req,res,done){
     process.nextTick(function(){
+    var query =  User.findOne({ 'lsrId': req.body.email });
+    query.exec(function(err, oldUser){
+        if (oldUser){
+            console.log('Existing User:' + oldUser.name + ' found and logged in!');
+            //res.send('/signup','User already exists!');
+            res.render('signup', {errormsg: '* User already exists!'});
+        } else {
+            console.log('No User found');
                 var newUser = new User();
                 newUser.lsrId = req.body.email;
-                newUser.name = req.body.firstName+' '+req.body.lastName;
+            newUser.name = req.body.firstname+' '+req.body.lastname;
                 newUser.lsrPassword = req.body.password;
                 newUser.save(function(err){
                 if(err) {
                     console.log(err);
                 } else {
-                    console.log('New user: ' + newUser.name + ' created and logged in!');
-                    //res.send('allworked ');
+                console.log('New user: ' + newUser.name + newUser.lsrPassword+' created and logged in!');
                     done(null, newUser);
-                    //res.send({redirect:'/loggedin'});
                     userFirstname = newUser.name.split(' ');
                     exports.userName = 'Hi '+userFirstname[0];
-                    res.redirect('/sendignupmail');
+                res.redirect('/');
                 }
                 });
-           // }
-        //});
+            }
+        });
     });
 };
 

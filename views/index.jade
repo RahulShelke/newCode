@@ -1556,14 +1556,13 @@ html
                                 p  LSR login
                             div#form-div
                                 script.
-                                    $(document).ready(function(){
                                     function validateForm()
                                         {
                                         var emailVal = document.forms["form"]["email"].value;
                                         var pwdVal = document.forms["form"]["password"].value;
                                         var atpos=emailVal.indexOf("@");
                                         var dotpos=emailVal.lastIndexOf(".");
-                                        if (atpos<1 || dotpos<atpos+2 || dotpos+2>=emailVal.length)
+                                        if (atpos<1 || dotpos<atpos+2 || dotpos+2>=emailVal.length || emailVal.length == 0)
                                           {
                                           alert("Not a valid e-mail address");
                                           return false;
@@ -1574,6 +1573,7 @@ html
                                           return false;
                                           }
                                             }
+                                    $(document).ready(function(){
                                             $('#email').val('#{email}');
                                             $('#password').val('#{pwd}');
                                             if('#{remember}'){
@@ -1672,30 +1672,6 @@ html
 
                                 }
                                 $(document).ready(function(){
-                                    var url = '';
-                                        url = (window.location.pathname.length > 1)? window.location.href.replace(window.location.pathname, '/') + 'loadcountry' : window.location.href + 'loadcountry' ;
-                                    $.ajax({
-                                            type: "get",
-                                            contentType: "application/json; charset=utf-8",
-                                            data: {},
-                                            url: url.replace('#', ''),
-                                            dataType: "json",
-                                            success: successResponse,
-                                            error: errorResponse
-                                    });// end ajax
-
-                                    // success function
-                                    function successResponse(response){
-                                    $.each(response, function (key, value) {
-                                        //var appendData = "<option value='" + value.ccode + "'>" + value.country + "</option>";
-                                        var appendData = "<option value='" + value.country + "'>" + value.country + "</option>";
-                                        $("#country").html($("#country").html() + appendData);
-                                    });
-                                    }
-                                    // ajax error function
-                                    function errorResponse(xhr, ajaxOptions, thrownError) {
-                                        alert('Error on loading countries.' + thrownError);                
-                                    }
                                     $('.bxslider').bxSlider({
                                         mode: 'horizontal',
                                          auto: true,
@@ -1740,7 +1716,7 @@ html
                                             type: "get",
                                             contentType: "application/json; charset=utf-8",
                                             data: {},
-                                            url: url.replace('#', ''),
+                                            url: url.replace('#', '').replace('_=_', ''),
                                             dataType: "json",
                                             success: successResponse,
                                             error: errorResponse
