@@ -660,534 +660,536 @@ html
                         input#classPicIndx(type='hidden', value='')
                         input#class1PicIndx(type='hidden', value='')
                         input#propIdSldrHdr(type='hidden', value='0')
-                        div#compare_body(style="display:none; width: 79%; float: right")
-                            div#compare_header
-                                div#back
-                                    a(href="/search") Back
-                                div#comTitle
-                                div#close
-                                    a(href="/search") Close
-                            div#comparison
-                                div#preNav
-                                        br
-                                        br
-                                        br
-                                        br
-                                        br
-                                        br
-                                        br
-                                        br
-                                        br
-                                        br
-                                        br
-                                        br
-                                        br
-                                        br
-                                        br
-                                        script.
-                                            document.write('<div class=\"bx-wrapper\"><div class=\"bx-controls bx-has-controls-direction\"><div class=\"bx-controls-direction\"> <a class=\"bx-prev\">Prev</a></div></div></div>');
-                                            propertyIndexCurrent = 0,
-                                            selectedPropCount = 0,
-                                            propIndex0 = 0,
-                                            propIndex1 = 1,
-                                            propIndex2 = 2,
-                                            propIndex3 = 3;
-                                            //var selectedPropPrev;
-                                            $('#preNav').on('click', function() {
-                                                        //if(selectedPropPrev == undefined){
-                                                        //    selectedPropPrev = $('input[name=property]:checked').map(function() {
-                                                        //                        console.log($(this).val());
-                                                        //                        return propertyList[$(this).val()];
-                                                        //                    }).get();
-                                                        //    console.log('selectedPropPrev.length PREV :'+selectedPropPrev.length);
-                                                        //}
-
-                                                selectedPropCount = ($('#selectedPropCount').val() - 1);
-                                                propIndex3 = propIndex2;
-                                                propIndex2 = propIndex1;
-                                                propIndex1 = propIndex0;
-                                                propIndex0--;
-                                                if(propIndex0 < 0){
-                                                    propIndex0 = selectedPropCount;
-                                                }
-
-                                                $('#line0PicIndx').val(propIndex0);
-                                                $('#line1PicIndx').val(propIndex1);
-                                                $('#classPicIndx').val(propIndex2);
-                                                $('#class1PicIndx').val(propIndex3);
-
-                                                        $(".comslider").html('<img src='+selectedProp[propIndex0]['picture']['linkFront']+' width=165 height=110/>');
-                                                        $("#comparePrice").html(selectedProp[propIndex0]['price']);
-                                                        $("#CompareBeds").html(selectedProp[propIndex0]['bedrooms']);
-                                                        $("#CompareBaths").html(selectedProp[propIndex0]['bathrooms']);
-                                                        $("#CompareSqft").html(selectedProp[propIndex0]['area']);
-                                                        $("#CompareType").html(selectedProp[propIndex0]['productType']);
-                                                        $('.comproductName0').html(selectedProp[propIndex0]['productName']);
-                                                        $('.comAddress0').html(selectedProp[propIndex0]['address']['line1']+',');
-                                                        $('.comAddress01').html(selectedProp[propIndex0]['address']['city']+', '+selectedProp[propIndex0]['address']['country']);
-
-                                                        $(".comslider1").html('<img src='+selectedProp[propIndex1]['picture']['linkFront']+' width=165 height=110/>');
-                                                        $("#comparePrice1").html(selectedProp[propIndex1]['price']);
-                                                        $("#CompareBeds1").html(selectedProp[propIndex1]['bedrooms']);
-                                                        $("#CompareBaths1").html(selectedProp[propIndex1]['bathrooms']);
-                                                        $("#CompareSqft1").html(selectedProp[propIndex1]['area']);
-                                                        $("#CompareType1").html(selectedProp[propIndex1]['productType']);
-                                                        $('.comproductName1').html(selectedProp[propIndex1]['productName']);
-                                                        $('.comAddress1').html(selectedProp[propIndex1]['address']['line1']+',');
-                                                        $('.comAddress11').html(selectedProp[propIndex1]['address']['city']+', '+selectedProp[propIndex1]['address']['country']);
-                                                if (selectedPropCount >= 2){
-                                                            $(".comslider2").html('<img src='+selectedProp[propIndex2]['picture']['linkFront']+' width=165 height=110/>');
-                                                            $("#comparePrice2").html(selectedProp[propIndex2]['price']);
-                                                            $("#CompareBeds2").html(selectedProp[propIndex2]['bedrooms']);
-                                                            $("#CompareBaths2").html(selectedProp[propIndex2]['bathrooms']);
-                                                            $("#CompareSqft2").html(selectedProp[propIndex2]['area']);
-                                                            $("#CompareType2").html(selectedProp[propIndex2]['productType']);
-                                                            $('.comproductName2').html(selectedProp[propIndex2]['productName']);
-                                                            $('.comAddress2').html(selectedProp[propIndex2]['address']['line1']+',');
-                                                            $('.comAddress21').html(selectedProp[propIndex2]['address']['city']+', '+selectedProp[propIndex2]['address']['country']);
-                                                    if (selectedPropCount >= 3){
-                                                                $(".comslider3").html('<img src='+selectedProp[propIndex3]['picture']['linkFront']+' width=165 height=110/>');
-                                                                $("#comparePrice3").html(selectedProp[propIndex3]['price']);
-                                                                $("#CompareBeds3").html(selectedProp[propIndex3]['bedrooms']);
-                                                                $("#CompareBaths3").html(selectedProp[propIndex3]['bathrooms']);
-                                                                $("#CompareSqft3").html(selectedProp[propIndex3]['area']);
-                                                                $("#CompareType3").html(selectedProp[propIndex3]['productType']);
-                                                                $('.comproductName3').html(selectedProp[propIndex3]['productName']);
-                                                                $('.comAddress3').html(selectedProp[propIndex3]['address']['line1']+',');
-                                                                $('.comAddress31').html(selectedProp[propIndex3]['address']['city']+', '+selectedProp[propIndex3]['address']['country']);
-                                                    };
-                                                };
-
-
-                                            });
-                                            function getPropPictures(picIndx){
-                                                  var propPicture =
-                                                                    ['<img src='+selectedProp[picIndx]['picture']['linkFront']+' width=165 height=110/>',
-                                                                     '<img src='+selectedProp[picIndx]['picture']['linkBack']+' width=165 height=110/>',
-                                                                     '<img src='+selectedProp[picIndx]['picture']['linkLeft']+' width=165 height=110/>',
-                                                                     '<img src='+selectedProp[picIndx]['picture']['linkRight']+' width=165 height=110/>'];
-                                                  return propPicture;
-                                            }
-                                div#name
-                                    div#compare_details
-                                        p#property_name Property Name
-                                        p#compare_price Price
-                                        p#compare_beds Beds
-                                        p#compare_baths Baths
-                                        p#compare_sqft Sqft
-                                        p#compare_type Type
-                                        p#compare_built Built
-                                        p#compare_mls MLS ID
-                                        p#compare_features Features
-                                script.
-                                    var checkValues = JSON.parse( !{JSON.stringify(products)} );
-                                ul.comMainSlider
-                                    li#line0
-                                        script.
-                                            $(document).ready(function(){
-                                                $('.comslider').bxSlider({
-                                                slideWidth: 165,
-                                                minSlides: 1,
-                                                auto: true,
-                                                autoControls: false,
-                                                slideMargin: 2,
-                                                pager: false,
-                                                pause:3000,
-                                                speed: 2000
-                                                });
-                                                        
-                                                        var line0pictureCurrent = 0;
-                                                    $('#line0 > #details > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(1)').on('click', function() {
-                                                      line0pictureCurrent--;
-                                                          var line0picture = getPropPictures($('#line0PicIndx').val());
-                                                      line0pictureCurrent = (line0pictureCurrent < 0) ? (line0picture.length - 1) : line0pictureCurrent;
-                                                      $(".comslider").html(line0picture[line0pictureCurrent]);
-                                                    });
-                                                    $('#line0 > #details > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(2)').on('click', function() {
-                                                          line0pictureCurrent++;
-                                                          var line0picture = getPropPictures($('#line0PicIndx').val());
-                                                      line0pictureCurrent = (line0pictureCurrent > (line0picture.length -1)) ? 0 : line0pictureCurrent;
-                                                      $(".comslider").html(line0picture[line0pictureCurrent]);
-                                                    });
-                                            });
-                                        div#details
-                                            div#black
-                                                span#closeBox0.close_box
-                                                            script.
-                                                                $('#closeBox0').html('<h3>X</h3>');
-                                                                $('#closeBox0').on('click', function(){
-                                                                   if(selectedProp.length > 2){
-                                                                        selectedProp.splice(propIndex0,1);
-                                                                        populateValues(selectedProp);
-                                                                        propIndex0 = 0;
-                                                                        propIndex1 = 1;
-                                                                        propIndex2 = 2;
-                                                                        propIndex3 = 3;
-                                                                    } else {
-                                                                        alert("Select atleast Two properties");
-                                                                    }
-                                                                });
-                                                a.comproductName0
+                        li.lastchild
+                            aside#mainAside.propertiesListContainer
+                                    div#compare_body(style="display:none")
+                                        div#compare_header
+                                            div#back
+                                                            a(href="/search") <h4><- Back</h4>
+                                            div#comTitle
+                                            div#close
+                                                            a(href="/search") <h4>Close X</h4>
+                                        div#comparison
+                                            div#preNav
+                                                    br
+                                                    br
+                                                    br
+                                                    br
+                                                    br
+                                                    br
+                                                    br
+                                                    br
+                                                    br
+                                                    br
+                                                    br
+                                                    br
+                                                    br
+                                                    br
+                                                    br
                                                     script.
-                                                        document.write(checkValues[0]['productName']);
-                                                br
-                                                p.comAddress0
-                                                    script.
-                                                        document.write(checkValues[0]['address']['line1']+',');
+                                                        document.write('<div class=\"bx-wrapper\"><div class=\"bx-controls bx-has-controls-direction\"><div class=\"bx-controls-direction\"> <a class=\"bx-prev\">Prev</a></div></div></div>');
+                                                        propertyIndexCurrent = 0,
+                                                        selectedPropCount = 0,
+                                                        propIndex0 = 0,
+                                                        propIndex1 = 1,
+                                                        propIndex2 = 2,
+                                                        propIndex3 = 3;
+                                                        //var selectedPropPrev;
+                                                        $('#preNav').on('click', function() {
+                                                                    //if(selectedPropPrev == undefined){
+                                                                    //    selectedPropPrev = $('input[name=property]:checked').map(function() {
+                                                                    //                        console.log($(this).val());
+                                                                    //                        return propertyList[$(this).val()];
+                                                                    //                    }).get();
+                                                                    //    console.log('selectedPropPrev.length PREV :'+selectedPropPrev.length);
+                                                                    //}
 
-                                                p.comAddress01
-                                                    script.
-                                                        document.write(checkValues[0]['address']['city']+', '+checkValues[0]['address']['country']);
-                                            div.comslider
-                                            p#comparePrice
-                                                script.
-                                                    document.write(checkValues[0]['price']);
-                                            p#CompareBeds
-                                                script.
-                                                    document.write(checkValues[0]['bedrooms']);
-                                            p#CompareBaths
-                                                script.
-                                                    document.write(checkValues[0]['bathrooms']);
-                                            p#CompareSqft
-                                                script.
-                                                    document.write(checkValues[0]['area']);
-                                            p#CompareType
-                                                script.
-                                                    document.write(checkValues[0]['productType']);
-                                            p#CompareBuilt 2012
-                                            p#CompareMls 0091948
-                                            p#CompareFeatures Alarm Balcony
-                                    li#line1
-                                        script.
-                                            $(document).ready(function(){
-                                                $('.comslider1').bxSlider({
-                                                slideWidth: 165,
-                                                minSlides: 1,
-                                                auto: true,
-                                                autoControls: false,
-                                                slideMargin: 2,
-                                                pager: false,
-                                                pause:3000,
-                                                speed: 2000
-                                                });
-                                                          var  line1pictureCurrent = 0;
-                                                    $('#line1 > #details > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(1)').on('click', function() {
-                                                          line1pictureCurrent--;
-                                                          var line1picture = getPropPictures($('#line1PicIndx').val());
-                                                          line1pictureCurrent = (line1pictureCurrent < 0) ? (line1picture.length - 1) : line1pictureCurrent;
-                                                          $(".comslider1").html(line1picture[line1pictureCurrent]);
-                                                    });
-                                                    $('#line1 > #details > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(2)').on('click', function() {
-                                                          line1pictureCurrent++
-                                                          var line1picture = getPropPictures($('#line1PicIndx').val());
-                                                          line1pictureCurrent = (line1pictureCurrent > (line1picture.length -1)) ? 0 : line1pictureCurrent;
-                                                          $(".comslider1").html(line1picture[line1pictureCurrent]);
+                                                            selectedPropCount = ($('#selectedPropCount').val() - 1);
+                                                            propIndex3 = propIndex2;
+                                                            propIndex2 = propIndex1;
+                                                            propIndex1 = propIndex0;
+                                                            propIndex0--;
+                                                            if(propIndex0 < 0){
+                                                                propIndex0 = selectedPropCount;
+                                                            }
+
+                                                            $('#line0PicIndx').val(propIndex0);
+                                                            $('#line1PicIndx').val(propIndex1);
+                                                            $('#classPicIndx').val(propIndex2);
+                                                            $('#class1PicIndx').val(propIndex3);
+
+                                                                    $(".comslider").html('<img src='+selectedProp[propIndex0]['picture']['linkFront']+' width=165 height=110/>');
+                                                                    $("#comparePrice").html(selectedProp[propIndex0]['price']);
+                                                                    $("#CompareBeds").html(selectedProp[propIndex0]['bedrooms']);
+                                                                    $("#CompareBaths").html(selectedProp[propIndex0]['bathrooms']);
+                                                                    $("#CompareSqft").html(selectedProp[propIndex0]['area']);
+                                                                    $("#CompareType").html(selectedProp[propIndex0]['productType']);
+                                                                    $('.comproductName0').html(selectedProp[propIndex0]['productName']);
+                                                                    $('.comAddress0').html(selectedProp[propIndex0]['address']['line1']+',');
+                                                                    $('.comAddress01').html(selectedProp[propIndex0]['address']['city']+', '+selectedProp[propIndex0]['address']['country']);
+
+                                                                    $(".comslider1").html('<img src='+selectedProp[propIndex1]['picture']['linkFront']+' width=165 height=110/>');
+                                                                    $("#comparePrice1").html(selectedProp[propIndex1]['price']);
+                                                                    $("#CompareBeds1").html(selectedProp[propIndex1]['bedrooms']);
+                                                                    $("#CompareBaths1").html(selectedProp[propIndex1]['bathrooms']);
+                                                                    $("#CompareSqft1").html(selectedProp[propIndex1]['area']);
+                                                                    $("#CompareType1").html(selectedProp[propIndex1]['productType']);
+                                                                    $('.comproductName1').html(selectedProp[propIndex1]['productName']);
+                                                                    $('.comAddress1').html(selectedProp[propIndex1]['address']['line1']+',');
+                                                                    $('.comAddress11').html(selectedProp[propIndex1]['address']['city']+', '+selectedProp[propIndex1]['address']['country']);
+                                                            if (selectedPropCount >= 2){
+                                                                        $(".comslider2").html('<img src='+selectedProp[propIndex2]['picture']['linkFront']+' width=165 height=110/>');
+                                                                        $("#comparePrice2").html(selectedProp[propIndex2]['price']);
+                                                                        $("#CompareBeds2").html(selectedProp[propIndex2]['bedrooms']);
+                                                                        $("#CompareBaths2").html(selectedProp[propIndex2]['bathrooms']);
+                                                                        $("#CompareSqft2").html(selectedProp[propIndex2]['area']);
+                                                                        $("#CompareType2").html(selectedProp[propIndex2]['productType']);
+                                                                        $('.comproductName2').html(selectedProp[propIndex2]['productName']);
+                                                                        $('.comAddress2').html(selectedProp[propIndex2]['address']['line1']+',');
+                                                                        $('.comAddress21').html(selectedProp[propIndex2]['address']['city']+', '+selectedProp[propIndex2]['address']['country']);
+                                                                if (selectedPropCount >= 3){
+                                                                            $(".comslider3").html('<img src='+selectedProp[propIndex3]['picture']['linkFront']+' width=165 height=110/>');
+                                                                            $("#comparePrice3").html(selectedProp[propIndex3]['price']);
+                                                                            $("#CompareBeds3").html(selectedProp[propIndex3]['bedrooms']);
+                                                                            $("#CompareBaths3").html(selectedProp[propIndex3]['bathrooms']);
+                                                                            $("#CompareSqft3").html(selectedProp[propIndex3]['area']);
+                                                                            $("#CompareType3").html(selectedProp[propIndex3]['productType']);
+                                                                            $('.comproductName3').html(selectedProp[propIndex3]['productName']);
+                                                                            $('.comAddress3').html(selectedProp[propIndex3]['address']['line1']+',');
+                                                                            $('.comAddress31').html(selectedProp[propIndex3]['address']['city']+', '+selectedProp[propIndex3]['address']['country']);
+                                                                };
+                                                            };
+
+
                                                         });
-
-
-                                            });
-                                        div#details
-                                            div#black
-                                                span#close_box1.close_box
-                                                            script.
-                                                                $('#close_box1').html('<h3>X</h3>');
-                                                                $('#close_box1').on('click', function(){
-                                                                    if (selectedProp.length > 2){
-                                                                        selectedProp.splice(propIndex1,1);
-                                                                        populateValues(selectedProp);
-                                                                        propIndex0 = 0;
-                                                                        propIndex1 = 1;
-                                                                        propIndex2 = 2;
-                                                                        propIndex3 = 3;
-                                                                    } else {
-                                                                        alert("Select atleast Two properties");
-                                                                    }
+                                                        function getPropPictures(picIndx){
+                                                              var propPicture =
+                                                                                ['<img src='+selectedProp[picIndx]['picture']['linkFront']+' width=165 height=110/>',
+                                                                                 '<img src='+selectedProp[picIndx]['picture']['linkBack']+' width=165 height=110/>',
+                                                                                 '<img src='+selectedProp[picIndx]['picture']['linkLeft']+' width=165 height=110/>',
+                                                                                 '<img src='+selectedProp[picIndx]['picture']['linkRight']+' width=165 height=110/>'];
+                                                              return propPicture;
+                                                        }
+                                            div#name
+                                                div#compare_details
+                                                    p#property_name Property Name
+                                                    p#compare_price Price
+                                                    p#compare_beds Beds
+                                                    p#compare_baths Baths
+                                                    p#compare_sqft Sqft
+                                                    p#compare_type Type
+                                                    p#compare_built Built
+                                                    p#compare_mls MLS ID
+                                                    p#compare_features Features
+                                            script.
+                                                var checkValues = JSON.parse( !{JSON.stringify(products)} );
+                                            ul.comMainSlider
+                                                li#line0
+                                                    script.
+                                                        $(document).ready(function(){
+                                                            $('.comslider').bxSlider({
+                                                            slideWidth: 165,
+                                                            minSlides: 1,
+                                                            auto: true,
+                                                            autoControls: false,
+                                                            slideMargin: 2,
+                                                            pager: false,
+                                                            pause:3000,
+                                                            speed: 2000
+                                                            });
+                                                                    
+                                                                    var line0pictureCurrent = 0;
+                                                                $('#line0 > #details > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(1)').on('click', function() {
+                                                                  line0pictureCurrent--;
+                                                                      var line0picture = getPropPictures($('#line0PicIndx').val());
+                                                                  line0pictureCurrent = (line0pictureCurrent < 0) ? (line0picture.length - 1) : line0pictureCurrent;
+                                                                  $(".comslider").html(line0picture[line0pictureCurrent]);
                                                                 });
-                                                a.comproductName1
-                                                    script.
-                                                        document.write(checkValues[1]['productName']);
-                                                br
-                                                p.comAddress1
-                                                    script.
-                                                        document.write(checkValues[1]['address']['line1']+',');
-
-                                                p.comAddress11
-                                                    script.
-                                                                    document.write(checkValues[1]['address']['city']+', '+checkValues[1]['address']['country']);
-                                            div.comslider1
-                                            p#comparePrice1
-                                                script.
-                                                    document.write(checkValues[1]['price']);
-                                            p#CompareBeds1
-                                                script.
-                                                    document.write(checkValues[1]['bedrooms']);
-                                            p#CompareBaths1
-                                                script.
-                                                    document.write(checkValues[1]['bathrooms']);
-                                            p#CompareSqft1
-                                                script.
-                                                    document.write(checkValues[1]['area']);
-                                            p#CompareType1
-                                                script.
-                                                    document.write(checkValues[1]['productType']);
-                                            p#CompareBuilt1 2012
-                                            p#CompareMls1 0091948
-                                            p#CompareFeatures1 Alarm Balcony
-                                    li#class
-                                        script.
-                                            $(document).ready(function(){
-                                                $('.comslider2').bxSlider({
-                                                slideWidth: 165,
-                                                minSlides: 1,
-                                                auto: true,
-                                                autoControls: false,
-                                                slideMargin: 2,
-                                                pager: false,
-                                                pause:3000,
-                                                speed: 2000
-                                                });
-                                                            
-                                                            var classPictureCurrent = 0;
-                                                    $('#class > #details > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(1)').on('click', function() {
-                                                              classPictureCurrent--;
-                                                              var classPicture = getPropPictures($('#classPicIndx').val());
-                                                              classPictureCurrent = (classPictureCurrent < 0) ? (classPicture.length - 1) : classPictureCurrent;
-                                                              $(".comslider2").html(classPicture[classPictureCurrent]);
-                                                    });
-                                                    $('#class > #details > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(2)').on('click', function() {
-                                                              classPictureCurrent++;
-                                                              var classPicture = getPropPictures($('#classPicIndx').val());
-                                                              classPictureCurrent = (classPictureCurrent > (classPicture.length -1)) ? 0 : classPictureCurrent;
-                                                              $(".comslider2").html(classPicture[classPictureCurrent]);
-                                                    });
-                                            });
-                                        div#details
-                                            div#black
-                                                span#close_box2.close_box
-                                                            script.
-                                                                $('#close_box2').html('<h3>X</h3>');
-                                                                $('#close_box2').on('click', function(){
-                                                                    if(selectedProp.length > 2){
-                                                                        selectedProp.splice(propIndex2,1);
-                                                                         populateValues(selectedProp);
-                                                                        propIndex0 = 0;
-                                                                        propIndex1 = 1;
-                                                                        propIndex2 = 2;
-                                                                        propIndex3 = 3;
-                                                                    } else {
-                                                                        alert("Select atleast Two properties");
-                                                                    }
+                                                                $('#line0 > #details > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(2)').on('click', function() {
+                                                                      line0pictureCurrent++;
+                                                                      var line0picture = getPropPictures($('#line0PicIndx').val());
+                                                                  line0pictureCurrent = (line0pictureCurrent > (line0picture.length -1)) ? 0 : line0pictureCurrent;
+                                                                  $(".comslider").html(line0picture[line0pictureCurrent]);
                                                                 });
-                                                a.comproductName2
-                                                    script.
-                                                        document.write(checkValues[2]['productName']);
-                                                br
-                                                p.comAddress2
-                                                    script.
-                                                        document.write(checkValues[2]['address']['line1']+',');
+                                                        });
+                                                    div#details
+                                                        div#black
+                                                            span#closeBox0.close_box
+                                                                        script.
+                                                                            $('#closeBox0').html('<h3>X</h3>');
+                                                                            $('#closeBox0').on('click', function(){
+                                                                               if(selectedProp.length > 2){
+                                                                                    selectedProp.splice(propIndex0,1);
+                                                                                    populateValues(selectedProp);
+                                                                                    propIndex0 = 0;
+                                                                                    propIndex1 = 1;
+                                                                                    propIndex2 = 2;
+                                                                                    propIndex3 = 3;
+                                                                                } else {
+                                                                                    alert("Select atleast Two properties");
+                                                                                }
+                                                                            });
+                                                            a.comproductName0
+                                                                script.
+                                                                    document.write(checkValues[0]['productName']);
+                                                            br
+                                                            p.comAddress0
+                                                                script.
+                                                                    document.write(checkValues[0]['address']['line1']+',');
 
-                                                p.comAddress21
-                                                    script.
-                                                                    document.write(checkValues[2]['address']['city']+', '+checkValues[2]['address']['country']);
-                                            div.comslider2
-                                            p#comparePrice2
-                                                script.
-                                                    document.write(checkValues[2]['price']);
-                                            p#CompareBeds2
-                                                script.
-                                                    document.write(checkValues[2]['bedrooms']);
-                                            p#CompareBaths2
-                                                script.
-                                                    document.write(checkValues[2]['bathrooms']);
-                                            p#CompareSqft2
-                                                script.
-                                                    document.write(checkValues[2]['area']);
-                                            p#CompareType2
-                                                script.
-                                                    document.write(checkValues[2]['productType']);
-                                            p#CompareBuilt2 2012
-                                            p#CompareMls2 0091948
-                                            p#CompareFeatures2 Alarm Balcony
-                                    li#class1
-                                        script.
-                                            $(document).ready(function(){
-                                                $('.comslider3').bxSlider({
-                                                slideWidth: 165,
-                                                minSlides: 1,
-                                                auto: true,
-                                                autoControls: false,
-                                                slideMargin: 2,
-                                                pager: false,
-                                                pause:3000,
-                                                speed: 2000
-                                                });
-                                                            
-                                                            var class1PictureCurrent = 0;
-                                                    $('#class1 > #details > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(1)').on('click', function() {
-                                                              class1PictureCurrent--;
-                                                              var classPicture = getPropPictures($('#class1PicIndx').val());
-                                                              class1PictureCurrent = (class1PictureCurrent < 0) ? (classPicture.length - 1) : class1PictureCurrent;
-                                                              $(".comslider3").html(classPicture[class1PictureCurrent]);
-                                                    });
-                                                    $('#class1 > #details > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(2)').on('click', function() {
-                                                              class1PictureCurrent++;
-                                                              var classPicture = getPropPictures($('#class1PicIndx').val());
-                                                              class1PictureCurrent = (class1PictureCurrent > (classPicture.length -1)) ? 0 : class1PictureCurrent;
-                                                              $(".comslider3").html(classPicture[class1PictureCurrent]);
-                                                    });
-                                            });
-                                        div#details
-                                            div#black
-                                                span#close_box3.close_box
+                                                            p.comAddress01
+                                                                script.
+                                                                    document.write(checkValues[0]['address']['city']+', '+checkValues[0]['address']['country']);
+                                                        div.comslider
+                                                        p#comparePrice
                                                             script.
-                                                                $('#close_box3').html('<h3>X</h3>');
-                                                                $('#close_box3').on('click', function(){
-                                                                    if(selectedProp.length > 2){
-                                                                        selectedProp.splice(propIndex3,1);
-                                                                        populateValues(selectedProp);
-                                                                        propIndex0 = 0;
-                                                                        propIndex1 = 1;
-                                                                        propIndex2 = 2;
-                                                                        propIndex3 = 3;
-                                                                    } else {
-                                                                        alert("Select atleast Two properties");
-                                                                    }
+                                                                document.write(checkValues[0]['price']);
+                                                        p#CompareBeds
+                                                            script.
+                                                                document.write(checkValues[0]['bedrooms']);
+                                                        p#CompareBaths
+                                                            script.
+                                                                document.write(checkValues[0]['bathrooms']);
+                                                        p#CompareSqft
+                                                            script.
+                                                                document.write(checkValues[0]['area']);
+                                                        p#CompareType
+                                                            script.
+                                                                document.write(checkValues[0]['productType']);
+                                                        p#CompareBuilt 2012
+                                                        p#CompareMls 0091948
+                                                        p#CompareFeatures Alarm Balcony
+                                                li#line1
+                                                    script.
+                                                        $(document).ready(function(){
+                                                            $('.comslider1').bxSlider({
+                                                            slideWidth: 165,
+                                                            minSlides: 1,
+                                                            auto: true,
+                                                            autoControls: false,
+                                                            slideMargin: 2,
+                                                            pager: false,
+                                                            pause:3000,
+                                                            speed: 2000
+                                                            });
+                                                                      var  line1pictureCurrent = 0;
+                                                                $('#line1 > #details > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(1)').on('click', function() {
+                                                                      line1pictureCurrent--;
+                                                                      var line1picture = getPropPictures($('#line1PicIndx').val());
+                                                                      line1pictureCurrent = (line1pictureCurrent < 0) ? (line1picture.length - 1) : line1pictureCurrent;
+                                                                      $(".comslider1").html(line1picture[line1pictureCurrent]);
                                                                 });
-                                                a.comproductName3
+                                                                $('#line1 > #details > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(2)').on('click', function() {
+                                                                      line1pictureCurrent++
+                                                                      var line1picture = getPropPictures($('#line1PicIndx').val());
+                                                                      line1pictureCurrent = (line1pictureCurrent > (line1picture.length -1)) ? 0 : line1pictureCurrent;
+                                                                      $(".comslider1").html(line1picture[line1pictureCurrent]);
+                                                                    });
+
+
+                                                        });
+                                                    div#details
+                                                        div#black
+                                                            span#close_box1.close_box
+                                                                        script.
+                                                                            $('#close_box1').html('<h3>X</h3>');
+                                                                            $('#close_box1').on('click', function(){
+                                                                                if (selectedProp.length > 2){
+                                                                                    selectedProp.splice(propIndex1,1);
+                                                                                    populateValues(selectedProp);
+                                                                                    propIndex0 = 0;
+                                                                                    propIndex1 = 1;
+                                                                                    propIndex2 = 2;
+                                                                                    propIndex3 = 3;
+                                                                                } else {
+                                                                                    alert("Select atleast Two properties");
+                                                                                }
+                                                                            });
+                                                            a.comproductName1
+                                                                script.
+                                                                    document.write(checkValues[1]['productName']);
+                                                            br
+                                                            p.comAddress1
+                                                                script.
+                                                                    document.write(checkValues[1]['address']['line1']+',');
+
+                                                            p.comAddress11
+                                                                script.
+                                                                                document.write(checkValues[1]['address']['city']+', '+checkValues[1]['address']['country']);
+                                                        div.comslider1
+                                                        p#comparePrice1
+                                                            script.
+                                                                document.write(checkValues[1]['price']);
+                                                        p#CompareBeds1
+                                                            script.
+                                                                document.write(checkValues[1]['bedrooms']);
+                                                        p#CompareBaths1
+                                                            script.
+                                                                document.write(checkValues[1]['bathrooms']);
+                                                        p#CompareSqft1
+                                                            script.
+                                                                document.write(checkValues[1]['area']);
+                                                        p#CompareType1
+                                                            script.
+                                                                document.write(checkValues[1]['productType']);
+                                                        p#CompareBuilt1 2012
+                                                        p#CompareMls1 0091948
+                                                        p#CompareFeatures1 Alarm Balcony
+                                                li#class
                                                     script.
-                                                        document.write(checkValues[3]['productName']);
-                                                br
-                                                p.comAddress3
+                                                        $(document).ready(function(){
+                                                            $('.comslider2').bxSlider({
+                                                            slideWidth: 165,
+                                                            minSlides: 1,
+                                                            auto: true,
+                                                            autoControls: false,
+                                                            slideMargin: 2,
+                                                            pager: false,
+                                                            pause:3000,
+                                                            speed: 2000
+                                                            });
+                                                                        
+                                                                        var classPictureCurrent = 0;
+                                                                $('#class > #details > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(1)').on('click', function() {
+                                                                          classPictureCurrent--;
+                                                                          var classPicture = getPropPictures($('#classPicIndx').val());
+                                                                          classPictureCurrent = (classPictureCurrent < 0) ? (classPicture.length - 1) : classPictureCurrent;
+                                                                          $(".comslider2").html(classPicture[classPictureCurrent]);
+                                                                });
+                                                                $('#class > #details > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(2)').on('click', function() {
+                                                                          classPictureCurrent++;
+                                                                          var classPicture = getPropPictures($('#classPicIndx').val());
+                                                                          classPictureCurrent = (classPictureCurrent > (classPicture.length -1)) ? 0 : classPictureCurrent;
+                                                                          $(".comslider2").html(classPicture[classPictureCurrent]);
+                                                                });
+                                                        });
+                                                    div#details
+                                                        div#black
+                                                            span#close_box2.close_box
+                                                                        script.
+                                                                            $('#close_box2').html('<h3>X</h3>');
+                                                                            $('#close_box2').on('click', function(){
+                                                                                if(selectedProp.length > 2){
+                                                                                    selectedProp.splice(propIndex2,1);
+                                                                                     populateValues(selectedProp);
+                                                                                    propIndex0 = 0;
+                                                                                    propIndex1 = 1;
+                                                                                    propIndex2 = 2;
+                                                                                    propIndex3 = 3;
+                                                                                } else {
+                                                                                    alert("Select atleast Two properties");
+                                                                                }
+                                                                            });
+                                                            a.comproductName2
+                                                                script.
+                                                                    document.write(checkValues[2]['productName']);
+                                                            br
+                                                            p.comAddress2
+                                                                script.
+                                                                    document.write(checkValues[2]['address']['line1']+',');
+
+                                                            p.comAddress21
+                                                                script.
+                                                                                document.write(checkValues[2]['address']['city']+', '+checkValues[2]['address']['country']);
+                                                        div.comslider2
+                                                        p#comparePrice2
+                                                            script.
+                                                                document.write(checkValues[2]['price']);
+                                                        p#CompareBeds2
+                                                            script.
+                                                                document.write(checkValues[2]['bedrooms']);
+                                                        p#CompareBaths2
+                                                            script.
+                                                                document.write(checkValues[2]['bathrooms']);
+                                                        p#CompareSqft2
+                                                            script.
+                                                                document.write(checkValues[2]['area']);
+                                                        p#CompareType2
+                                                            script.
+                                                                document.write(checkValues[2]['productType']);
+                                                        p#CompareBuilt2 2012
+                                                        p#CompareMls2 0091948
+                                                        p#CompareFeatures2 Alarm Balcony
+                                                li#class1
                                                     script.
-                                                        document.write(checkValues[3]['address']['line1']+',');
+                                                        $(document).ready(function(){
+                                                            $('.comslider3').bxSlider({
+                                                            slideWidth: 165,
+                                                            minSlides: 1,
+                                                            auto: true,
+                                                            autoControls: false,
+                                                            slideMargin: 2,
+                                                            pager: false,
+                                                            pause:3000,
+                                                            speed: 2000
+                                                            });
+                                                                        
+                                                                        var class1PictureCurrent = 0;
+                                                                $('#class1 > #details > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(1)').on('click', function() {
+                                                                          class1PictureCurrent--;
+                                                                          var classPicture = getPropPictures($('#class1PicIndx').val());
+                                                                          class1PictureCurrent = (class1PictureCurrent < 0) ? (classPicture.length - 1) : class1PictureCurrent;
+                                                                          $(".comslider3").html(classPicture[class1PictureCurrent]);
+                                                                });
+                                                                $('#class1 > #details > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > a:nth-child(2)').on('click', function() {
+                                                                          class1PictureCurrent++;
+                                                                          var classPicture = getPropPictures($('#class1PicIndx').val());
+                                                                          class1PictureCurrent = (class1PictureCurrent > (classPicture.length -1)) ? 0 : class1PictureCurrent;
+                                                                          $(".comslider3").html(classPicture[class1PictureCurrent]);
+                                                                });
+                                                        });
+                                                    div#details
+                                                        div#black
+                                                            span#close_box3.close_box
+                                                                        script.
+                                                                            $('#close_box3').html('<h3>X</h3>');
+                                                                            $('#close_box3').on('click', function(){
+                                                                                if(selectedProp.length > 2){
+                                                                                    selectedProp.splice(propIndex3,1);
+                                                                                    populateValues(selectedProp);
+                                                                                    propIndex0 = 0;
+                                                                                    propIndex1 = 1;
+                                                                                    propIndex2 = 2;
+                                                                                    propIndex3 = 3;
+                                                                                } else {
+                                                                                    alert("Select atleast Two properties");
+                                                                                }
+                                                                            });
+                                                            a.comproductName3
+                                                                script.
+                                                                    document.write(checkValues[3]['productName']);
+                                                            br
+                                                            p.comAddress3
+                                                                script.
+                                                                    document.write(checkValues[3]['address']['line1']+',');
 
-                                                p.comAddress31
+                                                            p.comAddress31
+                                                                script.
+                                                                                document.write(checkValues[3]['address']['city']+', '+checkValues[3]['address']['country']);
+                                                        div.comslider3
+                                                        p#comparePrice3
+                                                            script.
+                                                                document.write(checkValues[3]['price']);
+                                                        p#CompareBeds3
+                                                            script.
+                                                                document.write(checkValues[3]['bedrooms']);
+                                                        p#CompareBaths3
+                                                            script.
+                                                                document.write(checkValues[3]['bathrooms']);
+                                                        p#CompareSqft3
+                                                            script.
+                                                                document.write(checkValues[3]['area']);
+                                                        p#CompareType3
+                                                            script.
+                                                                document.write(checkValues[3]['productType']);
+                                                        p#CompareBuilt3 2012
+                                                        p#CompareMls3 0091948
+                                                        p#CompareFeatures3 Alarm Balcony
+                                            div#nextNav
+                                                    br
+                                                    br
+                                                    br
+                                                    br
+                                                    br
+                                                    br
+                                                    br
+                                                    br
+                                                    br
+                                                    br
+                                                    br
+                                                    br
+                                                    br
+                                                    br
+                                                    br
                                                     script.
-                                                                    document.write(checkValues[3]['address']['city']+', '+checkValues[3]['address']['country']);
-                                            div.comslider3
-                                            p#comparePrice3
-                                                script.
-                                                    document.write(checkValues[3]['price']);
-                                            p#CompareBeds3
-                                                script.
-                                                    document.write(checkValues[3]['bedrooms']);
-                                            p#CompareBaths3
-                                                script.
-                                                    document.write(checkValues[3]['bathrooms']);
-                                            p#CompareSqft3
-                                                script.
-                                                    document.write(checkValues[3]['area']);
-                                            p#CompareType3
-                                                script.
-                                                    document.write(checkValues[3]['productType']);
-                                            p#CompareBuilt3 2012
-                                            p#CompareMls3 0091948
-                                            p#CompareFeatures3 Alarm Balcony
-                                div#nextNav
-                                        br
-                                        br
-                                        br
-                                        br
-                                        br
-                                        br
-                                        br
-                                        br
-                                        br
-                                        br
-                                        br
-                                        br
-                                        br
-                                        br
-                                        br
-                                        script.
-                                            document.write('<div class=\"bx-wrapper\"><div class=\"bx-controls bx-has-controls-direction\"><div class=\"bx-controls-direction\"> <a class=\"bx-next\"></a></div></div></div>');
-                                            //var selectedProp;
+                                                        document.write('<div class=\"bx-wrapper\"><div class=\"bx-controls bx-has-controls-direction\"><div class=\"bx-controls-direction\"> <a class=\"bx-next\"></a></div></div></div>');
+                                                        //var selectedProp;
 
-                                            $('#nextNav').on('click', function() {
+                                                        $('#nextNav').on('click', function() {
 
 
-                                                        //if(selectedProp == undefined){
-                                                        //    selectedProp = $('input[name=property]:checked').map(function() {
-                                                        //                        console.log($(this).val());
-                                                        //                        return propertyList[$(this).val()];
-                                                        //                    }).get();
-                                                        //    console.log('selectedProp.length NEXT :'+selectedProp.length);
-                                                        //}
-                                                        //console.log('Selected prop: '+($('#selectedPropCount').val() - 1));
-                                                selectedPropCount = ($('#selectedPropCount').val() - 1);
-                                                if(selectedPropCount === 1 ){
-                                                    var propIndex0Temp  = propIndex0;
-                                                        propIndex0 = propIndex1;
-                                                        propIndex1 = propIndex0Temp;
-                                                } else if(selectedPropCount === 2){
-                                                    var propIndex0Temp  = propIndex0;
-                                                        propIndex0 = propIndex1;
-                                                        propIndex1 = propIndex2;
-                                                        propIndex2 = propIndex0Temp;
-                                                } else if(selectedPropCount === 3){
-                                                    var propIndex0Temp  = propIndex0;
-                                                        propIndex0 = propIndex1;
-                                                        propIndex1 = propIndex2;
-                                                        propIndex2 = propIndex3;
-                                                        propIndex3 = propIndex0Temp;
-                                                } else {
-                                                    propIndex0 = propIndex1;
-                                                    propIndex1 = propIndex2;
-                                                    propIndex2 = propIndex3;
-                                                    propIndex3++;
-                                                    if(propIndex3 > selectedPropCount){
-                                                        propIndex3 = 0;
-                                                    };
-                                                }
+                                                                    //if(selectedProp == undefined){
+                                                                    //    selectedProp = $('input[name=property]:checked').map(function() {
+                                                                    //                        console.log($(this).val());
+                                                                    //                        return propertyList[$(this).val()];
+                                                                    //                    }).get();
+                                                                    //    console.log('selectedProp.length NEXT :'+selectedProp.length);
+                                                                    //}
+                                                                    //console.log('Selected prop: '+($('#selectedPropCount').val() - 1));
+                                                            selectedPropCount = ($('#selectedPropCount').val() - 1);
+                                                            if(selectedPropCount === 1 ){
+                                                                var propIndex0Temp  = propIndex0;
+                                                                    propIndex0 = propIndex1;
+                                                                    propIndex1 = propIndex0Temp;
+                                                            } else if(selectedPropCount === 2){
+                                                                var propIndex0Temp  = propIndex0;
+                                                                    propIndex0 = propIndex1;
+                                                                    propIndex1 = propIndex2;
+                                                                    propIndex2 = propIndex0Temp;
+                                                            } else if(selectedPropCount === 3){
+                                                                var propIndex0Temp  = propIndex0;
+                                                                    propIndex0 = propIndex1;
+                                                                    propIndex1 = propIndex2;
+                                                                    propIndex2 = propIndex3;
+                                                                    propIndex3 = propIndex0Temp;
+                                                            } else {
+                                                                propIndex0 = propIndex1;
+                                                                propIndex1 = propIndex2;
+                                                                propIndex2 = propIndex3;
+                                                                propIndex3++;
+                                                                if(propIndex3 > selectedPropCount){
+                                                                    propIndex3 = 0;
+                                                                };
+                                                            }
 
-                                                $('#line0PicIndx').val(propIndex0);
-                                                $('#line1PicIndx').val(propIndex1);
-                                                $('#classPicIndx').val(propIndex2);
-                                                $('#class1PicIndx').val(propIndex3);
+                                                            $('#line0PicIndx').val(propIndex0);
+                                                            $('#line1PicIndx').val(propIndex1);
+                                                            $('#classPicIndx').val(propIndex2);
+                                                            $('#class1PicIndx').val(propIndex3);
 
-                                                        $(".comslider").html('<img src='+selectedProp[propIndex0]['picture']['linkFront']+' width=165 height=110/>');
-                                                        $("#comparePrice").html(selectedProp[propIndex0]['price']);
-                                                        $("#CompareBeds").html(selectedProp[propIndex0]['bedrooms']);
-                                                        $("#CompareBaths").html(selectedProp[propIndex0]['bathrooms']);
-                                                        $("#CompareSqft").html(selectedProp[propIndex0]['area']);
-                                                        $("#CompareType").html(selectedProp[propIndex0]['productType']);
-                                                        $('.comproductName0').html(selectedProp[propIndex0]['productName']);
-                                                        $('.comAddress0').html(selectedProp[propIndex0]['address']['line1']+',');
-                                                        $('.comAddress01').html(selectedProp[propIndex0]['address']['city']+', '+selectedProp[propIndex0]['address']['country']);
+                                                                    $(".comslider").html('<img src='+selectedProp[propIndex0]['picture']['linkFront']+' width=165 height=110/>');
+                                                                    $("#comparePrice").html(selectedProp[propIndex0]['price']);
+                                                                    $("#CompareBeds").html(selectedProp[propIndex0]['bedrooms']);
+                                                                    $("#CompareBaths").html(selectedProp[propIndex0]['bathrooms']);
+                                                                    $("#CompareSqft").html(selectedProp[propIndex0]['area']);
+                                                                    $("#CompareType").html(selectedProp[propIndex0]['productType']);
+                                                                    $('.comproductName0').html(selectedProp[propIndex0]['productName']);
+                                                                    $('.comAddress0').html(selectedProp[propIndex0]['address']['line1']+',');
+                                                                    $('.comAddress01').html(selectedProp[propIndex0]['address']['city']+', '+selectedProp[propIndex0]['address']['country']);
 
-                                                        $(".comslider1").html('<img src='+selectedProp[propIndex1]['picture']['linkFront']+' width=165 height=110/>');
-                                                        $("#comparePrice1").html(selectedProp[propIndex1]['price']);
-                                                        $("#CompareBeds1").html(selectedProp[propIndex1]['bedrooms']);
-                                                        $("#CompareBaths1").html(selectedProp[propIndex1]['bathrooms']);
-                                                        $("#CompareSqft1").html(selectedProp[propIndex1]['area']);
-                                                        $("#CompareType1").html(selectedProp[propIndex1]['productType']);
-                                                        $('.comproductName1').html(selectedProp[propIndex1]['productName']);
-                                                        $('.comAddress1').html(selectedProp[propIndex1]['address']['line1']+',');
-                                                        $('.comAddress11').html(selectedProp[propIndex1]['address']['city']+', '+selectedProp[propIndex1]['address']['country']);
-                                                if (selectedPropCount >= 2){
-                                                            $(".comslider2").html('<img src='+selectedProp[propIndex2]['picture']['linkFront']+' width=165 height=110/>');
-                                                            $("#comparePrice2").html(selectedProp[propIndex2]['price']);
-                                                            $("#CompareBeds2").html(selectedProp[propIndex2]['bedrooms']);
-                                                            $("#CompareBaths2").html(selectedProp[propIndex2]['bathrooms']);
-                                                            $("#CompareSqft2").html(selectedProp[propIndex2]['area']);
-                                                            $("#CompareType2").html(selectedProp[propIndex2]['productType']);
-                                                            $('.comproductName2').html(selectedProp[propIndex2]['productName']);
-                                                            $('.comAddress2').html(selectedProp[propIndex2]['address']['line1']+',');
-                                                            $('.comAddress21').html(selectedProp[propIndex2]['address']['city']+', '+selectedProp[propIndex2]['address']['country']);
-                                                    if (selectedPropCount >= 3){
-                                                                $(".comslider3").html('<img src='+selectedProp[propIndex3]['picture']['linkFront']+' width=165 height=110/>');
-                                                                $("#comparePrice3").html(selectedProp[propIndex3]['price']);
-                                                                $("#CompareBeds3").html(selectedProp[propIndex3]['bedrooms']);
-                                                                $("#CompareBaths3").html(selectedProp[propIndex3]['bathrooms']);
-                                                                $("#CompareSqft3").html(selectedProp[propIndex3]['area']);
-                                                                $("#CompareType3").html(selectedProp[propIndex3]['productType']);
-                                                                $('.comproductName3').html(selectedProp[propIndex3]['productName']);
-                                                                $('.comAddress3').html(selectedProp[propIndex3]['address']['line1']+',');
-                                                                $('.comAddress31').html(selectedProp[propIndex3]['address']['city']+', '+selectedProp[propIndex3]['address']['country']);
-                                                    };
-                                                };
+                                                                    $(".comslider1").html('<img src='+selectedProp[propIndex1]['picture']['linkFront']+' width=165 height=110/>');
+                                                                    $("#comparePrice1").html(selectedProp[propIndex1]['price']);
+                                                                    $("#CompareBeds1").html(selectedProp[propIndex1]['bedrooms']);
+                                                                    $("#CompareBaths1").html(selectedProp[propIndex1]['bathrooms']);
+                                                                    $("#CompareSqft1").html(selectedProp[propIndex1]['area']);
+                                                                    $("#CompareType1").html(selectedProp[propIndex1]['productType']);
+                                                                    $('.comproductName1').html(selectedProp[propIndex1]['productName']);
+                                                                    $('.comAddress1').html(selectedProp[propIndex1]['address']['line1']+',');
+                                                                    $('.comAddress11').html(selectedProp[propIndex1]['address']['city']+', '+selectedProp[propIndex1]['address']['country']);
+                                                            if (selectedPropCount >= 2){
+                                                                        $(".comslider2").html('<img src='+selectedProp[propIndex2]['picture']['linkFront']+' width=165 height=110/>');
+                                                                        $("#comparePrice2").html(selectedProp[propIndex2]['price']);
+                                                                        $("#CompareBeds2").html(selectedProp[propIndex2]['bedrooms']);
+                                                                        $("#CompareBaths2").html(selectedProp[propIndex2]['bathrooms']);
+                                                                        $("#CompareSqft2").html(selectedProp[propIndex2]['area']);
+                                                                        $("#CompareType2").html(selectedProp[propIndex2]['productType']);
+                                                                        $('.comproductName2').html(selectedProp[propIndex2]['productName']);
+                                                                        $('.comAddress2').html(selectedProp[propIndex2]['address']['line1']+',');
+                                                                        $('.comAddress21').html(selectedProp[propIndex2]['address']['city']+', '+selectedProp[propIndex2]['address']['country']);
+                                                                if (selectedPropCount >= 3){
+                                                                            $(".comslider3").html('<img src='+selectedProp[propIndex3]['picture']['linkFront']+' width=165 height=110/>');
+                                                                            $("#comparePrice3").html(selectedProp[propIndex3]['price']);
+                                                                            $("#CompareBeds3").html(selectedProp[propIndex3]['bedrooms']);
+                                                                            $("#CompareBaths3").html(selectedProp[propIndex3]['bathrooms']);
+                                                                            $("#CompareSqft3").html(selectedProp[propIndex3]['area']);
+                                                                            $("#CompareType3").html(selectedProp[propIndex3]['productType']);
+                                                                            $('.comproductName3').html(selectedProp[propIndex3]['productName']);
+                                                                            $('.comAddress3').html(selectedProp[propIndex3]['address']['line1']+',');
+                                                                            $('.comAddress31').html(selectedProp[propIndex3]['address']['city']+', '+selectedProp[propIndex3]['address']['country']);
+                                                                };
+                                                            };
 
-                                            });
+                                                        });
             div#mapidHide(style="display:none")
                 div#moreMap
                     p Close Pane X
@@ -1281,7 +1283,7 @@ html
                         div#social_network
                             | Connect with
                             div#social_link
-                                a#login(href="/fbauth", class="iframe")
+                                a#facebook(href="/fbauth", class="iframe")
                                     div#facebook_text Facebook
                                 a#twitter(href="/auth/twitter")
                                     div#twitter_text Twitter
