@@ -426,6 +426,21 @@ html
                                         script.
                                             var map;
                                             var propertyList = JSON.parse( !{JSON.stringify(products)} );
+                                            $(document).ready(function(){
+                                                $('#errormsg').hide();
+                                                if('#{errormsg}'){
+                                                    $('#errormsg').show();
+                                                    var box = document.getElementById("box1").innerHTML;
+                                                    $(".group1").colorbox({rel:'group1', inline:true, transition:"none", html: "box", open: true, width: '517px', height: '390px',
+                                                    onClosed: function(){
+                                                        $('#errormsg').html('<h3></h3>'); 
+                                                        $.post('reseterrormsg',$("#form").serialize(), function(data){
+                                                            console.log("redrecting");
+                                                        });
+                                                    }});
+                                                    $('#errormsg').html('<h3>'+'#{errormsg}'+'</h3>'); 
+                                                }
+                                            });
                                             var loginidhtml = document.getElementById("loginid").innerHTML;
                                                 loginidhtml = (('#{userName}').indexOf('Guest') < 0 )? loginidhtml.replace('#box1', '/logout').replace('LOGIN', 'LOGOUT').replace('group1', 'grouptemp') : loginidhtml.replace('/logout', '#box1').replace('LOGOUT', 'LOGIN').replace('grouptemp', 'group1');
                                                 $('#username').html('#{userName}');
@@ -1229,6 +1244,7 @@ html
                 div#container
                     div#id_login
                         div#normal_login
+                            div#errormsg
                             div#hr_login
                                 p  LSR login
                             div#form-div

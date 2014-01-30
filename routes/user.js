@@ -29,9 +29,12 @@ exports.index= function(req,res,done){
                      req.session.remember =req.body.remember;
                      console.log('req.cookie.email: '+res.cookie.email+','+req.session.remember );
                     }
+                    exports.invalidpwd = '';
                     res.redirect('/');
                 } else {
-                    res.send('/','Password entered is not valid.');
+                    //res.send('/','Password entered is not valid.');
+                    exports.invalidpwd = "* Invalid Password";
+                    res.redirect('/');
                 }
             }else{
                 //var newUser = new User();
@@ -47,9 +50,15 @@ exports.index= function(req,res,done){
         });
     });
 };
+exports.invalidpwd = '';
+exports.reseterrormsg = function(req, res){
+    exports.invalidpwd = '';
+    res.send(200);
+};
 
 exports.logout = function(req, res){
     exports.userName = 'Hi Guest';
+    exports.invalidpwd = '';
     res.redirect('/');
 };
 
@@ -92,6 +101,7 @@ exports.checkuser= function(req, res, done){
                             transport.close();
                         //   console.log('Mail sent...');
                         }
+                        exports.invalidpwd = '';
                         res.redirect('/');
                 });
 
@@ -121,6 +131,7 @@ exports.signedup=function(req,res,done){
                     done(null, newUser);
                     userFirstname = newUser.name.split(' ');
                     exports.userName = 'Hi '+userFirstname[0];
+                exports.invalidpwd = '';
                 res.redirect('/');
                 }
                 });
@@ -160,6 +171,7 @@ exports.resetPassword= function(req,res,done){
                     exports.userObj = oldUser;
                     exports.lastName = userFirstname[1];
                     exports.email =  oldUser.lsrId;
+                    exports.invalidpwd = '';
                     res.redirect('/sendresetpwdmail');
                 }
                 });

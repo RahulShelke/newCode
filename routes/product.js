@@ -49,19 +49,19 @@ exports.index = function (req, res) {
 exports.locationMap = function (req, res) {
     propertyModel.find({}, function (err, docs) {
         if (err) return res.render('Error occurred');
-        res.render('index', {products: JSON.stringify(docs), routePath: "home", title: 'Product List - By Sandeep Pagi', mapIndex: req.params.propid, userName: user.userName, sort: req.params.sort, email: req.session.email, pwd: req.session.pwd, remember: req.session.remember});
+        res.render('index', {products: JSON.stringify(docs), routePath: "home", title: 'Product List - By Sandeep Pagi', mapIndex: req.params.propid, userName: user.userName, sort: req.params.sort, email: req.session.email, pwd: req.session.pwd, remember: req.session.remember, errormsg: user.invalidpwd});
     });
 };
 
 exports.new = function (req, res) {
-    res.render("index", {routePath: "Add", title: 'Add New Product - By Sandeep Pagi', email: req.session.email, pwd: req.session.pwd, remember: req.session.remember});
+    res.render("index", {routePath: "Add", title: 'Add New Product - By Sandeep Pagi', email: req.session.email, pwd: req.session.pwd, remember: req.session.remember, errormsg: user.invalidpwd});
 };
 
 exports.compare = function(req,res){
     propertyModel.find({}, function (err, docs) {
         if (err) return res.render('Error occurred');
         console.log("Called compare");
-        res.render('index', {products: docs, routePath: "compare", title: 'Product List - By Sandeep Pagi', email: req.session.email, pwd: req.session.pwd, remember: req.session.remember});
+        res.render('index', {products: docs, routePath: "compare", title: 'Product List - By Sandeep Pagi', email: req.session.email, pwd: req.session.pwd, remember: req.session.remember, errormsg: user.invalidpwd});
     });
 };
 
@@ -130,11 +130,11 @@ exports.pass = function (req, res, next, name) {
 
 exports.show = function (req, res) {
     var  pic=path.join('/images',path.basename(req.product.picture));
-    res.render('index', { product: req.product,  routePath: "Show", title: 'Edit Product - By Sandeep Pagi', email: req.session.email, pwd: req.session.pwd, remember: req.session.remember });
+    res.render('index', { product: req.product,  routePath: "Show", title: 'Edit Product - By Sandeep Pagi', email: req.session.email, pwd: req.session.pwd, remember: req.session.remember, errormsg: user.invalidpwd });
 };
 
 exports.edit = function (req, res) {
-    res.render('index', { product: req.product, routePath: "Edit", title: 'Update Product - By Sandeep Pagi', email: req.session.email, pwd: req.session.pwd, remember: req.session.remember});
+    res.render('index', { product: req.product, routePath: "Edit", title: 'Update Product - By Sandeep Pagi', email: req.session.email, pwd: req.session.pwd, remember: req.session.remember, errormsg: user.invalidpwd});
 };
 
 exports.update = function (req, res) {
@@ -203,14 +203,14 @@ exports.remove = function (req, res) {
 exports.home = function (req, res) {
     propertyModel.find({}, function (err, docs) {
         if (err) return res.render('Error occurred');
-        res.render('index', {products: JSON.stringify(docs), routePath: "home", title: 'Product List - By Sandeep Pagi', mapIndex: 0, userName: user.userName, sort: 'Priceh', email: req.session.email, pwd: req.session.pwd, remember: req.session.remember,  errormsg: ''});
+        res.render('index', {products: JSON.stringify(docs), routePath: "home", title: 'Product List - By Sandeep Pagi', mapIndex: 0, userName: user.userName, sort: 'Priceh', email: req.session.email, pwd: req.session.pwd, remember: req.session.remember,  errormsg: user.invalidpwd});
     });
 };
 
 exports.loggedin = function (req, res) {
     propertyModel.find({}, function (err, docs) {
         if (err) return res.render('Error occurred');
-        res.render('index', {products: JSON.stringify(docs), routePath: "home", title: 'Product List - By Sandeep Pagi', mapIndex: 0, userName: req.params.username, sort: 'Priceh', email: req.session.email, pwd: req.session.pwd, remember: req.session.remember});
+        res.render('index', {products: JSON.stringify(docs), routePath: "home", title: 'Product List - By Sandeep Pagi', mapIndex: 0, userName: req.params.username, sort: 'Priceh', email: req.session.email, pwd: req.session.pwd, remember: req.session.remember,  errormsg: user.invalidpwd});
     });
 };
 var results;
@@ -259,23 +259,23 @@ exports.search = function (req, res) {
             console.log(req.body);
         if(docs.length > 0){
             console.log("Not Failed"+docs.length);
-            res.render('search', {products: JSON.stringify(docs), routePath: "search", mapIndex: 0, userName: user.userName, sort: 'Priceh', email: req.session.email, pwd: req.session.pwd, remember: req.session.remember});
+            res.render('search', {products: JSON.stringify(docs), routePath: "search", mapIndex: 0, userName: user.userName, sort: 'Priceh', email: req.session.email, pwd: req.session.pwd, remember: req.session.remember, errormsg: user.invalidpwd});
         }else{
             console.log("Failed"+docs.length);
-            res.render('index', {products:req.body.location , routePath: "searchFailed", email: req.session.email, pwd: req.session.pwd, remember: req.session.remember});
+            res.render('index', {products:req.body.location , routePath: "searchFailed", email: req.session.email, pwd: req.session.pwd, remember: req.session.remember, errormsg: user.invalidpwd});
         }
     });
 };
 
 exports.searchList =function(req,res){
     console.log("results in searchLink"+results);
-    res.render('search', {products:JSON.stringify(results), routePath: "searchList", mapIndex: 0, userName: user.userName, sort: 'Priceh', email: req.session.email, pwd: req.session.pwd, remember: req.session.remember});
+    res.render('search', {products:JSON.stringify(results), routePath: "searchList", mapIndex: 0, userName: user.userName, sort: 'Priceh', email: req.session.email, pwd: req.session.pwd, remember: req.session.remember, errormsg: user.invalidpwd});
 };
 
 exports.getsearch =function(req,res){
     console.log("results in getsearch"+results);
-    res.render('search', {products:JSON.stringify(results), routePath: "search", mapIndex: 0, userName: user.userName, sort: 'Priceh', email: req.session.email, pwd: req.session.pwd, remember: req.session.remember});
+    res.render('search', {products:JSON.stringify(results), routePath: "search", mapIndex: 0, userName: user.userName, sort: 'Priceh', email: req.session.email, pwd: req.session.pwd, remember: req.session.remember, errormsg: user.invalidpwd});
 };
 exports.searchProp =function(req,res){
-    res.render('search', {products:JSON.stringify(results), routePath: "search", mapIndex: req.params.propid, userName: user.userName, sort: 'Priceh', email: req.session.email, pwd: req.session.pwd, remember: req.session.remember});
+    res.render('search', {products:JSON.stringify(results), routePath: "search", mapIndex: req.params.propid, userName: user.userName, sort: 'Priceh', email: req.session.email, pwd: req.session.pwd, remember: req.session.remember, errormsg: user.invalidpwd});
 };

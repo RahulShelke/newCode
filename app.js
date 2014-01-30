@@ -307,6 +307,8 @@ app.get('/locationmap/:propid/:sort', productRoutes.locationMap);
 
 app.get('/compare',productRoutes.compare);
 
+app.post('/reseterrormsg',user.reseterrormsg);
+
 app.get('/logout', user.logout);
 
 //Routing
@@ -388,9 +390,6 @@ function ensureAuthenticated(req, res, next) {
     res.redirect('/login')
 };
 app.get('/loadcountry',  function(req, res){
-// var countryList = [{"ccode":"IN","country":"India"},
-// {"ccode":"US","country":"United States"}];
-
 var countryList = [{"ccode":  "AF", "country": "AFGHANISTAN"},
 {"ccode":  "AL", "country": "ALBANIA"},
 {"ccode":  "DZ", "country": "ALGERIA"},

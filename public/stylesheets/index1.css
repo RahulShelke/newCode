@@ -970,6 +970,13 @@ input[type="range"]{
     margin: 20px auto;
 }
 
+#errormsg{
+    color: #EC0F0F;
+    text-shadow: 0 1px 0 #EEEEEE;
+    text-decoration: blink;
+    height: 10px;
+}
+
 #hr_login{
     font-family: "helvetica neue",arial,helvetica,freesans,"liberation sans","numbus sans l",sans-serif;
     /* font-family: sans-serif;*/
